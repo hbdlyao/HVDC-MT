@@ -15,12 +15,13 @@ class CxbDevDCF_RLC : public CxbDevBranch
 public:
 	~CxbDevDCF_RLC();
 
-	void Clear();
 	void InitData() override;
 
+	void Clear() override;
+	void Release() override;
+
 protected:
-	int FreqDim;
-	void doInitData(int vDim);
+	void doInitData(int vDim) override;
 
 protected:
 	//输入参数，正负偏差

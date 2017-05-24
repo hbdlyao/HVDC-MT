@@ -21,6 +21,13 @@ void CxbDevBase::Init()
 
 void CxbDevBase::InitData()
 {
+	FreqDim = hMax();
+
+	doInitData(FreqDim);
+}
+
+void CxbDevBase::doInitData(int vDim)
+{
 }
 
 int CxbDevBase::GetPosOrNeg()

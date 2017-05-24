@@ -15,8 +15,11 @@ class CxbDevDCF_RLC : public CxbDevBranch
 public:
 	~CxbDevDCF_RLC();
 
-	void Clear();
 	void InitData() override;
+
+	void Clear() override;
+	void Release() override;
+
 protected:
 	void doInitData(int vDim) override;
 

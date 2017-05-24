@@ -9,8 +9,12 @@
 #include "CComplex.h"
 #include "CRand.h"
 
-
 CxbDevDCF_RLC::~CxbDevDCF_RLC()
+{
+	Release();
+}
+
+void CxbDevDCF_RLC::Release()
 {
 	delete[] NoneDevYg;
 	delete[] NoneDevYb;
@@ -20,6 +24,7 @@ CxbDevDCF_RLC::~CxbDevDCF_RLC()
 
 	delete[] RandDevYg;
 	delete[] RandDevYb;
+
 }
 
 void CxbDevDCF_RLC::Clear()
@@ -35,6 +40,7 @@ void CxbDevDCF_RLC::Clear()
 
 	delete[] RandDevYg;
 	delete[] RandDevYb;
+
 }
 
 void CxbDevDCF_RLC::InitData()
@@ -61,6 +67,12 @@ void CxbDevDCF_RLC::doInitData(int vDim)
 	RandDevYg = new double[GetSampleNum()*vDim];
 	RandDevYb = new double[GetSampleNum()*vDim];
 
+	//
+	xbUI.IBranchRms = new double[vDim];
+	xbUI.IBranchVec = new double[vDim];
+	xbUI.UBranchRms = new double[vDim];
+	xbUI.UBranchVec = new double[vDim];
+
 }
 
 
@@ -80,10 +92,7 @@ void CxbDevDCF_RLC::Prepare_hRLC()
 	//doDelta_Ref_Min();
 	//doDelta_Rand();
 
-	xbUI.IBranchRms = new double[FreqDim];
-	xbUI.IBranchVec = new double[FreqDim];
-	xbUI.UBranchRms = new double[FreqDim];
-	xbUI.UBranchVec = new double[FreqDim];
+
 
 }
 

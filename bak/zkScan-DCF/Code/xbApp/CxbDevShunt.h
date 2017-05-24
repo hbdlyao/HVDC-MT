@@ -45,5 +45,6 @@ public:
 	void Prepare_hRLC() override;
 	void Prepare_hRLC(double vFreStart, double vFreStep, int vFreDim) override;
 
-
+protected:
+	void doInitData(int vDim) override;
 };

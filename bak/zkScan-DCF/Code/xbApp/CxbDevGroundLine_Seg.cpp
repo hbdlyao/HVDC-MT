@@ -38,9 +38,6 @@ void CxbDevGroundLine_Seg::Prepare_hRLC()
 
 	Prepare_hRLC(vStart, vStep, vDim);
 
-	//pLineParam.Clear();
-	//pLineParam.Init_xbCurrentY();
-
 	xbILine.IBranch1 = new double[vDim];
 	xbILine.IBranch2 = new double[vDim];
 

@@ -16,6 +16,13 @@ void CxbDevBranch::Release()
 {
 	delete[] Yg;
 	delete[] Yb;
+
+	delete[] xbUI.IBranchRms;
+	delete[] xbUI.IBranchVec;
+
+	delete[] xbUI.UBranchRms;
+	delete[] xbUI.UBranchVec;
+
 }
 
 void CxbDevBranch::Clear()
@@ -25,21 +32,33 @@ void CxbDevBranch::Clear()
 	delete[] Yg;
 	delete[] Yb;
 
+	delete[] xbUI.IBranchRms;
+	delete[] xbUI.IBranchVec;
+
+	delete[] xbUI.UBranchRms;
+	delete[] xbUI.UBranchVec;
+
 }
 
-void CxbDevBranch::Prepare_hRLC()
+void CxbDevBranch::doInitData(int vDim)
 {
-	double vStart = FreqRef();
-	double vStep = FreqRef();
-	double vDim = hMax();
-
-	Prepare_hRLC(vStart, vStep, vDim);
+	Yg = new double[vDim];
+	Yb = new double[vDim];
 
 	//
 	xbUI.IBranchRms = new double[vDim];
 	xbUI.IBranchVec = new double[vDim];
 	xbUI.UBranchRms = new double[vDim];
 	xbUI.UBranchVec = new double[vDim];
+}
+
+void CxbDevBranch::Prepare_hRLC()
+{
+	double vStart = FreqRef();
+	double vStep = FreqRef();
+	double FreqDim = hMax();
+
+	Prepare_hRLC(vStart, vStep, FreqDim);
 
 }
 
@@ -50,10 +69,11 @@ void CxbDevBranch::Prepare_hRLC(double vFreStart, double vFreStep, int vFreDim)
 	CComplex vY;
 	double vZg, vZb;
 
-	Clear();
+	FreqDim = vFreDim;
 
-	Yg = new double[vFreDim];
-	Yb = new double[vFreDim];
+	Clear();
+	doInitData(vFreDim);
+
 	//
 	for (int vh = 0; vh < vFreDim; vh++)
 	{

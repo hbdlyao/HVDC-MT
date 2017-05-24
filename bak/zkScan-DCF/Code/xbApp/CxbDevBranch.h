@@ -25,7 +25,8 @@ public:
 
 	void Clear() override;
 	void Release() override;
-
+protected:
+	void doInitData(int vDim) override;
 protected:
 	/**
 	* 支路数据
