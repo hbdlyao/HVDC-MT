@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  CmcCalOneDot.cpp
+//  Implementation of the Class CmcCalOneDot
+//  Created on:      02-4ÔÂ-2017 14:41:07
+//  Original author: Administrator
+///////////////////////////////////////////////////////////
+
+#include "CmcCalOneDot.h"

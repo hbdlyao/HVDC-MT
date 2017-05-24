@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{21B18CF2-6BFC-41EF-AB10-4AE16C888296}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>U3pApp</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\Lib</OutDir>
+    <IntDir>..\..\Obj\U3pApp</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\BaseFrame;..\HvdcCommon;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="C3pCalAcSys.cpp" />
+    <ClCompile Include="C3pCalConvertor.cpp" />
+    <ClCompile Include="C3pCalculate.cpp" />
+    <ClCompile Include="C3pCalOne.cpp" />
+    <ClCompile Include="C3pCalTwo.cpp" />
+    <ClCompile Include="C3pCalXf2.cpp" />
+    <ClCompile Include="C3pDevAcSys.cpp" />
+    <ClCompile Include="C3pDevBase.cpp" />
+    <ClCompile Include="C3pDevConvertor.cpp" />
+    <ClCompile Include="C3pDevGrid.cpp" />
+    <ClCompile Include="C3pDevhData.cpp" />
+    <ClCompile Include="C3pDevOne.cpp" />
+    <ClCompile Include="C3pDevTBL.cpp" />
+    <ClCompile Include="C3pDevTwo.cpp" />
+    <ClCompile Include="C3pDevVSrc.cpp" />
+    <ClCompile Include="C3pDevXf2.cpp" />
+    <ClCompile Include="C3pFunc.cpp" />
+    <ClCompile Include="C3pMvcs.cpp" />
+    <ClCompile Include="C3pOrder.cpp" />
+    <ClCompile Include="C3pParams.cpp" />
+    <ClCompile Include="C3pProfile.cpp" />
+    <ClCompile Include="C3pResult.cpp" />
+    <ClCompile Include="C3pRw.cpp" />
+    <ClCompile Include="C3pRwAcSys.cpp" />
+    <ClCompile Include="C3pRwConvertor.cpp" />
+    <ClCompile Include="C3pRwhDataMvc.cpp" />
+    <ClCompile Include="C3pRwMvc.cpp" />
+    <ClCompile Include="C3pRwOne.cpp" />
+    <ClCompile Include="C3pRwOrderMvc.cpp" />
+    <ClCompile Include="C3pRwTwo.cpp" />
+    <ClCompile Include="C3pRwVsrc.cpp" />
+    <ClCompile Include="C3pRwXf2.cpp" />
+    <ClCompile Include="C3pSolveMvc.cpp" />
+    <ClCompile Include="C3pSolves.cpp" />
+    <ClCompile Include="C3pVars.cpp" />
+    <ClCompile Include="U3p.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C3pCalAcSys.h" />
+    <ClInclude Include="C3pCalConvertor.h" />
+    <ClInclude Include="C3pCalculate.h" />
+    <ClInclude Include="C3pCalOne.h" />
+    <ClInclude Include="C3pCalTwo.h" />
+    <ClInclude Include="C3pCalXf2.h" />
+    <ClInclude Include="C3pDefs.h" />
+    <ClInclude Include="C3pDevAcSys.h" />
+    <ClInclude Include="C3pDevBase.h" />
+    <ClInclude Include="C3pDevConvertor.h" />
+    <ClInclude Include="C3pDevGrid.h" />
+    <ClInclude Include="C3pDevhData.h" />
+    <ClInclude Include="C3pDevOne.h" />
+    <ClInclude Include="C3pDevTBL.h" />
+    <ClInclude Include="C3pDevTwo.h" />
+    <ClInclude Include="C3pDevVSrc.h" />
+    <ClInclude Include="C3pDevXf2.h" />
+    <ClInclude Include="C3pFunc.h" />
+    <ClInclude Include="C3pMvcs.h" />
+    <ClInclude Include="C3pOrder.h" />
+    <ClInclude Include="C3pParams.h" />
+    <ClInclude Include="C3pProfile.h" />
+    <ClInclude Include="C3pResult.h" />
+    <ClInclude Include="C3pRw.h" />
+    <ClInclude Include="C3pRwAcSys.h" />
+    <ClInclude Include="C3pRwConvertor.h" />
+    <ClInclude Include="C3pRwhDataMvc.h" />
+    <ClInclude Include="C3pRwMvc.h" />
+    <ClInclude Include="C3pRwOne.h" />
+    <ClInclude Include="C3pRwOrderMvc.h" />
+    <ClInclude Include="C3pRwTwo.h" />
+    <ClInclude Include="C3pRwVsrc.h" />
+    <ClInclude Include="C3pRwXf2.h" />
+    <ClInclude Include="C3pSolveMvc.h" />
+    <ClInclude Include="C3pSolves.h" />
+    <ClInclude Include="C3pVars.h" />
+    <ClInclude Include="gbHead_3pApp.h" />
+    <ClInclude Include="gbHead_3pCal.h" />
+    <ClInclude Include="gbHead_3pDevice.h" />
+    <ClInclude Include="gbHead_3pRw.h" />
+    <ClInclude Include="gbHead_3ptype.h" />
+    <ClInclude Include="U3p.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
