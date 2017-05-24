@@ -14,7 +14,6 @@ void CzkSolves::Init(CzkProfile* vProfile, CxbHvdcGrid * vGrid)
 
 }
 
-
 void CzkSolves::InitOrder(CzkOrder * vOrder)
 {
 	//CalName = vOrder->CalName;
