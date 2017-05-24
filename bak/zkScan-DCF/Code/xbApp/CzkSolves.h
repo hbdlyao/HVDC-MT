@@ -8,13 +8,14 @@ class CzkSolves :public CxbSolves
 protected:
 	CzkProfile * pzkProfile;
 	CxbHvdcGrid * pzkHvdc;
+	CzkOrder* pzkOrder;
 
 public:
 	void Init(CzkProfile* vProfile, CxbHvdcGrid * vGrid) ;
 
 public:
-	void NodeID() override;
-
+	void InitOrder(CzkOrder * vOrder);
+	CPowerCalculate * doNewCal(CDevBase * vDev) override;
 	void Run() override;
 
 protected:

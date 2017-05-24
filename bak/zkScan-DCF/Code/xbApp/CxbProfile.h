@@ -14,14 +14,14 @@
 class CxbProfile : public CPowerProfile
 {
 public:
-	CxbOrder * pxbvOrder;
+	CxbOrder * pxbOrder;
 
 public:
 	//
 	~CxbProfile();
 
 	void Init()  override;
-	virtual void InitOrder(CxbOrder * vOrder);
+	void InitOrder(CxbOrder * vOrder);
 	
 	void Clear() override;
 
@@ -41,10 +41,6 @@ protected:
 public:
 	int Flag_DCFOver;
 
-	/**
-	 * 计算工况指令
-	 */
-	CxbOrder* pxbOrder;
 
 	/**
 	 * 谐波次数

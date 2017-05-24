@@ -6,5 +6,7 @@
 
 class CPowerProfile : public CPower_YU_I
 {
-
+public:
+	NodeMap pNodeID;
+	NodeMap pNodeMap;
 };

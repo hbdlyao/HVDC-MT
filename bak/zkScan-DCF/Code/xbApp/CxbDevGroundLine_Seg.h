@@ -24,9 +24,12 @@ public:
 	~CxbDevGroundLine_Seg();
 
 	void Init() override;
+
 	void Clear() override;
+	void Release() override;
 
-
+protected:
+	void doInitData(int vDim) override;
 	
 public:
 	string BusName(int vIndex) override;

@@ -186,7 +186,7 @@ void mcCreateGrid()
 
 void OnLoad()
 {
-	//CmcMvcs::OnLoad(CmcParams::dbfFile);
+	CmcMvcs::OnLoad(CmcParams::dbfFile);
 
 	CxbMvcs::OnLoad(CxbParams::dbfFile);
 

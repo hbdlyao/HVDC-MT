@@ -21,7 +21,7 @@ void CmcCalculate::Init(CPowerProfile * vProfile)
 
 void CmcCalculate::InitOrder(CmcOrder * vOrder)
 {
-	pmcOrder = vOrder;
+	//pmcOrder = vOrder;
 }
 
 void CmcCalculate::SaveNormal()

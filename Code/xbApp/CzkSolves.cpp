@@ -14,55 +14,28 @@ void CzkSolves::Init(CzkProfile* vProfile, CxbHvdcGrid * vGrid)
 
 }
 
-void CzkSolves::NodeID()
+
+void CzkSolves::InitOrder(CzkOrder * vOrder)
 {
-	//Yao ?
-	int vK = 0;
-	NodeMap vNodeID, vNodeMap;
+	//CalName = vOrder->CalName;
 
+	pzkOrder = vOrder;
+
+	pxbOrder = pzkOrder;
+
+}
+
+
+CPowerCalculate * CzkSolves::doNewCal(CDevBase* vDev)
+{
+	int vType;
+	CxbCalculate * vCal = nullptr;
+
+	vCal = dynamic_cast<CxbCalculate * >( CxbSolves::doNewCal(vDev));
+
+	vCal->InitOrder(pzkOrder);
 	//
-	pzkHvdc->ClearNodeID();
-
-	for each (CxbCalculate * vCal in pChildren)
-	{
-		//给所有节点编号，包括接地的节点
-		vCal->NodeSort(vNodeMap);
-	}//
-
-	 //
-	for each (CxbCalculate * vCal in pChildren)
-	{
-		//将接地的节点的编号置为-1，表示接地
-		vCal->NodeGround(vNodeMap);
-	}//
-
-	vK = 0;
-	for each (pair<string, int> vPair in vNodeMap)
-	{
-		//划去接地节点
-		if (vPair.second != -1)
-		{
-			vNodeID[vPair.first] = vK;
-
-			vK = vK + 1;
-		}
-		else
-			vNodeID[vPair.first] = -1;
-
-	}// for each
-
-
-	pzkProfile->SetYdim(vK);
-
-	for each (CxbCalculate * vCal in pChildren)
-	{
-		//给定节点编号
-		vCal->NodeID(vNodeID);
-	}//
-
-	//
-	pzkProfile->NodeID = vNodeID;
-
+	return vCal;
 }
 
 void CzkSolves::Run()

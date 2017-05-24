@@ -23,6 +23,16 @@ void CzkProfile::Init()
 
 }
 
+
+void CzkProfile::InitOrder(CzkOrder * vOrder)
+{
+	pzkOrder = vOrder;
+
+	pxbOrder = pzkOrder;
+
+}
+
+
 void CzkProfile::Solve()
 {
 	//Yao ? : 2017-5-20
@@ -121,8 +131,8 @@ void CzkProfile::Solve_zkReq()
 	iNodeName = pzkOrder->GetPortName(0);
 	jNodeName = pzkOrder->GetPortName(1);
 
-	iNode = NodeID.find(iNodeName)->second;
-	jNode = NodeID.find(jNodeName)->second;
+	iNode = pNodeID.find(iNodeName)->second;
+	jNode = pNodeID.find(jNodeName)->second;
 
 
 	Ur = Ur_Vect[iNode] - Ur_Vect[jNode];

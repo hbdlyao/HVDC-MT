@@ -11,11 +11,16 @@ class CxbCalculate : public CPowerCalculate
 protected:
 	CxbOrder * pxbOrder;
 	CxbProfile * pxbProfile;
+
+	CzkOrder * pzkOrder;
 	CzkProfile * pzkProfile;
+
 public:
 	void Init(CPowerProfile* vProfile) override;
 	void Init(CDevBase * vDev) override;
-	virtual void InitOrder(CxbOrder * vOrder);
+
+	void InitOrder(CxbOrder * vOrder);
+	void InitOrder(CzkOrder * vOrder);
 
 public:
 	virtual void Add(CxbCalculate * vItem);

@@ -11,12 +11,12 @@ public:
 	double zkFreq = 50;
 	double * pzkReq;
 
-	NodeMap NodeID;
-
 public:
 	~CzkProfile();
 
 	void Init() override;
+
+	void InitOrder(CzkOrder * vOrder);
 
 public:
 	void Solve()  override;

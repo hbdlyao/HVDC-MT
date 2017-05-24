@@ -10,14 +10,26 @@
 
 CxbDevGroundLine_Seg::~CxbDevGroundLine_Seg()
 {
-	//delete[] pLineParam;
+	Release();
+}
+
+void CxbDevGroundLine_Seg::Release()
+{
+	//delete pLineParam;
 }
 
 void CxbDevGroundLine_Seg::Clear()
 {
-	//CxbDevTwo::Clear();
+	CxbDevTwo::Clear();
 
 	//pLineParam.Clear();
+
+	delete[] xbILine.IBranch1;
+	delete[] xbILine.IBranch2;
+
+	delete[] xbILine.Ieq_P;
+	delete[] xbILine.Ieq_C;
+	delete[] xbILine.Ieq_N;
 }
 
 
@@ -29,6 +41,16 @@ void CxbDevGroundLine_Seg::Init()
 	InitData();
 }
 
+void CxbDevGroundLine_Seg::doInitData(int vDim)
+{
+	xbILine.IBranch1 = new double[vDim];
+	xbILine.IBranch2 = new double[vDim];
+
+	xbILine.Ieq_P = new double[2];
+	xbILine.Ieq_C = new double[2];
+	xbILine.Ieq_N = new double[2];
+
+}
 
 void CxbDevGroundLine_Seg::Prepare_hRLC()
 {
@@ -38,18 +60,17 @@ void CxbDevGroundLine_Seg::Prepare_hRLC()
 
 	Prepare_hRLC(vStart, vStep, vDim);
 
-	xbILine.IBranch1 = new double[vDim];
-	xbILine.IBranch2 = new double[vDim];
-
-	xbILine.Ieq_P = new double[2];
-	xbILine.Ieq_C = new double[2];
-	xbILine.Ieq_N = new double[2];
 }
 
 void CxbDevGroundLine_Seg::Prepare_hRLC(double vFreStart, double vFreStep, int vFreDim)
 {
-	pLineParam.Clear();
+	FreqDim = vFreDim;
 
+	Clear();
+	doInitData(FreqDim);
+
+	//
+	pLineParam.Clear();
 	pLineParam.Init_ImScanY(vFreStart, vFreStep, vFreDim);
 }
 

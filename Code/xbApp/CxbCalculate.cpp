@@ -28,6 +28,14 @@ void CxbCalculate::InitOrder(CxbOrder * vOrder)
 	pxbOrder = vOrder;
 }
 
+void CxbCalculate::InitOrder(CzkOrder * vOrder)
+{
+	pzkOrder = vOrder;
+
+	pxbOrder = pzkOrder;
+
+}
+
 void CxbCalculate::Add(CxbCalculate * vItem)
 {
 

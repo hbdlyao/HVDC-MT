@@ -235,6 +235,11 @@ void CPowerSolves::NodeID()
 	//
 	doNodeID(vNodeID);
 	//
+
+	//
+	pProfile->pNodeMap = vNodeMap;
+	pProfile->pNodeID = vNodeID;
+
 }
 
 
