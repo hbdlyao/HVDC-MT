@@ -1,0 +1,14 @@
+///////////////////////////////////////////////////////////
+//  ClmOrder.cpp
+//  Implementation of the Class ClmOrder
+//  Created on:      05-4ÔÂ-2017 18:22:10
+//  Original author: Administrator
+///////////////////////////////////////////////////////////
+
+
+#include "ClmOrder.h"
+
+
+void ClmOrder::Init()
+{
+}
