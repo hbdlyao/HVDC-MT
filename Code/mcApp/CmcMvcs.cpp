@@ -10,6 +10,7 @@
 #include "CmcVars.h"
 
 #include "CmcRwOrderMvc.h"
+#include "CmcRwResultMvc.h"
 
 void CmcMvcs::Init()
 {			
@@ -56,6 +57,21 @@ void CmcMvcs::OnLoadOrder(string vdbf)
 
 	vRwMvc->InitAdo(vdbf);
 	vRwMvc->Init(CmcVars::pmcOrder);
+	vRwMvc->OnLoad(vdbf);
+
+	delete vRwMvc;
+}
+
+void CmcMvcs::OnLoadResult(string vdbf)
+{
+	CmcResult* vResult=new CmcResult();
+	
+	vResult->ResultName = "²âÊÔ1495529378";
+	
+	CmcRwResultMvc* vRwMvc = new CmcRwResultMvc();
+
+	vRwMvc->InitAdo(vdbf);
+	vRwMvc->Init(vResult);
 	vRwMvc->OnLoad(vdbf);
 
 	delete vRwMvc;

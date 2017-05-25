@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  CmcRwMetalLine.cpp
+//  Implementation of the Class CmcRwMetalLine
+//  Created on:      18-4ÔÂ-2017 22:05:49
+//  Original author: open2
+///////////////////////////////////////////////////////////
+
+#include "CmcRwMetalLine.h"

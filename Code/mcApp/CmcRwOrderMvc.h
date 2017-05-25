@@ -17,8 +17,14 @@ protected:
 	CmcOrder * pOrder;
 public:
 	void Init(CmcOrder* vOrder);
+
+	void OnLoad(string vdbf) override;
+	void OnLoad() override;
+
 protected:
 	void doLoad() override;
+	void doLoad_CaseID();
+
 	void doSave() override;
 };
 #endif // !defined(EA_2329C3EB_F3AD_46e9_80FA_F0DBFD7B8ECE__INCLUDED_)

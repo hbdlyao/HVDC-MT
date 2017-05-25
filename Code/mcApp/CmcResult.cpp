@@ -7,7 +7,7 @@
 
 #include "CmcResult.h"
 #include "CHvdcFunc.h"
-
+#include "CmcParams.h"
 
 CmcResult::~CmcResult()
 {
@@ -53,9 +53,21 @@ void CmcResult::Init(int vStaDim, int vCaseDim, int vPdPreDim)
 	nPdPreDim = vPdPreDim;
 
 	//
-	int vN = DataDim();
-	pmcResultData = new struct_mcResultData[vN];
+	datDim = nStaDim*nCaseDim*nPdPreDim;
+	pmcResultData = new struct_mcResultData[datDim];
 
+}
+
+void CmcResult::NewData(int vDim)
+{
+	datDim = vDim;
+	pmcResultData = new struct_mcResultData[datDim];
+}
+
+void CmcResult::NewData1(int vDim)
+{
+	datDim = vDim * PdSize()*StaCount();
+	pmcResultData = new struct_mcResultData[datDim];
 }
 
 int CmcResult::DataDim()
@@ -66,6 +78,24 @@ int CmcResult::DataDim()
 
 }
 
+int CmcResult::PdSize()
+{
+	return 29;
+
+}
+
+int CmcResult::StaCount()
+{
+	return CmcParams::mcStationCount;
+
+}
+
+string CmcResult::GetResultName()
+{
+	return ResultName;
+}
+
+
 void CmcResult::Record(string vCalName, string vCaseId, struct_mcStationData* vStaData, struct_mcStationData* vStaDataN)
 {
 	ResultName = vCalName;
@@ -73,7 +103,7 @@ void CmcResult::Record(string vCalName, string vCaseId, struct_mcStationData* vS
 	for (int i = 0; i < nStaDim; i++)
 	{
 		pmcResultData[CurrentOffset].CalName= vCalName;
-		pmcResultData[CurrentOffset].CaseId = vCaseId;
+		pmcResultData[CurrentOffset].CaseID = vCaseId;
 		pmcResultData[CurrentOffset].PdPer	= vStaData[i].PdPer;
 		pmcResultData[CurrentOffset].StationName = vStaData[i].StationName;
 
@@ -121,7 +151,3 @@ void CmcResult::Record(string vCalName, string vCaseId, struct_mcStationData* vS
 	}
 }
 
-string CmcResult::GetResultName()
-{
-	return ResultName;
-}

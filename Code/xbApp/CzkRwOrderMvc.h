@@ -13,14 +13,14 @@
 
 class CzkRwOrderMvc : public CRwMvcAccess
 {
-
-public:
-	void doLoad();
-	void doSave();
-	void Init(CzkOrder* vOrder);
-
 protected:
 	CzkOrder* pOrder;
+
+	void doLoad() override;
+	void doSave() override;
+
+public:
+	void Init(CzkOrder* vOrder);
 
 };
 #endif // !defined(EA_20A6384A_51C7_4ee1_9162_1439031692F5__INCLUDED_)

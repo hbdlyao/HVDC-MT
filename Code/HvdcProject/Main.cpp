@@ -6,6 +6,8 @@
 
 void OnLoad()
 {
+	//CmcMvcs::OnLoadResult(CmcParams::dbfFile);
+
 	CmcMvcs::OnLoad(CmcParams::dbfFile);
 
 	CxbMvcs::OnLoad(CxbParams::dbfFile);

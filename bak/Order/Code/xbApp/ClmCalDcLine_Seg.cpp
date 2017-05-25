@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  ClmCalDcLine_Seg.cpp
+//  Implementation of the Class ClmCalDcLine_Seg
+//  Created on:      24-5ÔÂ-2017 11:28:21
+//  Original author: open2
+///////////////////////////////////////////////////////////
+
+#include "ClmCalDcLine_Seg.h"

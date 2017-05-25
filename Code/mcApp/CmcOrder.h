@@ -12,6 +12,8 @@
 #include "CHvdcOrder.h"
 
 #include <string>
+#include <Vector>
+
 #include "gbHead_mcType.h"
 
 using namespace std;

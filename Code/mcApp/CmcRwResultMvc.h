@@ -23,6 +23,7 @@ protected:
 	void doLoad() override;
 	void doSave() override;
 
+	void doLoad(struct_mcResultData vResult);
 	void doSave(struct_mcResultData vResult);
 };
 #endif // !defined(EA_11167C37_E871_41bd_84C9_811928AC7302__INCLUDED_)

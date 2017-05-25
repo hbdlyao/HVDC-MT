@@ -49,8 +49,10 @@ void CxbMain::xbCreateGrid()
 
 void CxbMain::xbTest(int vGnd)
 {
+	CxbMvcs::xbOnLoadOrder(CxbParams::dbfFile);
+
 	CxbSolveMvc * vMvc;
-	
+		
 	vMvc = new CxbSolveMvc();
 	vMvc->Init(CxbVars::pxbHvdcGrid);
 	vMvc->InitOrder(CxbVars::pxbOrder);

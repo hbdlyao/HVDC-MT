@@ -70,7 +70,7 @@ struct struct_mcResultData
 {
 public:
 	string CalName;
-	string CaseId;
+	string CaseID;
 	string StationName;//站名
 
 	double PdPer=0;//功率水平

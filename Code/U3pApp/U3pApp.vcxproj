@@ -233,6 +233,14 @@
     <ClInclude Include="gbHead_3ptype.h" />
     <ClInclude Include="U3p.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseFrame\BaseFrame.vcxproj">
+      <Project>{183a7f0e-d937-4a7c-af4a-8406cc68cdc7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\HvdcCommon\HvdcCommon.vcxproj">
+      <Project>{c6d2e917-12a7-4e82-b45e-e330fd91cc7b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

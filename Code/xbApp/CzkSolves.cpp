@@ -27,7 +27,6 @@ void CzkSolves::InitOrder(CzkOrder * vOrder)
 
 CPowerCalculate * CzkSolves::doNewCal(CDevBase* vDev)
 {
-	int vType;
 	CxbCalculate * vCal = nullptr;
 
 	vCal = dynamic_cast<CxbCalculate * >( CxbSolves::doNewCal(vDev));

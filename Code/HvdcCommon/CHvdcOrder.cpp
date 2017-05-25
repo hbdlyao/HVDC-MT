@@ -84,4 +84,10 @@ void CHvdcOrder::UpdatePdPercent(int & vPdSize)
 }
 
 
+void CHvdcOrder::AddCase(string vID)
+{
+	CaseList.push_back(vID);
+}
+
+
 

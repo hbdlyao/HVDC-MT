@@ -155,3 +155,4 @@ void CmcOrder::InitNormal()
 	UdCustom = 0;
 	Is6Pulse = false;
 }
+

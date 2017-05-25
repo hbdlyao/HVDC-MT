@@ -15,8 +15,110 @@ void CmcRwResultMvc::Init(CmcResult * vRes)
 
 void CmcRwResultMvc::doLoad()
 {
+	string  vSQL;
+
+	tblName = "mcResult";
+	//
+	vSQL = "select CaseID  from " + tblName;
+	vSQL = vSQL + " where ResultName = ";
+	vSQL = vSQL + " '";
+	vSQL = vSQL + pResult->GetResultName();
+	vSQL = vSQL + "' ";
+	vSQL = vSQL + " group by CaseID ";
+
+	RwAdo->OpenSQL(vSQL);
+
+	int vN = RwAdo->Record_RowCount();
+	pResult->NewData1(vN);
+
+	
+	cout << "Load---" + tblName +"---" << endl;
+
+	vSQL = "select *  from " + tblName;
+	vSQL = vSQL + " where ResultName = ";
+	vSQL = vSQL + " '";
+	vSQL = vSQL + pResult->GetResultName();
+	vSQL = vSQL + "' ";
+	vSQL = vSQL + " order by ResultName,CaseID,StationName,PdPer ";
+
+	RwAdo->OpenSQL(vSQL);
+	//
+	int vh = 0;
+	while (!RwAdo->IsEOF())
+	{
+		try
+		{
+			doLoad(pResult->pmcResultData[vh]);
+		}
+		catch (const std::exception&)
+		{
+			cout << "Err:" + vh;
+		}
+
+		vh = vh + 1;
+		//
+		RwAdo->Record_MoveNext();
+
+		cout << "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+		cout << pResult->GetResultName();
+		cout << "  ---";
+		cout << "%";
+		cout.width(3);
+		cout << vh;
+
+	}//while
+
+	//
+	RwAdo->CloseTBL();
+
+	//
+	cout <<  endl;
+}
+
+void CmcRwResultMvc::doLoad(struct_mcResultData vResult)
+{
+	string  vStr;
+	_variant_t vValue;
+
+	RwAdo->GetFieldValue("ResultName", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (_bstr_t)vValue; //字符型
+		vResult.CalName = vStr;
+	};
+
+	RwAdo->GetFieldValue("CaseID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (_bstr_t)vValue; //字符型
+		vResult.CaseID = vStr;
+	};
+
+	RwAdo->GetFieldValue("StationName", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (_bstr_t)vValue; //字符型
+		vResult.StationName = vStr;
+	};
+
+	RwAdo->GetFieldValue("PdPer", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vResult.PdPer = vValue.dblVal;  //双精度
+	};
+
+
+	/*
+	RwAdo->GetFieldValue("PdPer", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vResult.PdPer = vValue.iVal;  //整型
+	};
+	*/
 
 }
+
+
 
 void CmcRwResultMvc::doSave()
 {
@@ -75,13 +177,16 @@ void CmcRwResultMvc::doSave(struct_mcResultData vResult)
 {
 	SqlStr = SqlStr + "ResultName, ";
 	SqlParam = SqlParam + GetString(vResult.CalName) + ",";
+
 	SqlStr = SqlStr + "CaseID, ";
-	SqlParam = SqlParam + GetString(vResult.CaseId) + ",";
+	SqlParam = SqlParam + GetString(vResult.CaseID) + ",";
+
 	SqlStr = SqlStr + "StationName, ";
 	SqlParam = SqlParam + GetString(vResult.StationName) + ",";
 
 	SqlStr = SqlStr + "PdPer, ";
 	SqlParam = SqlParam + GetString(vResult.PdPer) + ",";
+
 	SqlStr = SqlStr + "Uac, ";
 	SqlParam = SqlParam + GetString(vResult.Uac) + ",";
 	SqlStr = SqlStr + "Uv, ";
@@ -136,7 +241,7 @@ void CmcRwResultMvc::doSave(struct_mcResultData vResult)
 	static int vN = 1;
 	cout << "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 	cout << "主回路:";
-	cout << vResult.CaseId;
+	cout << vResult.CaseID;
 	cout << "%";
 	cout.width(3);
 	cout << vResult.PdPer;

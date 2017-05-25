@@ -19,7 +19,12 @@ public:
 
 public:
 	string CalName;
+	vector<string> CaseList;
 
+	void AddCase(string vID);
+
+
+public:
 	//"DFBFH22" : 双阀，正向，双极，全压，高阻，两侧交流电压为额定
 
 	//要计算的全部工况，来自输入

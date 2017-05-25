@@ -14,14 +14,19 @@
 
 class CxbRwOrderMvc : public CRwMvcAccess
 {
+protected:
+	CxbOrder* pOrder;
 
 public:
 	void Init(CxbOrder* vOrder);
-	void doLoad();
-	void doSave();
+	void OnLoad(string vdbf) override;
 
-protected:
-	CxbOrder* pOrder;
+	void OnLoad()  override;
+
+	void doLoad() override;
+	void doSave() override;
+
+	void doLoad_CaseID();
 
 };
 #endif // !defined(EA_84B118E1_A96D_43ea_8EBB_D569FEF43149__INCLUDED_)
