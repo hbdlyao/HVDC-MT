@@ -12,7 +12,7 @@
 #include "CxbResult.h"
 
 
-class CxbRwResultMvc : public CRwMvcAccess
+class CxbRwResultMvc : public CMyRwMvcAccess
 {
 
 public:

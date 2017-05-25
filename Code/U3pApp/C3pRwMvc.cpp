@@ -16,7 +16,7 @@ void C3pRwMvc::InitGrid(C3pDevGrid* vHvdc)
 
 void C3pRwMvc::doLoad()
 {
-	CRwDev * vRw;
+	CMyRwDev * vRw;
 
 	//
 	vRw = doNewRw(C3pDefs::AcSys);
@@ -38,7 +38,7 @@ void C3pRwMvc::doLoad()
 
 void C3pRwMvc::doSave() 
 {
-	CRwDev * vRw;
+	CMyRwDev * vRw;
 
 	//
 	vRw = doNewRw(C3pDefs::AcSys);
@@ -57,9 +57,9 @@ void C3pRwMvc::doSave()
 }
 
 
-CRwDev * C3pRwMvc::doNewRw(int vtblType) {
+CMyRwDev * C3pRwMvc::doNewRw(int vtblType) {
 
-	CRwDev* vRw;
+	CMyRwDev* vRw;
 
 	switch (vtblType)
 	{

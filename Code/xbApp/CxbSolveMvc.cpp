@@ -74,6 +74,96 @@ void CxbSolveMvc::InitOrder(CxbOrder * vOrder)
 
 }
 
+
+int CxbSolveMvc::StaCount()
+{
+	//从工程属性中读取
+	return CxbParams::xbStationCount;
+
+}
+
+double CxbSolveMvc::Frequence()
+{
+	return CxbParams::Frequence;
+}
+
+double CxbSolveMvc::hMax()
+{
+	return CxbParams::hMax;
+}
+
+
+void CxbSolveMvc::Test(int vGNDType)
+{
+
+	pxbOrder->ParserOrder(pxbOrder->CaseList[0]);
+
+	//
+	pxbOrder->GroundType = vGNDType;
+
+	doPrepare_hRLC();
+
+	doInitRun();
+
+	//
+	doNewSolves(vGNDType);
+
+	//节点编号
+	doNodeID();
+
+	doStationSort();
+
+	//初始化计算用矩阵
+	doInitMatrix();
+
+	//doRun_DCF();
+
+	doRun();
+
+}
+
+
+void CxbSolveMvc::Run()
+{
+	int vGndType;
+	//
+	doPrepare_hRLC();
+
+	doInitRun();
+
+	//
+	for each (string vCaseID in pxbOrder->CaseList)
+	{
+		vGndType = pxbOrder->GroundType;
+
+		pxbOrder->ParserOrder(vCaseID);
+
+		//
+		if (vGndType != pxbOrder->GroundType)
+		{
+			vGndType = pxbOrder->GroundType;
+
+			//
+			doNewSolves(vGndType);
+			//节点编号
+			doNodeID();
+			//
+			doStationSort();
+			//
+			doInitMatrix();
+
+		}
+		
+		//
+		//doRun_DCF();
+		//
+		doRun();
+
+	}//for 
+
+}
+
+
 void CxbSolveMvc::doNodeID()
 {
 	pxbSolves->NodeID();
@@ -96,52 +186,6 @@ void CxbSolveMvc::doNewSolves(int vGNDType)
 }
 
 
-int CxbSolveMvc::StaCount()
-{
-	//从工程属性中读取
-	return CxbParams::xbStationCount;
-
-}
-
-
-void CxbSolveMvc::Test(int vGNDType)
-{
-	doPrepare_hRLC();
-
-	doInitRun();
-	//
-	pxbOrder->GroundType = vGNDType;
-	//
-	//pxbSolves->Init(pxbProfile, pxbHvdc);
-
-	//
-	doNewSolves(vGNDType);
-
-	//节点编号
-	doNodeID();
-
-	doStationSort();
-
-	//初始化计算用矩阵
-	doInitMatrix();
-
-	doRun();
-
-}
-
-void CxbSolveMvc::Run()
-{
-	//
-	doPrepare_hRLC();
-
-
-	doInitRun();
-
-	//多工况运行
-	doRun_Ground(pxbOrder->Flag_Ground);
-}
-
-
 void CxbSolveMvc::doPrepare_hRLC()
 {
 	//计算出相关设备的各次谐波阻抗；
@@ -149,16 +193,6 @@ void CxbSolveMvc::doPrepare_hRLC()
 
 }
 
-
-double CxbSolveMvc::Frequence()
-{
-	return CxbParams::Frequence;
-}
-
-double CxbSolveMvc::hMax()
-{
-	return CxbParams::hMax;
-}
 
 void CxbSolveMvc::doRun()
 {
@@ -232,157 +266,6 @@ void CxbSolveMvc::doInitMatrix()
 	pxbProfile->InitMatrix();
 }
 
-
-void CxbSolveMvc::doRun_Ground(string vFlag) {
-
-	int vN = static_cast<int> (vFlag.size());
-
-	//单极大地/金属回线/双极/双极并联
-	for (int i = 0; i < vN; i++)
-	{
-		if (vFlag[i] == '1') //"1111"
-		{
-			pxbOrder->GroundType = GndTypeArr[i];
-
-			//根据接地类型生成 mcCalculate,与设备一一对应
-			doNewSolves(GndTypeArr[i]);
-
-			//节点编号
-			doNodeID();
-
-			//换流站排序
-			doStationSort();
-
-			//初始化计算用矩阵
-			doInitMatrix();
-
-			doRun_Rd(pxbOrder->Flag_Rd);
-
-		}//if
-
-	}//for
-}
-
-
-void CxbSolveMvc::doRun_Rd(string vFlag) {
-
-	int vN = static_cast<int> (vFlag.size());
-
-	//高阻、低阻
-	for (int i = 0; i < vN; i++)
-	{
-		if (vFlag[i] == '1') //
-		{
-			pxbOrder->RdLevel = RdLevelArr[i];
-
-			//
-			if (pxbOrder->IsUdCustom) //指定Ud
-				doRun_UdCustom();
-			else
-				doRun_Ud(pxbOrder->Flag_Ud);
-
-		}//if vFlag
-
-	}//for
-}
-
-
-void CxbSolveMvc::doRun_Ud(string vFlag) {
-
-	int vN = static_cast<int> (vFlag.size());
-	int vStaCount = StaCount();
-
-	//全压/80%/70%
-	for (int i = 0; i < vN; i++)
-	{
-		if (vFlag[i] == '1')
-		{
-			pxbOrder->UdLevel = UdLevelArr[i];
-
-			if (pxbOrder->IsUacSwap)
-				doRun_UacSwap(pxbOrder->Flag_Uac, 0, vStaCount);
-			else
-				doRun_Uac(pxbOrder->Flag_Uac);
-
-		}//if
-
-	}//for
-}
-
-
-void CxbSolveMvc::doRun_UdCustom()
-{
-
-	int vStaCount = StaCount();
-
-	pxbOrder->UdLevel = Ud_Custom;
-
-	//Ud处理
-
-	//
-	if (pxbOrder->IsUacSwap)
-		doRun_UacSwap(pxbOrder->Flag_Uac, 0, vStaCount);
-	else
-		doRun_Uac(pxbOrder->Flag_Uac);
-}
-
-
-void CxbSolveMvc::doRun_Uac(string vFlag) {
-
-	int vN = static_cast<int> (vFlag.size());
-	int vStaCount = StaCount();
-
-	//最大/额定/最小/极小
-	for (int i = 0; i < vN; i++)
-		if (vFlag[i] == '1')
-		{
-			for (int j = 0; j<vStaCount; j++)
-				pxbOrder->UacLevel[j] = UacLevelArr[i];
-			//
-			doRun_Pd();
-		}//if
-}
-
-
-void CxbSolveMvc::doRun_UacSwap(string vFlag, int vIndex, int vStaCount) {
-
-	int vN = static_cast<int> (vFlag.size());
-
-
-	//vIndex从0开始,当vIndex==vStaCount,说明所有的换流站都已设置Uac
-	if (vIndex == vStaCount)
-		doRun_Pd();
-	else
-	{//最大/额定/最小/极小
-		for (int i = 0; i < vN; i++)
-			if (vFlag[i] == '1')
-			{
-				pxbOrder->UacLevel[vIndex] = UacLevelArr[i];
-
-				doRun_UacSwap(vFlag, vIndex + 1, vStaCount);
-			}//if
-
-	}//else
-}
-
-
-void CxbSolveMvc::doRun_Pd()
-{
-
-	int vPdSize;
-
-	vPdSize = pxbOrder->PdSize;
-
-	for (int i = 0; i<vPdSize; i++)
-	{
-		pxbOrder->UpdatePdPercent(i);
-
-		//doRun_DCF();
-
-		doRun();
-
-	}//for
-}
 
 void CxbSolveMvc::doRun_DCF()
 {

@@ -59,7 +59,8 @@ void CxbDevShunt::Prepare_hRLC()
 {
 	double vStart = FreqRef();
 	double vStep = FreqRef();
-	double FreqDim = hMax();
+
+	FreqDim = hMax();
 
 	Prepare_hRLC(vStart, vStep, FreqDim);
 

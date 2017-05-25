@@ -11,7 +11,7 @@
 #include "CMyRwMvc.h"
 #include "CmcOrder.h"
 
-class CmcRwOrderMvc : public CRwMvcAccess
+class CmcRwOrderMvc : public CMyRwMvcAccess
 {
 protected:
 	CmcOrder * pOrder;

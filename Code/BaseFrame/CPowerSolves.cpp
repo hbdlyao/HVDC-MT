@@ -216,8 +216,7 @@ void CPowerSolves::NodeID()
 	//
 	vK = 0;
 	for each (pair<string, int> vPair in vNodeMap)
-	{
-		//划去接地节点
+	{		
 		if (vPair.second != -1)
 		{
 			vNodeID[vPair.first] = vK;
@@ -225,18 +224,17 @@ void CPowerSolves::NodeID()
 			vK = vK + 1;
 		}
 		else
+			//划去接地节点
 			vNodeID[vPair.first] = -1;
 	
 	}// for each
 	
-	 //
-	pProfile->SetYdim(vK);
-
 	//
 	doNodeID(vNodeID);
-	//
 
 	//
+	pProfile->SetYdim(vK);
+
 	pProfile->pNodeMap = vNodeMap;
 	pProfile->pNodeID = vNodeID;
 

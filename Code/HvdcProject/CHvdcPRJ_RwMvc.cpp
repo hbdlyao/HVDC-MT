@@ -18,9 +18,9 @@ void CHvdcPRJ_RwMvc::InitAdo(string vDbf)
 {
 	dbfName = vDbf;
 
-	//RwAdo = new CRwAdo_MDB();
+	//RwAdo = new CMyRwAdo_MDB();
 
-	RwAdo = new CRwAdo_Access();
+	RwAdo = new CMyRwAdo_Access();
 	RwAdo->InitDbf(dbfName, "", "", "false");
 }
 

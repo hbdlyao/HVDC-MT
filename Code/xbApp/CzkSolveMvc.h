@@ -20,7 +20,9 @@ public:
 	void Init(CxbHvdcGrid* vGrid) override;
 	void InitOrder(CzkOrder * vOrder);
 
-	void Test(int vGNDType) override;
+	void Run() override;
+
+	void Test(int vGNDtype) override;
 
 protected:
 	void doPrepare_hRLC();

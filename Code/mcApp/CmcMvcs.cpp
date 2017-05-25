@@ -53,6 +53,8 @@ void CmcMvcs::OnSave(string vdbf)
 
 void CmcMvcs::OnLoadOrder(string vdbf)
 {
+	//CmcVars::pmcOrder->CalName = "²âÊÔ1495529378";
+
 	CmcRwOrderMvc* vRwMvc = new CmcRwOrderMvc();
 
 	vRwMvc->InitAdo(vdbf);
@@ -64,10 +66,10 @@ void CmcMvcs::OnLoadOrder(string vdbf)
 
 void CmcMvcs::OnLoadResult(string vdbf)
 {
-	CmcResult* vResult=new CmcResult();
-	
+	CmcResult* vResult=new CmcResult();	
 	vResult->ResultName = "²âÊÔ1495529378";
 	
+	//
 	CmcRwResultMvc* vRwMvc = new CmcRwResultMvc();
 
 	vRwMvc->InitAdo(vdbf);

@@ -9,17 +9,13 @@ using namespace std;
 class C3pOrder : public CHvdcOrder
 {
 public:
-	//Âí¿¥Åô
-	//ÂË²¨Æ÷Æ«²îÀàĞÍ
 	int DType;
 
 	int RandTimes;
 
-	void Init();
-
-	string CreateCaseID() override;
-
-	int CaseCount() override;
+	void Init() override;
+	int StaCount() override;
 
 	int LoopTimes();
+
 };

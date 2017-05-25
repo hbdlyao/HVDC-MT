@@ -29,7 +29,7 @@ public:
 
 public:
 	virtual void Test(int vGNDType);
-	virtual void Run();
+	virtual void Run();;
 protected:
 	virtual void doNodeID() ;
 	virtual void doStationSort() ;
@@ -55,15 +55,6 @@ protected:
 
 
 	virtual void doRun();
-
-	virtual void doRun_Ground(string vFlag);
-	virtual void doRun_Rd(string vFlag);
-	virtual void doRun_Ud(string vFlag);
-	virtual void doRun_UdCustom();
-	virtual void doRun_Uac(string vFlag);
-	virtual void doRun_UacSwap(string vFlag, int vIndex, int vStaCount);
-	virtual void doRun_Pd();
-
 	//
 	virtual void doRun_DCF();
 

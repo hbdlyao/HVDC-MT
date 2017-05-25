@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////
-//  CRwMvc.cpp
-//  Implementation of the Class CRwMvc
+//  CMyRwMvc.cpp
+//  Implementation of the Class CMyRwMvc
 //  Created on:      18-4ÔÂ-2017 18:14:29
 //  Original author: open2
 ///////////////////////////////////////////////////////////
@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-CRwMvc::~CRwMvc()
+CMyRwMvc::~CMyRwMvc()
 {
 	//
 	delete RwAdo;
@@ -18,30 +18,30 @@ CRwMvc::~CRwMvc()
 }
 
 
-void CRwMvc::InitAdo(string vDbf)
+void CMyRwMvc::InitAdo(string vDbf)
 {
 	dbfName = vDbf;
 
 	if (RwAdo==nullptr)
-		RwAdo = new CRwAdo();
+		RwAdo = new CMyRwAdo();
 
 	RwAdo->InitDbf(dbfName, "", "", "false");
 
 }
 
-CRwDev * CRwMvc::doNewRw(int vtblType)
+CMyRwDev * CMyRwMvc::doNewRw(int vtblType)
 {
 	return nullptr;
 }
 
-void CRwMvc::OnLoad(string vdbf)
+void CMyRwMvc::OnLoad(string vdbf)
 {
 	InitAdo(vdbf);
 
 	OnLoad();
 }
 
-void CRwMvc::OnSave(string vdbf)
+void CMyRwMvc::OnSave(string vdbf)
 {
 	InitAdo(vdbf);
 
@@ -50,7 +50,7 @@ void CRwMvc::OnSave(string vdbf)
 
 
 
-void CRwMvc::OnLoad()
+void CMyRwMvc::OnLoad()
 {
 
 	try
@@ -70,7 +70,7 @@ void CRwMvc::OnLoad()
 	}
 }
 
-void CRwMvc::OnSave()
+void CMyRwMvc::OnSave()
 {
 
 	try
@@ -91,19 +91,19 @@ void CRwMvc::OnSave()
 	}
 }
 
-void CRwMvc::doLoad()
+void CMyRwMvc::doLoad()
 {
 
 }
 
 
-void CRwMvc::doSave()
+void CMyRwMvc::doSave()
 {
 
 }
 
 
-void CRwMvc::OnLoad(int vtblType)
+void CMyRwMvc::OnLoad(int vtblType)
 {
 	try
 	{
@@ -123,7 +123,7 @@ void CRwMvc::OnLoad(int vtblType)
 }
 
 
-void CRwMvc::OnSave(int vtblType)
+void CMyRwMvc::OnSave(int vtblType)
 {
 	try
 	{
@@ -143,9 +143,9 @@ void CRwMvc::OnSave(int vtblType)
 	}
 }
 
-void CRwMvc::doLoad(int vtblType)
+void CMyRwMvc::doLoad(int vtblType)
 {
-	CRwDev * vRw;
+	CMyRwDev * vRw;
 
 	vRw = doNewRw(vtblType);
 
@@ -156,13 +156,13 @@ void CRwMvc::doLoad(int vtblType)
 }
 
 
-void CRwMvc::doSave(int vtblType)
+void CMyRwMvc::doSave(int vtblType)
 {
 
 }
 
 
-bool CRwMvc::doOpenDBF()
+bool CMyRwMvc::doOpenDBF()
 {
 	bool vOk;
 	
@@ -172,7 +172,7 @@ bool CRwMvc::doOpenDBF()
 }
 
 
-bool CRwMvc::doCloseDBF()
+bool CMyRwMvc::doCloseDBF()
 {
 	bool vOk;
 	
@@ -183,30 +183,30 @@ bool CRwMvc::doCloseDBF()
 
 
 
-string CRwMvc::GetString(string vStr)
+string CMyRwMvc::GetString(string vStr)
 {
 	return CMyFunc::GetString(vStr);
 }
 
-string CRwMvc::GetString(double vX)
+string CMyRwMvc::GetString(double vX)
 {
 	return CMyFunc::GetString(vX);
 }
 
 
-string CRwMvc::GetString(int vX)
+string CMyRwMvc::GetString(int vX)
 {
 	return CMyFunc::GetString(vX);
 }
 
 
 
-void CRwMvcAccess::InitAdo(string vDbf)
+void CMyRwMvcAccess::InitAdo(string vDbf)
 {
 	dbfName = vDbf;
 	
 	if (RwAdo == nullptr)
-		RwAdo = new CRwAdo_Access();
+		RwAdo = new CMyRwAdo_Access();
 
 	RwAdo->InitDbf(dbfName, "", "", "false");
 }

@@ -17,11 +17,11 @@ void CxbMain::xbMain()
 {
 	//xbCreateGrid();
 
-	xbTest(Ground10);
+	//xbTest(Ground10);
 
 	//xbCalculate("≤‚ ‘" + std::to_string((unsigned int)time(0)));
 
-	//zkTest(Ground10);
+	zkTest(Ground10);
 
 	//lmTest();
 	

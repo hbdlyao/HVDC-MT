@@ -12,7 +12,7 @@
 #include "CMyRwMvc.h"
 #include "C3pDevGrid.h"
 
-class C3pRwMvc : public CRwMvcAccess
+class C3pRwMvc : public CMyRwMvcAccess
 {
 
 public:
@@ -23,7 +23,7 @@ protected:
 
 	void doLoad() override;
 	void doSave() override;
-	CRwDev * doNewRw(int vtblType) override;
+	CMyRwDev * doNewRw(int vtblType) override;
 
 };
 #endif // !defined(EA_8D488889_BB1A_4b19_9B08_F9C7D1767AFE__INCLUDED_)

@@ -12,7 +12,7 @@
 #include "CxbOrder.h"
 
 
-class CxbRwOrderMvc : public CRwMvcAccess
+class CxbRwOrderMvc : public CMyRwMvcAccess
 {
 protected:
 	CxbOrder* pOrder;

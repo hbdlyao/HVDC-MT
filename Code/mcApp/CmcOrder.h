@@ -21,10 +21,7 @@ using namespace std;
 class CmcOrder : public CHvdcOrder
 {
 public:	
-	int CaseCount() override;
 	int StaCount() override;
-
-	string CreateCaseID() override;
 
 	UdMap UdCustomMap = UdMap();
 

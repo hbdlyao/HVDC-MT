@@ -11,7 +11,7 @@
 #include "CMyRwMvc.h"
 #include "CmcResult.h"
 
-class CmcRwResultMvc : public CRwMvcAccess
+class CmcRwResultMvc : public CMyRwMvcAccess
 {
 protected:
 	CmcResult * pResult;

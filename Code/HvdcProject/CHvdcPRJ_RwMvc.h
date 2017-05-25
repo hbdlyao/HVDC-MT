@@ -5,7 +5,7 @@
 /**
  * ¹¤³Ì¶ÁÐ´
  */
-class CHvdcPRJ_RwMvc : public CRwMvcAccess
+class CHvdcPRJ_RwMvc : public CMyRwMvcAccess
 {
 
 public:

@@ -232,9 +232,10 @@ void CxbDevDCF_RLC::doDelta(double* vYg, double * vYb)
 {
 	double vStart = FreqRef();
 	double vStep = FreqRef();
-	double vDim = hMax();
+	
+	FreqDim = hMax();
 
-	doDelta(vStart, vStep, vDim,vYg,vYb);
+	doDelta(vStart, vStep, FreqDim,vYg,vYb);
 
 }
 

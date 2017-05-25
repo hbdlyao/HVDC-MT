@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////
-//  CRwMvc.h
-//  Implementation of the Class CRwMvc
+//  CMyRwMvc.h
+//  Implementation of the Class CMyRwMvc
 //  Created on:      18-4ÔÂ-2017 18:14:29
 //  Original author: open2
 ///////////////////////////////////////////////////////////
@@ -9,17 +9,17 @@
 #define EA_9E4459A1_995B_4bbe_9EA9_BF5BDAFC6E16__INCLUDED_
 
 #include "CMyRwAdo.h"
-#include "CRwDev.h"
+#include "CMyRwDev.h"
 
 #include <string>
 
 using namespace std;
 
-class CRwMvc
+class CMyRwMvc
 {
 
 protected:
-	CRwAdo* RwAdo = nullptr;
+	CMyRwAdo* RwAdo = nullptr;
 
 	string dbfName;
 	string tblName;
@@ -27,7 +27,7 @@ protected:
 	int devType;
 
 public:
-	virtual ~CRwMvc();
+	virtual ~CMyRwMvc();
 
 	virtual void InitAdo(string vDbf);
 
@@ -52,7 +52,7 @@ protected:
 	virtual bool doOpenDBF();
 	virtual bool doCloseDBF();
 
-	virtual CRwDev * doNewRw(int vtblType);
+	virtual CMyRwDev * doNewRw(int vtblType);
 
 protected:
 	string SqlStr = "";
@@ -64,7 +64,7 @@ public:
 	static string GetString(double vX);
 };
 
-class CRwMvcAccess : public CRwMvc
+class CMyRwMvcAccess : public CMyRwMvc
 {
 
 public:

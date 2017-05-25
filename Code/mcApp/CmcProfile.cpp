@@ -351,7 +351,8 @@ void CmcProfile::InitX_I(int vK, double vId){
 }
 
 
-void CmcProfile::UpdateY0(int iNode, double vY){
+void CmcProfile::UpdateY0(int iNode, double vY)
+{
 
 	double vX;
 

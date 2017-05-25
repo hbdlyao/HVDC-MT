@@ -17,7 +17,7 @@ void CxbRw::doLoad(CDevBase * vDevice)
 
 	vDev = dynamic_cast<CxbDevBase *>(vDevice);
 	
-	CRwDev::doLoad(vDev);
+	CMyRwDev::doLoad(vDev);
 
 	RwAdo->GetFieldValue("PosOrNeg", vValue);
 	if (vValue.vt != VT_NULL)
@@ -35,7 +35,7 @@ void CxbRw::doSave(CDevBase * vDevice)
 
 	vDev = dynamic_cast<CxbDevBase *>(vDevice);
 
-	CRwDev::doSave(vDev);
+	CMyRwDev::doSave(vDev);
 
 	SqlStr = SqlStr + ",";
 	SqlParam = SqlParam + ",";

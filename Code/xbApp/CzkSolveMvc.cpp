@@ -45,25 +45,16 @@ void CzkSolveMvc::InitOrder(CzkOrder * vOrder)
 
 }
 
-void CzkSolveMvc::Test(int vGNDType)
+void CzkSolveMvc::Test(int vGNDtype)
 {
 	//
-	pxbOrder->GroundType = vGNDType;
+	CxbSolveMvc::Test(vGNDtype);
 
-	doPrepare_hRLC();
-
+}
+void CzkSolveMvc::Run()
+{
 	//
-	doNewSolves(vGNDType);
-
-	//节点编号
-	doNodeID();
-
-	doStationSort();
-
-	//初始化计算用矩阵
-	doInitMatrix();
-
-	doRun();
+	CxbSolveMvc::Run();
 
 }
 

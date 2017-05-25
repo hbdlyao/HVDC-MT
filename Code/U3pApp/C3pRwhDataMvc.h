@@ -12,7 +12,7 @@
 #include "C3pDevhData.h"
 
 
-class C3pRwhDataMvc : public CRwMvcAccess
+class C3pRwhDataMvc : public CMyRwMvcAccess
 {
 protected:
 	C3pDevhData* pData;

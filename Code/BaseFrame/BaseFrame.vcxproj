@@ -182,7 +182,7 @@
     <ClInclude Include="CPowerSolveMvc.h" />
     <ClInclude Include="CPowerSolves.h" />
     <ClInclude Include="CMyRwMvc.h" />
-    <ClInclude Include="CRwDev.h" />
+    <ClInclude Include="CMyRwDev.h" />
     <ClInclude Include="gbHead_MyApp.h" />
     <ClInclude Include="gbHead_MyType.h" />
   </ItemGroup>
@@ -214,7 +214,7 @@
     <ClCompile Include="CPowerSolveMvc.cpp" />
     <ClCompile Include="CPowerSolves.cpp" />
     <ClCompile Include="CMyRwMvc.cpp" />
-    <ClCompile Include="CRwDev.cpp" />
+    <ClCompile Include="CMyRwDev.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

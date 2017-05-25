@@ -7,13 +7,13 @@
 
 using namespace std;
 
-class CRwDbf
+class CMyRwDbf
 {
 public:
 	virtual void OnLoad();
 	virtual void OnSave();
 
-	virtual void InitAdo(CRwAdo * vAdo);
+	virtual void InitAdo(CMyRwAdo * vAdo);
 
 	virtual void InitTable(string vtblName);
 	virtual void InitType(int vtblType, int vDevType);
@@ -21,7 +21,7 @@ public:
 protected:
 	
 	string dbfName;
-	CRwAdo* RwAdo;
+	CMyRwAdo* RwAdo;
 	string tblName;
 	int tblType;
 	int devType;

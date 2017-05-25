@@ -29,14 +29,14 @@ void CmcCalGroundLine::UpdateY()
 	if ((iNode == -1) && (jNode == -1)) //接地
 		cout << "两端接地: " << vDev->ShowName() << endl;
 
-	if ((iNode != -1) && (jNode != -1)) //接地
+	if ((iNode != -1) && (jNode != -1)) 
 		pmcProfile->UpdateY(iNode, jNode, vY);
 
-	if (iNode == -1)
-		pmcProfile->UpdateY0(jNode, vY);
-
-	if (jNode == -1)
+	if ((iNode != -1) && (jNode == -1)) 
 		pmcProfile->UpdateY0(iNode, vY);
+
+	if ((jNode != -1) && (iNode == -1)) 
+		pmcProfile->UpdateY0(jNode, vY);
 
 
 }

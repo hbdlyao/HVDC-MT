@@ -11,7 +11,7 @@
 #include "CxbHvdcGrid.h"
 #include "CMyRwMvc.h"
 
-class CxbRwMvc : public CRwMvcAccess
+class CxbRwMvc : public CMyRwMvcAccess
 {
 
 public:

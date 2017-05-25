@@ -11,16 +11,21 @@
 #include "CMyRwMvc.h"
 #include "C3pOrder.h"
 
-
-class C3pRwOrderMvc : public CRwMvcAccess
+class C3pRwOrderMvc : public CMyRwMvcAccess
 {
+protected:
+	C3pOrder * pOrder;
 public:
 	void Init(C3pOrder* vOrder);
-	void doLoad();
-	void doSave();
+
+	void OnLoad(string vdbf) override;
+	void OnLoad() override;
 
 protected:
-	C3pOrder* pOrder;
+	void doLoad() override;
+	void doLoad_CaseID();
 
+	void doSave() override;
 };
+
 #endif // !defined(EA_56BEBA14_5C5E_4e12_BA84_775885FECCDF__INCLUDED_)

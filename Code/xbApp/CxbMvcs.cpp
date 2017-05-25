@@ -53,8 +53,9 @@ void CxbMvcs::OnSave(string vdbf)
 
 void CxbMvcs::xbOnLoadOrder(string vdbf)
 {
-	CxbRwOrderMvc* vRwMvc = new CxbRwOrderMvc();
 	CxbVars::pxbOrder->CalName = "xbU3p";
+
+	CxbRwOrderMvc* vRwMvc = new CxbRwOrderMvc();
 
 	vRwMvc->InitAdo(vdbf);
 	vRwMvc->Init(CxbVars::pxbOrder);
@@ -66,8 +67,9 @@ void CxbMvcs::xbOnLoadOrder(string vdbf)
 
 void CxbMvcs::zkOnLoadOrder(string vdbf)
 {
-	CzkRwOrderMvc* vRwMvc = new CzkRwOrderMvc();
 	CxbVars::pzkOrder->CalName = "xbU3p";
+
+	CzkRwOrderMvc* vRwMvc = new CzkRwOrderMvc();
 
 	vRwMvc->InitAdo(vdbf);
 	vRwMvc->Init(CxbVars::pzkOrder);

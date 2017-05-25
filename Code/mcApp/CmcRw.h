@@ -2,7 +2,7 @@
 
 #include "CmcHvdcGrid.h"
 
-#include "CRwDev.h"
+#include "CMyRwDev.h"
 
 #include "CDevBase.h"
 
@@ -11,7 +11,7 @@
 /**
  * 主回路计算读写
  */
-class CmcRw : public CRwDev
+class CmcRw : public CMyRwDev
 {
 protected:
 	//void doLoad(CDevBase * vDevice) override;

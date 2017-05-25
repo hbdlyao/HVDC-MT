@@ -9,7 +9,6 @@
 #include <iostream>
 
 
-
 void CxbRwOrderMvc::Init(CxbOrder * vOrder)
 {
 	pOrder = vOrder;

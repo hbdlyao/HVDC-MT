@@ -13,7 +13,7 @@ using namespace std;
 /**
  * Ado数据库
  */
-class CRwAdo
+class CMyRwAdo
 {
 
 protected:
@@ -35,7 +35,7 @@ protected:
 
 
 public:
-	~CRwAdo();
+	~CMyRwAdo();
 
 
 	/**
@@ -77,14 +77,14 @@ public:
 /**
  * Ado_MDB数据库
  */
-class CRwAdo_MDB : public CRwAdo
+class CMyRwAdo_MDB : public CMyRwAdo
 {
 public:
 	virtual void InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity);
 
 };
 
-class CRwAdo_Access : public CRwAdo
+class CMyRwAdo_Access : public CMyRwAdo
 {
 public:
 	virtual void InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity);

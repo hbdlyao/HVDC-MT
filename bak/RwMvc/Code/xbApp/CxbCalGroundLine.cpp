@@ -1,8 +1,0 @@
-///////////////////////////////////////////////////////////
-//  CxbCalGroundLine.cpp
-//  Implementation of the Class CxbCalGroundLine
-//  Created on:      26-4ÔÂ-2017 17:35:44
-//  Original author: open2
-///////////////////////////////////////////////////////////
-
-#include "CxbCalGroundLine.h"

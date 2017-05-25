@@ -8,8 +8,16 @@
 #include "CzkRwOrderMvc.h"
 #include <iostream>
 
-void CzkRwOrderMvc::doLoad(){
 
+void CzkRwOrderMvc::Init(CzkOrder* vOrder)
+{
+	pzkOrder = vOrder;
+	
+	pOrder = pzkOrder;
+}
+
+void CzkRwOrderMvc::doLoad()
+{
 	string vSQL, vStr;
 	_variant_t vValue;
 	bool vOk;
@@ -119,10 +127,4 @@ void CzkRwOrderMvc::doLoad(){
 
 void CzkRwOrderMvc::doSave(){
 
-}
-
-
-void CzkRwOrderMvc::Init(CzkOrder* vOrder){
-
-	pOrder = vOrder;
 }

@@ -17,6 +17,8 @@ using namespace std;
 class CxbOrder : public CHvdcOrder
 {
 public:
+	string U3pName;
+
 	//Âí¿¥Åô
 	string GroundStaiton;
 	//Âí¿¥Åô
@@ -25,10 +27,6 @@ public:
 	int DCFRandTimes;
 	void Init();
 
-	string CreateCaseID() override;
-
-
-	int CaseCount() override;
 	int StaCount() override;
 
 

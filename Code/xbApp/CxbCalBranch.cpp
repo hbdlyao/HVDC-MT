@@ -23,24 +23,21 @@ void CxbCalBranch::UpdateY()
 	iNode = vDev->GetNodeID(0);
 	jNode = vDev->GetNodeID(1);
 
-
 	//马俊鹏:根据谐波次数得到对应的Yg,Yb ,pxbProfile->xbOrder ,pxbProfile->xbFreq
 
 	int vhOrder = pxbProfile->hOrder;
 	vYg = vDev->GetYg(vhOrder);
 	vYb = vDev->GetYb(vhOrder);
 
-	if ((iNode == -1) && (jNode == -1)) //接地
-		int v = 0;
-		
-	//数组从0开始
-	if ((iNode != -1) && (jNode != -1)) //接地
+	//if ((iNode == -1) && (jNode == -1)) //接地
+
+	if ((iNode != -1) && (jNode != -1)) //不接地 
 		pxbProfile->UpdateY(iNode, jNode, vYg, vYb);
 
-	if (iNode == -1)
+	if ((jNode != -1) && (iNode == -1))//i接地
 		pxbProfile->UpdateY0(jNode, vYg, vYb);
 
-	if (jNode == -1)
+	if ((iNode != -1) && (jNode == -1))//j接地
 		pxbProfile->UpdateY0(iNode, vYg, vYb);
 
 }

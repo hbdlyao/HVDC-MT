@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CRwDev.h"
+#include "CMyRwDev.h"
 
 #include "C3pDevGrid.h"
 #include "C3pDevTBL.h"
@@ -8,6 +8,6 @@
 #include "gbHead_3pDevice.h"
 
 
-class C3pRw : public CRwDev
+class C3pRw : public CMyRwDev
 {
 };

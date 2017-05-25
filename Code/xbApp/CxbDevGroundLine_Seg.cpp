@@ -56,9 +56,10 @@ void CxbDevGroundLine_Seg::Prepare_hRLC()
 {
 	double vStart = FreqRef();
 	double vStep = FreqRef();
-	double vDim = hMax();
+	
+	FreqDim = hMax();
 
-	Prepare_hRLC(vStart, vStep, vDim);
+	Prepare_hRLC(vStart, vStep, FreqDim);
 
 }
 

@@ -26,9 +26,8 @@ void CxbCalShunt::UpdateY()
 	vYg = vDev->GetYg(vhOrder);
 	vYb = vDev->GetYb(vhOrder);
 
-	//数组从0开始
-	pxbProfile->UpdateY0(iNode, vYg, vYb);
-
+	if (iNode != -1)//i不接地
+		pxbProfile->UpdateY0(iNode, vYg, vYb);
 
 }
 

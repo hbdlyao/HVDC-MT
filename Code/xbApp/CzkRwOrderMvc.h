@@ -9,12 +9,14 @@
 #define EA_20A6384A_51C7_4ee1_9162_1439031692F5__INCLUDED_
 
 #include "CMyRwMvc.h"
+
+#include "CxbRwOrderMvc.h"
 #include "CzkOrder.h"
 
-class CzkRwOrderMvc : public CRwMvcAccess
+class CzkRwOrderMvc : public CxbRwOrderMvc
 {
 protected:
-	CzkOrder* pOrder;
+	CzkOrder* pzkOrder;
 
 	void doLoad() override;
 	void doSave() override;

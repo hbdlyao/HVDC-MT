@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////
 //  CMyRwAdo.cpp
-//  Implementation of the Class CRwAdo
+//  Implementation of the Class CMyRwAdo
 //  Created on:      31-3ÔÂ-2017 11:02:24
 //  Original author: Administrator
 ///////////////////////////////////////////////////////////
@@ -11,7 +11,7 @@
 #include <iostream>
 
 
-CRwAdo::~CRwAdo()
+CMyRwAdo::~CMyRwAdo()
 {
 	CloseDBF();
 }
@@ -20,18 +20,18 @@ CRwAdo::~CRwAdo()
 /**
  * StrTable dbfTable;
  */
-void CRwAdo::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
+void CMyRwAdo::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
 {
 
 }
 
-bool CRwAdo::IsEOF()
+bool CMyRwAdo::IsEOF()
 {
 	return static_cast<bool>(pRecordset->adoEOF);
 
 }
 
-bool CRwAdo::IsOpen()
+bool CMyRwAdo::IsOpen()
 {
 	bool vOk;
 
@@ -46,7 +46,7 @@ bool CRwAdo::IsOpen()
 }
 
 
-bool CRwAdo::OpenDBF()
+bool CMyRwAdo::OpenDBF()
 {
 	_bstr_t vStrConnect;
 	_bstr_t vUserID;
@@ -82,7 +82,7 @@ bool CRwAdo::OpenDBF()
 }
 
 
-bool CRwAdo::CloseDBF()
+bool CMyRwAdo::CloseDBF()
 {
 	HRESULT vhr = S_FALSE;
 
@@ -122,7 +122,7 @@ bool CRwAdo::CloseDBF()
 }
 
 
-bool CRwAdo::ExecSQL(string vSQL)
+bool CMyRwAdo::ExecSQL(string vSQL)
 {
 	HRESULT vhr = S_FALSE;
 
@@ -158,7 +158,7 @@ bool CRwAdo::ExecSQL(string vSQL)
 }
 
 
-bool CRwAdo::OpenSQL(string vSQL)
+bool CMyRwAdo::OpenSQL(string vSQL)
 {
 	HRESULT vhr= S_FALSE;
 
@@ -187,7 +187,7 @@ bool CRwAdo::OpenSQL(string vSQL)
 
 
 
-bool CRwAdo::CloseTBL()
+bool CMyRwAdo::CloseTBL()
 {
 	HRESULT vhr = S_FALSE;
 
@@ -210,7 +210,7 @@ bool CRwAdo::CloseTBL()
 
 }
 
-void CRwAdo::GetFieldValue(string vName, _variant_t & vValue)
+void CMyRwAdo::GetFieldValue(string vName, _variant_t & vValue)
 {
 	_bstr_t vFieldName;
 
@@ -231,7 +231,7 @@ void CRwAdo::GetFieldValue(string vName, _variant_t & vValue)
 
 }
 
-void CRwAdo::SetFieldValue(string vName, _variant_t vValue)
+void CMyRwAdo::SetFieldValue(string vName, _variant_t vValue)
 {
 	//RwAdo->pRecordset->PutCollect(_variant_t("DevicID"), vValue);
 
@@ -253,43 +253,43 @@ void CRwAdo::SetFieldValue(string vName, _variant_t vValue)
 	//
 }
 
-int CRwAdo::Record_RowCount()
+int CMyRwAdo::Record_RowCount()
 {
 	return pRecordset->GetRecordCount();
 }
 
-void CRwAdo::Record_MoveNext()
+void CMyRwAdo::Record_MoveNext()
 {
 	pRecordset->MoveNext();
 }
 
-void CRwAdo::Record_Update()
+void CMyRwAdo::Record_Update()
 {
 	pRecordset->Update();
 }
 
-void CRwAdo::Record_AddNew()
+void CMyRwAdo::Record_AddNew()
 {
 	pRecordset->AddNew();
 }
 
-void CRwAdo::BeginTrans()
+void CMyRwAdo::BeginTrans()
 {
 	pConnection->BeginTrans();
 }
 
-void CRwAdo::CommitTrans()
+void CMyRwAdo::CommitTrans()
 {
 	pConnection->CommitTrans();
 }
 
-void CRwAdo::RollbackTrans()
+void CMyRwAdo::RollbackTrans()
 {
 	pConnection->RollbackTrans();
 }
 
 ////////////////////////////////
-void CRwAdo_MDB::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
+void CMyRwAdo_MDB::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
 {
 	
 	UserID = vUserID;
@@ -314,7 +314,7 @@ void CRwAdo_MDB::InitDbf(string vDbf, string vUserID, string vPassword, string v
 }
 
 ////////////////////////////////
-void CRwAdo_Access::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
+void CMyRwAdo_Access::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
 {
 
 	UserID = vUserID;

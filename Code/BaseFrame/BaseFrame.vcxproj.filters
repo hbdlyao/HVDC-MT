@@ -141,9 +141,6 @@
     <ClInclude Include="CComplex.h">
       <Filter>头文件\计算\Math</Filter>
     </ClInclude>
-    <ClInclude Include="CRwDev.h">
-      <Filter>头文件\Rw\Rw</Filter>
-    </ClInclude>
     <ClInclude Include="CDevBase.h">
       <Filter>头文件\Device\Dev</Filter>
     </ClInclude>
@@ -167,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="CCalculateBase.h">
       <Filter>头文件\计算</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyRwDev.h">
+      <Filter>头文件\Rw\Rw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +233,6 @@
     <ClCompile Include="CComplex.cpp">
       <Filter>源文件\计算\Math</Filter>
     </ClCompile>
-    <ClCompile Include="CRwDev.cpp">
-      <Filter>源文件\Rw</Filter>
-    </ClCompile>
     <ClCompile Include="CDevBase.cpp">
       <Filter>源文件\Device\Dev</Filter>
     </ClCompile>
@@ -253,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="CCalculateBase.cpp">
       <Filter>源文件\计算\Power</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyRwDev.cpp">
+      <Filter>源文件\Rw</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

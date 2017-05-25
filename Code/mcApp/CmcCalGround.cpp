@@ -21,7 +21,7 @@ void CmcCalGround::UpdateY()
 
 	vY = vDev->GetY();
 
-	if (iNode != -1) //接地
+	if (iNode != -1) //i不接地
 		pmcProfile->UpdateY0(iNode, vY);
 	
 }

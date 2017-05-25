@@ -1,13 +1,13 @@
 #pragma once
 
-#include "CRwDev.h"
+#include "CMyRwDev.h"
 #include "CxbDevBase.h"
 #include "CxbHvdcGrid.h"
 
 #include "CxbOrder.h"
 #include "CxbResult.h"
 
-class CxbRw : public CRwDev
+class CxbRw : public CMyRwDev
 {
 protected:
 

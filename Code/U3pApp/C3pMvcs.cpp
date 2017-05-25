@@ -60,6 +60,8 @@ void C3pMvcs::OnSave(string vdbf)
 
 void C3pMvcs::OnLoadOrder(string vdbf)
 {
+	C3pVars::p3pOrder->CalName = "≤‚ ‘1495529378";
+
 	C3pRwOrderMvc* vRwMvc;
 	
 	vRwMvc= new C3pRwOrderMvc();

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////
 //  CMyRw.cpp
-//  Implementation of the Class CRwDbf
+//  Implementation of the Class CMyRwDbf
 //  Created on:      02-4ÔÂ-2017 15:37:52
 //  Original author: Administrator
 ///////////////////////////////////////////////////////////
@@ -11,46 +11,46 @@
 
 #include <iostream>
 
-void CRwDbf::InitAdo(CRwAdo * vAdo)
+void CMyRwDbf::InitAdo(CMyRwAdo * vAdo)
 {
 	RwAdo = vAdo;
 }
 
-void CRwDbf::InitTable(string vtblName)
+void CMyRwDbf::InitTable(string vtblName)
 {
 	tblName = vtblName;
 }
 
-void CRwDbf::InitType(int vtblType, int vDevType)
+void CMyRwDbf::InitType(int vtblType, int vDevType)
 {
 	tblType = vtblType;
 	devType = vDevType;
 }
 
-string CRwDbf::GetString(string vStr)
+string CMyRwDbf::GetString(string vStr)
 {
 	return CMyFunc::GetString(vStr);
 }
 
-string CRwDbf::GetString(double vX)
+string CMyRwDbf::GetString(double vX)
 {
 	return CMyFunc::GetString(vX);
 }
 
 
-string CRwDbf::GetString(int vX)
+string CMyRwDbf::GetString(int vX)
 {
 	return CMyFunc::GetString(vX);
 }
 
 
-void CRwDbf::OnLoad() 
+void CMyRwDbf::OnLoad() 
 {
 
 }
 
 
-void CRwDbf::OnSave()
+void CMyRwDbf::OnSave()
 {
 
 }

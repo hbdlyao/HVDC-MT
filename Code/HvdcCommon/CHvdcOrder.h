@@ -23,6 +23,12 @@ public:
 
 	void AddCase(string vID);
 
+	string CreateCaseID();
+	void ParserOrder(string vCaseID);
+
+	int CaseCount();
+
+	virtual int StaCount() { return 0; };
 
 public:
 	//"DFBFH22" : 双阀，正向，双极，全压，高阻，两侧交流电压为额定
@@ -53,9 +59,5 @@ public:
 public:
 	void UpdatePdPercent(int & vPdSize);
 
-	virtual int CaseCount() { return 0;  };
-	virtual int StaCount() { return 0; };
-
-	virtual string CreateCaseID() { return 0; };
 
 };

@@ -15,9 +15,9 @@ void CmcRwMvc::InitGrid(CmcHvdcGrid* vHvdc)
 	pGrid = vHvdc;
 }
 
-CRwDev* CmcRwMvc::doNewRw(int vtblType)
+CMyRwDev* CmcRwMvc::doNewRw(int vtblType)
 {
-	CRwDev* vRw;
+	CMyRwDev* vRw;
 
 	switch (vtblType)
 	{
@@ -122,7 +122,7 @@ CRwDev* CmcRwMvc::doNewRw(int vtblType)
 
 void CmcRwMvc::doLoad()
 {
-	CRwDev * vRw;
+	CMyRwDev * vRw;
 	int i1, i2;
 
 	i1 = CmcDefs::AcSys;
@@ -142,7 +142,7 @@ void CmcRwMvc::doLoad()
 
 void CmcRwMvc::doSave()
 {
-	CRwDev * vRw;
+	CMyRwDev * vRw;
 	int i1, i2;
 
 

@@ -9,11 +9,11 @@
 #define EA_4402847C_542D_415f_B379_AE32A06E9F95__INCLUDED_
 
 #include "CMyRwMvc.h"
-#include "CRwDev.h"
+#include "CMyRwDev.h"
 
 #include "CmcHvdcGrid.h"
 
-class CmcRwMvc : public CRwMvcAccess
+class CmcRwMvc : public CMyRwMvcAccess
 {
 public:
 	void InitGrid(CmcHvdcGrid* vHvdc);
@@ -24,7 +24,7 @@ protected:
 	void doLoad() override;
 	void doSave() override;
 
-	CRwDev * doNewRw(int vtblType) override;
+	CMyRwDev * doNewRw(int vtblType) override;
 
 };
 #endif // !defined(EA_4402847C_542D_415f_B379_AE32A06E9F95__INCLUDED_)
