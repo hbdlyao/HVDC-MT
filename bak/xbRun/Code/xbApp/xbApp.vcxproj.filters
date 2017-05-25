@@ -231,12 +231,6 @@
     <ClInclude Include="CxbCalGroundLine.h">
       <Filter>头文件\计算\xb计算组合</Filter>
     </ClInclude>
-    <ClInclude Include="CxbDCFData.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CxbU3pData.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CxbMvcs.h">
       <Filter>头文件\App</Filter>
     </ClInclude>

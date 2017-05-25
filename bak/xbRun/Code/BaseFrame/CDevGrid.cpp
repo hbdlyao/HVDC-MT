@@ -78,7 +78,7 @@ void CDevGrid::Remove(CDevTBL* vItem){
 }
 
 
-CObjTBL* CDevGrid::Child(int vIndex){
+CMyObjTBL* CDevGrid::Child(int vIndex){
 
 	if (vIndex < ChildCount())
 		return pChildren[vIndex];

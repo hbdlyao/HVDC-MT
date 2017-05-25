@@ -1,18 +1,9 @@
-///////////////////////////////////////////////////////////
-//  CxbDevDCF.h
-//  Implementation of the Class CxbDevDCF
-//  Created on:      05-4ÔÂ-2017 16:59:04
-//  Original author: open2
-///////////////////////////////////////////////////////////
+#pragma once
 
-#if !defined(EA_B1BBC94F_C119_49e3_9B4A_B9969566C593__INCLUDED_)
-#define EA_B1BBC94F_C119_49e3_9B4A_B9969566C593__INCLUDED_
 
 #include "CxbDev_Tree.h"
 #include "CComplex.h"
 #include "CRand.h"
-#include "CxbDCFData.h"
-
 
 /**
 * Ö±Á÷ÂË²¨Æ÷
@@ -51,4 +42,3 @@ public:
 	void selectConsDevY(int vCount);
 	void selectRandDevY(int vCount);
 };
-#endif // !defined(EA_B1BBC94F_C119_49e3_9B4A_B9969566C593__INCLUDED_)

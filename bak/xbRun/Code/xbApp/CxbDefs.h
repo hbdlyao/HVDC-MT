@@ -100,6 +100,28 @@ struct struct_xbILine
 	double * Ieq_N;
 };
 
+struct struct_xbU3PData
+{
+public:
+	string CaseID;
+
+	string PowLevel;
+
+	double * Urms = nullptr;
+	double * Angle = nullptr;
+
+	double * Ire = nullptr;
+	double * Iim = nullptr;
+
+	double * Yb = nullptr;
+
+};
+
+
+//typedef map<string, struct_xbU3PData *> pxbU3PData_Map;
+//typedef map<string, pxbU3PData_Map *> pxbU3PPowPre_Map;
+
+
 enum Enum_xbNodePbDKQ
 {
 	xbNodeLd1N1 = 0,

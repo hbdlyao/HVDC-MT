@@ -2,9 +2,9 @@
 
 #include "CDevBase.h"
 
-#include "CObjTBL.h"
+#include "CMyObjTBL.h"
 
-class CDevTBL : public CObjTBL
+class CDevTBL : public CMyObjTBL
 {
 public:
 	virtual ~CDevTBL();

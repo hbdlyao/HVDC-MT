@@ -15,7 +15,7 @@ CDevTBL::~CDevTBL()
 
 void CDevTBL::Release()
 {
-	for each (CObjBase * vObj in pChildren)
+	for each (CMyObjBase * vObj in pChildren)
 	{
 		delete vObj;
 		vObj = nullptr;
@@ -26,7 +26,7 @@ void CDevTBL::Release()
 
 void CDevTBL::Clear()
 {
-	for each (CObjBase * vObj in pChildren)
+	for each (CMyObjBase * vObj in pChildren)
 	{
 		//vObj->Clear();
 

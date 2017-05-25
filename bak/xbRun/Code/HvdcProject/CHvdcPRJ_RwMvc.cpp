@@ -47,11 +47,11 @@ void CHvdcPRJ_RwMvc::doLoad()
 				CHvdcParams::ProjectName = vStr;
 			};
 
-			RwAdo->GetFieldValue("ID", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				CHvdcParams::ProjectID = vValue.iVal;
-			};
+			//RwAdo->GetFieldValue("ID", vValue);
+			//if (vValue.vt != VT_NULL)
+			//{
+			//	CHvdcParams::ProjectID = vValue.iVal;
+			//};
 
 			RwAdo->GetFieldValue("mcStationCount", vValue);
 			if (vValue.vt != VT_NULL)
@@ -95,8 +95,8 @@ void CHvdcPRJ_RwMvc::doSave()
 	SqlParam = SqlParam + " ( ";
 
 	//
-	SqlStr = SqlStr + "ID, ";
-	SqlParam = SqlParam + GetString(CHvdcParams::ProjectID) + ",";
+	//SqlStr = SqlStr + "ID, ";
+	//SqlParam = SqlParam + GetString(CHvdcParams::ProjectID) + ",";
 
 	SqlStr = SqlStr + "ProjectName, ";
 	SqlParam = SqlParam + GetString(CHvdcParams::ProjectName) + ",";

@@ -188,7 +188,6 @@
     <ClInclude Include="CxbDevTBL.h" />
     <ClInclude Include="CxbMain.h" />
     <ClInclude Include="CxbMvcs.h" />
-    <ClInclude Include="CxbDCFData.h" />
     <ClInclude Include="CxbDefs.h" />
     <ClInclude Include="CxbDev3pVSrc.h" />
     <ClInclude Include="CxbDevBase.h" />
@@ -233,7 +232,6 @@
     <ClInclude Include="CxbRw_Tree.h" />
     <ClInclude Include="CxbSolveMvc.h" />
     <ClInclude Include="CxbSolves.h" />
-    <ClInclude Include="CxbU3pData.h" />
     <ClInclude Include="CxbVars.h" />
     <ClInclude Include="CzkOrder.h" />
     <ClInclude Include="CzkProfile.h" />

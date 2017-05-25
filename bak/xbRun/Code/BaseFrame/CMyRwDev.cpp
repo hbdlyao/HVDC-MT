@@ -194,11 +194,11 @@ void CMyRwDev::doLoad(CDevBase * vDevice)
 	}
 
 	//
-	RwAdo->GetFieldValue("ID", vValue);
-	if (vValue.vt != VT_NULL)
-	{
-		vDevice->SetObjGUID(vValue.iVal);
-	};
+	//RwAdo->GetFieldValue("ID", vValue);
+	//if (vValue.vt != VT_NULL)
+	//{
+	//	vDevice->SetObjGUID(vValue.iVal);
+	//};
 
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
@@ -253,8 +253,8 @@ void CMyRwDev::doSave(CDevBase * vDevice)
 	}
 
 
-	SqlStr = SqlStr + "ID , ";
-	SqlParam = SqlParam + GetString(vDevice->GetObjGUID()) + " , ";
+	//SqlStr = SqlStr + "ID , ";
+	//SqlParam = SqlParam + GetString(vDevice->GetObjGUID()) + " , ";
 	//
 	SqlStr = SqlStr + "DeviceID , ";
 	SqlParam = SqlParam + GetString(vDevice->GetDeviceID()) + " , ";

@@ -198,11 +198,11 @@ void CxbRw_Tree::doLoad_Node_Data(CxbDevBase* vDev)
 	_variant_t vValue;
 
 	//
-	RwAdo->GetFieldValue("ID", vValue);
-	if (vValue.vt != VT_NULL)
-	{
-		vDev->SetObjGUID(vValue.iVal);
-	};
+	//RwAdo->GetFieldValue("ID", vValue);
+	//if (vValue.vt != VT_NULL)
+	//{
+	//	vDev->SetObjGUID(vValue.iVal);
+	//};
 
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
@@ -338,8 +338,8 @@ void CxbRw_Tree::doSave_Leaf_Data(CxbDevBase * vLeaf)
 		SqlParam = SqlParam + GetString(vLeaf->GetNodeID(i - 1)) + ",";
 	}
 
-	SqlStr = SqlStr + "ID , ";
-	SqlParam = SqlParam + GetString(vLeaf->GetObjGUID()) + " , ";
+	//SqlStr = SqlStr + "ID , ";
+	//SqlParam = SqlParam + GetString(vLeaf->GetObjGUID()) + " , ";
 	//
 	SqlStr = SqlStr + "DeviceID , ";
 	SqlParam = SqlParam + GetString(vLeaf->GetDeviceID()) + " , ";

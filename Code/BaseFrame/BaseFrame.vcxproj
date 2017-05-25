@@ -171,9 +171,9 @@
     <ClInclude Include="CMyRw.h" />
     <ClInclude Include="CMyRwAdo.h" />
     <ClInclude Include="CMyVars.h" />
-    <ClInclude Include="CObjBase.h" />
-    <ClInclude Include="CObjGrid.h" />
-    <ClInclude Include="CObjTBL.h" />
+    <ClInclude Include="CMyObjBase.h" />
+    <ClInclude Include="CMyObjGrid.h" />
+    <ClInclude Include="CMyObjTBL.h" />
     <ClInclude Include="CPowerCalculate.h" />
     <ClInclude Include="CPowerCal_Tree.h" />
     <ClInclude Include="CPowerGrid.h" />
@@ -203,9 +203,9 @@
     <ClCompile Include="CMyRw.cpp" />
     <ClCompile Include="CMyRwAdo.cpp" />
     <ClCompile Include="CMyVars.cpp" />
-    <ClCompile Include="CObjBase.cpp" />
-    <ClCompile Include="CObjGrid.cpp" />
-    <ClCompile Include="CObjTBL.cpp" />
+    <ClCompile Include="CMyObjBase.cpp" />
+    <ClCompile Include="CMyObjGrid.cpp" />
+    <ClCompile Include="CMyObjTBL.cpp" />
     <ClCompile Include="CPowerCalculate.cpp" />
     <ClCompile Include="CPowerCal_Tree.cpp" />
     <ClCompile Include="CPowerGrid.cpp" />

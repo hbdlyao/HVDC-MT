@@ -150,15 +150,6 @@
     <ClInclude Include="gbHead_MyApp.h">
       <Filter>头文件\gbHead</Filter>
     </ClInclude>
-    <ClInclude Include="CObjBase.h">
-      <Filter>头文件\ObjBase</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjGrid.h">
-      <Filter>头文件\ObjBase</Filter>
-    </ClInclude>
-    <ClInclude Include="CObjTBL.h">
-      <Filter>头文件\ObjBase</Filter>
-    </ClInclude>
     <ClInclude Include="CDevTree.h">
       <Filter>头文件\Device\Dev</Filter>
     </ClInclude>
@@ -167,6 +158,15 @@
     </ClInclude>
     <ClInclude Include="CMyRwDev.h">
       <Filter>头文件\Rw\Rw</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyObjBase.h">
+      <Filter>头文件\ObjBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyObjGrid.h">
+      <Filter>头文件\ObjBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyObjTBL.h">
+      <Filter>头文件\ObjBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,15 +236,6 @@
     <ClCompile Include="CDevBase.cpp">
       <Filter>源文件\Device\Dev</Filter>
     </ClCompile>
-    <ClCompile Include="CObjBase.cpp">
-      <Filter>源文件\ObjBase</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjGrid.cpp">
-      <Filter>源文件\ObjBase</Filter>
-    </ClCompile>
-    <ClCompile Include="CObjTBL.cpp">
-      <Filter>源文件\ObjBase</Filter>
-    </ClCompile>
     <ClCompile Include="CDevTree.cpp">
       <Filter>源文件\Device\Dev</Filter>
     </ClCompile>
@@ -253,6 +244,15 @@
     </ClCompile>
     <ClCompile Include="CMyRwDev.cpp">
       <Filter>源文件\Rw</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyObjBase.cpp">
+      <Filter>源文件\ObjBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyObjGrid.cpp">
+      <Filter>源文件\ObjBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyObjTBL.cpp">
+      <Filter>源文件\ObjBase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

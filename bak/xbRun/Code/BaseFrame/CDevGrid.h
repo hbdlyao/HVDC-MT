@@ -27,7 +27,7 @@ public:
 
 	void Add(CDevTBL* vItem);
 	void Remove(CDevTBL* vItem);
-	CObjTBL* Child(int vIndex);
+	CMyObjTBL* Child(int vIndex);
 	int ChildCount();
 	pTBLVector Children();
 

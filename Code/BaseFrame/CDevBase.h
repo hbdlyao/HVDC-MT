@@ -1,9 +1,9 @@
 #pragma once
 
-#include "CObjBase.h"
+#include "CMyObjBase.h"
 #include "gbHead_MyType.h"
 
-class CDevBase : public CObjBase
+class CDevBase : public CMyObjBase
 {
 public:
 	virtual ~CDevBase();
