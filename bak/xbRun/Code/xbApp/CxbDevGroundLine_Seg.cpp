@@ -18,10 +18,8 @@ void CxbDevGroundLine_Seg::Release()
 	//delete pLineParam;
 }
 
-void CxbDevGroundLine_Seg::Clear()
+void CxbDevGroundLine_Seg::ClearData()
 {
-	CxbDevTwo::Clear();
-
 	//pLineParam.Clear();
 
 	delete[] xbILine.IBranch1;
@@ -67,7 +65,7 @@ void CxbDevGroundLine_Seg::Prepare_hRLC(double vFreStart, double vFreStep, int v
 {
 	FreqDim = vFreDim;
 
-	Clear();
+	ClearData();
 	doInitData(FreqDim);
 
 	//

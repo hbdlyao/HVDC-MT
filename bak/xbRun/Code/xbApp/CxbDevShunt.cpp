@@ -28,10 +28,8 @@ void CxbDevShunt::Release()
 
 }
 
-void CxbDevShunt::Clear()
+void CxbDevShunt::ClearData()
 {
-	CxbDevOne::Clear();
-
 	delete[] Yg;
 	delete[] Yb;
 
@@ -77,7 +75,7 @@ void CxbDevShunt::Prepare_hRLC(double vFreStart, double vFreStep, int vFreDim)
 
 	FreqDim = vFreDim;
 
-	Clear();
+	ClearData();
 	doInitData(vFreDim);
 
 	//

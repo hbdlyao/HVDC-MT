@@ -3,27 +3,24 @@
 #include "CxbDevTwo.h"
 #include "CxbDefs.h"
 
+#include "CxbU3pDataList.h"
+
 /**
 * 三脉动电压源
 */
 class CxbDev3pVSrc : public CxbDevTwo
 {
 
-protected:
-	//数据DataMap[ConMethod+PowLevel]
-	//pxbU3PData_Map DataMap;
-
-	//PowPreMap[Condition]=pxbU3PData_Map, pxbU3PData_Map[PowPre]=CxbU3PData
-	//pxbU3PPowPre_Map PowPreMap;
-
-	//
+protected:	//
 	struct_xbU3PData  pU3pData;
+	map<string, CxbU3pDataList *> pDataList_PdPer;
+
+	void doInitData(int vDim) override;
 
 public:
 	~CxbDev3pVSrc();
 
-	void InitData() override;
-	void Clear() override;
+	void ClearData() override;
 
 public:
 	virtual void Prepare_hRLC();
@@ -52,6 +49,12 @@ public:
 
 	double Get_hYb(int vhOrder);
 	void   Set_hYb(int vhOrder, double vX);
+
+	void Set_hCalName(string vName);
+
+	void Set_hCaseID(string vCaseID);
+
+	void Set_hPdPer(double vX);
 
 };
 

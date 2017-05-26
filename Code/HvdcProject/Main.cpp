@@ -12,7 +12,7 @@ void OnLoad()
 
 	CxbMvcs::OnLoad(CxbParams::dbfFile);
 
-	C3pMvcs::OnLoad(C3pParams::dbfFile);
+	//C3pMvcs::OnLoad(C3pParams::dbfFile);
 
 };
 
@@ -33,11 +33,11 @@ int main()
 	//
 	OnLoad();
 
-	////////////////主回路////////
-	//CmcMain::mcMain();
+	//////////////主回路//////////
+	CmcMain::mcMain();
 
 	//////////直流谐波////////////
-	CxbMain::xbMain();
+	//CxbMain::xbMain();
 	
 	//////////阻抗扫描///////////////
 	//CxbMain::zkTest(Ground10);

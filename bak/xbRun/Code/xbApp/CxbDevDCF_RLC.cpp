@@ -27,10 +27,8 @@ void CxbDevDCF_RLC::Release()
 
 }
 
-void CxbDevDCF_RLC::Clear()
+void CxbDevDCF_RLC::ClearData()
 {
-	CxbDevBranch::Clear();
-
 	//
 	delete[] NoneDevYg;
 	delete[] NoneDevYb;
@@ -40,14 +38,6 @@ void CxbDevDCF_RLC::Clear()
 
 	delete[] RandDevYg;
 	delete[] RandDevYb;
-
-}
-
-void CxbDevDCF_RLC::InitData()
-{
-	FreqDim = hMax();
-	//
-	doInitData(FreqDim);
 
 }
 
@@ -81,7 +71,7 @@ void CxbDevDCF_RLC::Prepare_hRLC()
 	//Yao ?	
 	FreqDim = hMax(); 
 	
-	Clear();
+	ClearData();
 	doInitData(FreqDim);
 
 	//
@@ -101,7 +91,7 @@ void CxbDevDCF_RLC::Prepare_hRLC(double vFreStart, double vFreStep, int vFreDim)
 	//
 	FreqDim = vFreDim;
 
-	Clear();
+	ClearData();
 	doInitData(FreqDim);
 
 	//

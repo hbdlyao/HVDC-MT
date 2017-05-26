@@ -7,7 +7,9 @@ class CxbDevBase : public CDevBase
 {
 public:
 	void Init() override;
-	virtual void InitData() ;
+
+	virtual void InitData();
+	virtual void ClearData() ;
 protected:
 	int FreqDim;
 	virtual void doInitData(int vDim);

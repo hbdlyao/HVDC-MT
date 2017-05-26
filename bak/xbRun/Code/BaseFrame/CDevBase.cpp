@@ -29,7 +29,7 @@ void CDevBase::Release()
 }
 
 
-void CDevBase::Clear ()
+void CDevBase::Clear()
 {
 	//delete[] NodeIDs;
 	//delete[] NodeNames;

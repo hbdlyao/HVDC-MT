@@ -23,7 +23,7 @@ class CxbDevBranch : public CxbDevTwo
 public:
 	~CxbDevBranch();
 
-	void Clear() override;
+	void ClearData() override;
 	void Release() override;
 protected:
 	void doInitData(int vDim) override;

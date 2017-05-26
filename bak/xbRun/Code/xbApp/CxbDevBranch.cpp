@@ -25,10 +25,8 @@ void CxbDevBranch::Release()
 
 }
 
-void CxbDevBranch::Clear()
+void CxbDevBranch::ClearData()
 {
-	CxbDevTwo::Clear();
-
 	delete[] Yg;
 	delete[] Yb;
 
@@ -72,7 +70,7 @@ void CxbDevBranch::Prepare_hRLC(double vFreStart, double vFreStep, int vFreDim)
 
 	FreqDim = vFreDim;
 
-	Clear();
+	ClearData();
 	doInitData(vFreDim);
 
 	//

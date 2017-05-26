@@ -14,7 +14,8 @@ public:
 	~CxbDevShunt();
 
 	void Release() override;
-	void Clear() override;
+
+	void ClearData() override;
 
 protected:
 	/**

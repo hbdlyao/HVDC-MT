@@ -1,28 +1,40 @@
 #pragma once
 
-#include <string>
+#include "CxbDefs.h"
+#include <vector>
 #include <map>
-#include "CMydefs.h"
+
 using namespace std;
 
-struct struct_xbU3PData
+class CxbU3pData
 {
+protected:
+	int FreqDim;
+
+	struct_xbU3PData pU3pData;
+
 public:
-	string CaseID;
+	~ CxbU3pData();
 
-	string PowLevel;
+	virtual void Init();
 
-	double * Urms =nullptr;
-	double * Angle = nullptr;
+	virtual void Clear();
+	virtual void Release();
 
-	double * Ire = nullptr;
-	double * Iim = nullptr;
+	virtual void ClearData();
 
-	double * Yb = nullptr;
+public:
+	virtual void InitData();
+
+	virtual bool IsLeaf();
+	virtual void Add(CxbU3pData* vItem);
+	virtual void Remove(CxbU3pData* vItem);
+
+protected:
+	int hMax();
+
+	void doInitData(int vDim);
 
 };
 
-
-typedef map<string, struct_xbU3PData *> pxbU3PData_Map;
-typedef map<string, pxbU3PData_Map *> pxbU3PPowPre_Map;
-
+typedef vector<CxbU3pData*> pU3pDataList;

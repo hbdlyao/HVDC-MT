@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  CxbDevCouple_C.cpp
+//  Implementation of the Class CxbDevCouple_C
+//  Created on:      05-4ÔÂ-2017 17:00:25
+//  Original author: open2
+///////////////////////////////////////////////////////////
+
+#include "CxbDevCouple_C.h"

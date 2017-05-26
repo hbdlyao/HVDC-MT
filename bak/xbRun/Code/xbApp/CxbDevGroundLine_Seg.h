@@ -25,7 +25,7 @@ public:
 
 	void Init() override;
 
-	void Clear() override;
+	void ClearData() override;
 	void Release() override;
 
 protected:

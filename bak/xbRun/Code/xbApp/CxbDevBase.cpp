@@ -26,6 +26,11 @@ void CxbDevBase::InitData()
 	doInitData(FreqDim);
 }
 
+void CxbDevBase::ClearData()
+{
+	
+}
+
 void CxbDevBase::doInitData(int vDim)
 {
 }
