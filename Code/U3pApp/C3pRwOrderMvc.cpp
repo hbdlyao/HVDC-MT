@@ -164,11 +164,11 @@ void C3pRwOrderMvc::doLoad_CaseID()
 
 	//
 	vSQL = "select CalName,CaseID,PdPercent  from mcResult";
-	vSQL = vSQL + " Where ";
-	vSQL = vSQL + " CalName = ";
-	vSQL = vSQL + " '";
-	vSQL = vSQL + pOrder->mcName;
-	vSQL = vSQL + "' ";
+	//vSQL = vSQL + " Where ";
+	//vSQL = vSQL + " CalName = ";
+	//vSQL = vSQL + " '";
+	//vSQL = vSQL + pOrder->mcName;
+	//vSQL = vSQL + "' ";
 	vSQL = vSQL + " group by CalName,CaseID,PdPercent ";
 
 	RwAdo->OpenSQL(vSQL);

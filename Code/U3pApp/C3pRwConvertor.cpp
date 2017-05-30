@@ -25,7 +25,6 @@ void C3pRwConvertor::doLoad(CDevBase* vDevice)
 	{
 		vDevice->SetDeviceType(vValue.iVal);//ÕûĞÍ
 	};
-
 	
 }
 

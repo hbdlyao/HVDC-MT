@@ -1,8 +1,0 @@
-///////////////////////////////////////////////////////////
-//  CmcCalTwoDot.cpp
-//  Implementation of the Class CmcCalTwoDot
-//  Created on:      02-4ÔÂ-2017 14:41:15
-//  Original author: Administrator
-///////////////////////////////////////////////////////////
-
-#include "CmcCalTwoDot.h"

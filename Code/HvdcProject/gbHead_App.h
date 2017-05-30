@@ -11,5 +11,5 @@
 #include "gbHead_xbApp.h"
 #include "gbHead_3pApp.h"
 
-#include "CHvdcInitApp.h"
+#include "CHvdcApp.h"
 

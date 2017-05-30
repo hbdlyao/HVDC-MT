@@ -24,8 +24,6 @@ public:
 public:
 	virtual void Prepare();
 
-	virtual void do3pIndex(ValveMap& vValMap);
-
 	virtual void Update3pData(int vLoop);
 };
 

@@ -1,8 +1,0 @@
-///////////////////////////////////////////////////////////
-//  CxbCalTwoDot.cpp
-//  Implementation of the Class CxbCalTwoDot
-//  Created on:      05-4ÔÂ-2017 18:32:02
-//  Original author: Administrator
-///////////////////////////////////////////////////////////
-
-#include "CxbCalTwoDot.h"

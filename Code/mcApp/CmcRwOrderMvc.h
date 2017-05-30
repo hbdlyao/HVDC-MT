@@ -21,10 +21,14 @@ public:
 	void OnLoad(string vdbf) override;
 	void OnLoad() override;
 
+	void OnSave() override;
+
 protected:
 	void doLoad() override;
-	void doLoad_CaseID();
+	void doLoad_UdCustom();
+	//void doLoad_CaseID();
 
 	void doSave() override;
+	void doSave_UdCustom();
 };
 #endif // !defined(EA_2329C3EB_F3AD_46e9_80FA_F0DBFD7B8ECE__INCLUDED_)

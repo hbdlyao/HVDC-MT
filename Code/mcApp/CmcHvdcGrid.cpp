@@ -41,14 +41,6 @@ CDevTBL * CmcHvdcGrid::doNewDevTBL(int vType)
 }
 
 
-//************************************
-// *南方电网主回路及谐波计算软件*
-// 改动对象:  NewGrid
-// 改动者:    崔康生
-// 改动类型:  修改
-// 改动内容:  1.实现NewGrid方法功能
-// 改动时间:  2017/05/23
-//************************************
 void CmcHvdcGrid::NewGrid(StrVector vStaNames)
 {
 	for each (string vStaName in vStaNames)
@@ -60,17 +52,15 @@ void CmcHvdcGrid::NewGrid(StrVector vStaNames)
 		NewXf2TBL(vStaName);
 
 		NewConvertorTBL(vStaName);
+
+		//崔康生20170528-NewGrid
+		NewGroundLineTBL(vStaName);
+
+		//崔康生20170528-NewGrid
+		NewGroundTBL(vStaName);
 	}
 }
 
-//************************************
-// *南方电网主回路及谐波计算软件*
-// 改动对象:  NewAcFilterTBL至NewXf2TBL
-// 改动者:    崔康生
-// 改动类型:  新增
-// 改动内容:  1.创建一个换流站对应设备类型的设备
-// 改动时间:  2017/05/23
-//************************************
 void CmcHvdcGrid::NewAcFilterTBL(string vStaName)
 {
 	CDevTBL * vTBL;
@@ -136,8 +126,8 @@ void CmcHvdcGrid::NewConvertorTBL(string vStaName)
 
 	vType = CmcDefs::Convertor;
 	vDevName = vStaName + "---Convertor";
-	vNodeName1 = vStaName + "---" + xbNodeNameConvertor[0];
-	vNodeName2 = vStaName + "---" + xbNodeNameConvertor[1];
+	vNodeName1 = vStaName + "---" + mcNodeNameConvertor[0];
+	vNodeName2 = vStaName + "---" + mcNodeNameConvertor[1];
 
 	vTBL = DeviceTBL(vType);
 	vDev = vTBL->NewDevice(vType);
@@ -178,6 +168,62 @@ void CmcHvdcGrid::NewXf2TBL(string vStaName)
 	vDev->SetDeviceType(vType);
 
 	//vDev->SetNodeName(0,vNodeName);
+
+	vTBL->DeviceAdd(vDevName, vDev);
+}
+
+//崔康生20170528-NewGrid
+void CmcHvdcGrid::NewGroundLineTBL(string vStaName)
+{
+	CDevTBL * vTBL;
+	CDevBase * vDev;
+	int vType;
+	string vDevName;
+	string vNodeName;
+
+	vType = CmcDefs::GroundLine;
+	vDevName = vStaName + "---GroundLine";
+	vNodeName = vStaName + "---" + mcNodeNameGroundLine[0];
+
+	vTBL = DeviceTBL(vType);
+	vDev = vTBL->NewDevice(vType);
+	vDev->Init();
+
+	vDev->SetStationName(0, vStaName);
+
+	vDev->SetDeviceID(vDevName);
+	vDev->SetDeviceName(vDevName);
+	vDev->SetDeviceType(vType);
+
+	vDev->SetNodeName(0,vNodeName);
+
+	vTBL->DeviceAdd(vDevName, vDev);
+}
+
+//崔康生20170528-NewGrid
+void CmcHvdcGrid::NewGroundTBL(string vStaName)
+{
+	CDevTBL * vTBL;
+	CDevBase * vDev;
+	int vType;
+	string vDevName;
+	string vNodeName;
+
+	vType = CmcDefs::Ground;
+	vDevName = vStaName + "---Ground";
+	vNodeName = vStaName + "---" + mcNodeNameGround[0];
+
+	vTBL = DeviceTBL(vType);
+	vDev = vTBL->NewDevice(vType);
+	vDev->Init();
+
+	vDev->SetStationName(0, vStaName);
+
+	vDev->SetDeviceID(vDevName);
+	vDev->SetDeviceName(vDevName);
+	vDev->SetDeviceType(vType);
+
+	vDev->SetNodeName(0, vNodeName);
 
 	vTBL->DeviceAdd(vDevName, vDev);
 }

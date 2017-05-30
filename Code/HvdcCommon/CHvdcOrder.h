@@ -60,6 +60,11 @@ public:
 	
 	int IsNormal = false;
 
+	//崔康生20170828-单功率水平
+	bool IsLoadSingle = false;
+	double UdSingle;
+	double PdSingle;
+
 public:
 	void UpdatePdPercent(int & vPdSize);
 

@@ -12,6 +12,6 @@
 
 class C3pCalStaData : public C3pCalculate
 {
-
+	void Update3pData(int vLoop) override;
 };
 #endif // !defined(EA_CE74E05D_E906_411c_B1A6_E6A089464FBD__INCLUDED_)

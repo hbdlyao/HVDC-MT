@@ -13,19 +13,42 @@ void C3pCalAcSys::Prepare()
 
 }
 
+
 void C3pCalAcSys::Update3pData(int vLoop)
 {
-	double vLac, vLs, vLf;
+	double vLac;
+
+	int vhCount;
 
 	C3pDevAcSys * vDev;
 
 	vDev = dynamic_cast<C3pDevAcSys *>(pDevice);
 
-	int vIndex = Index3p;
+	vLac = vDev->GetLeq();
 
-	vLs = vDev->GetLs();
+	vhCount = vDev->GethCount();
 
-	//vLf = vDev->GetLf();
+	int vStaIndex = StationIndex;
+	int vDim = p3pProfile->n6pValor;
 
-	//p3pProfile->pData[vIndex].Lac = vLac;
+	for (int i = 0; i < vDim; i++)
+	{
+		if (p3pProfile->pU3pData[i].StaIndex == vStaIndex)
+		{
+			p3pProfile->pU3pData[i].Lac = vLac;
+
+			//½»Á÷±³¾°Ð³²¨
+			if (p3pProfile->pU3pData[i].hUv != nullptr)
+				delete[] p3pProfile->pU3pData[i].hUv;
+			p3pProfile->pU3pData[i].hUv = new struct_AcSysXb[vhCount];
+			for (int j = 0; j < vhCount; j++)
+			{
+				p3pProfile->pU3pData[i].hUv[i].hIndex = vDev->Get_hIndex(i);
+				p3pProfile->pU3pData[i].hUv[i].hUrms = vDev->Get_hUrms(i);
+				p3pProfile->pU3pData[i].hUv[i].hAngle = vDev->Get_hAngle(i);
+			}
+		}
+
+	}
 }
+

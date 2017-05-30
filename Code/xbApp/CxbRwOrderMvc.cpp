@@ -166,11 +166,11 @@ void CxbRwOrderMvc::doLoad_CaseID()
 	tblName = "xb3PVSrc_hData";
 	//
 	vSQL = "select CalName,CaseID,PdPercent  from " + tblName;
-	vSQL = vSQL + " Where ";
-	vSQL = vSQL + " CalName = ";
-	vSQL = vSQL + " '";
-	vSQL = vSQL + pOrder->U3pName;
-	vSQL = vSQL + "' ";
+	//vSQL = vSQL + " Where ";
+	//vSQL = vSQL + " CalName = ";
+	//vSQL = vSQL + " '";
+	//vSQL = vSQL + pOrder->U3pName;
+	//vSQL = vSQL + "' ";
 	vSQL = vSQL + " group by CalName,CaseID,PdPercent ";
 
 	RwAdo->OpenSQL(vSQL);

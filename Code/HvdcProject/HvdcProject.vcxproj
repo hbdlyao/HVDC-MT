@@ -77,6 +77,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>..\..\obj\HvdcProject</IntDir>
+    <OutDir>..\..\EXE</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -153,7 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CHvdcInitApp.h" />
+    <ClInclude Include="CHvdcApp.h" />
     <ClInclude Include="CHvdcMvcs.h" />
     <ClInclude Include="CHvdcParams.h" />
     <ClInclude Include="CHvdcVars.h" />
@@ -168,7 +169,7 @@
     <ClInclude Include="gbHead_var.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CHvdcInitApp.cpp" />
+    <ClCompile Include="CHvdcApp.cpp" />
     <ClCompile Include="CHvdcMvcs.cpp" />
     <ClCompile Include="CHvdcParams.cpp" />
     <ClCompile Include="CHvdcVars.cpp" />

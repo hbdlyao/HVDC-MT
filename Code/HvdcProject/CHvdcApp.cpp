@@ -29,7 +29,8 @@ void CHvdcApp::Init()
 void CHvdcApp::Clear()
 {
 	//清空数据(子对象)
-	CHvdcParams::Clear();
+	//CHvdcParams::Clear();
+
 	CHvdcVars::Clear();
 	CHvdcMvcs::Clear();
 

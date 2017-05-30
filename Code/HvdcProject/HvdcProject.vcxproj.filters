@@ -30,9 +30,6 @@
     <ClInclude Include="gbHead_mvc.h">
       <Filter>头文件\gbHead</Filter>
     </ClInclude>
-    <ClInclude Include="CHvdcInitApp.h">
-      <Filter>头文件\App</Filter>
-    </ClInclude>
     <ClInclude Include="CHvdcMvcs.h">
       <Filter>头文件\App</Filter>
     </ClInclude>
@@ -63,13 +60,13 @@
     <ClInclude Include="gbHead_Main.h">
       <Filter>头文件\gbHead</Filter>
     </ClInclude>
+    <ClInclude Include="CHvdcApp.h">
+      <Filter>头文件\App</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CHvdcInitApp.cpp">
-      <Filter>源文件\App</Filter>
     </ClCompile>
     <ClCompile Include="CHvdcMvcs.cpp">
       <Filter>源文件\App</Filter>
@@ -81,6 +78,9 @@
       <Filter>源文件\App</Filter>
     </ClCompile>
     <ClCompile Include="CHvdcVars.cpp">
+      <Filter>源文件\App</Filter>
+    </ClCompile>
+    <ClCompile Include="CHvdcApp.cpp">
       <Filter>源文件\App</Filter>
     </ClCompile>
   </ItemGroup>

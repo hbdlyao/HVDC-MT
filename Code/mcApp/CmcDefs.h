@@ -28,7 +28,7 @@ public:
 	int J_Index;
 
 
-	double PdPer=0;//功率水平
+	double PdPer = 0;//功率水平
 	double Uac;//交流电压
 	double Uv;//阀侧电压
 	double Udio;//理想空载直流电压
@@ -44,7 +44,7 @@ public:
 	double Qf_max;//滤波器提供的最大无功
 	double Qf_min;//滤波器提供的最小无功
 
-				  //计算中要用到的参数：来自HVDC设备集
+	//计算中要用到的参数：来自HVDC设备集
 	int nT;//6脉动桥数
 	int nPoleNum;//极数（双极或单极）
 	double UT;//6脉动桥的压降
@@ -54,14 +54,14 @@ public:
 	double QacInMax;//交流系统可吸收的最大无功
 	double QacOutMax;//交流系统可发出的最大无功
 
-					 //计算中要用到的参数：来自HVDC设备集，限值
+	//计算中要用到的参数：来自HVDC设备集，限值
 	double AngCtrl_Max;//分接头控制中换流器触发角/关断角的上限
 	double AngCtrl_Min;//分接头控制中换流器触发角/关断角的下限
 	int Tap_Max;//分接头最大档位
 	int Tap_Min;//分接头最小档位
 	double Ang_Min;//换流器触发角/关断角的最小值
 	double Uv_Max;//阀侧电压允许的最大值
-				  //计算中要用到的参数：计算产生
+	//计算中要用到的参数：计算产生
 	double Nnom;//变压器额定变比
 
 };
@@ -69,11 +69,11 @@ public:
 struct struct_mcResultData
 {
 public:
-	string CalName;
-	string CaseID;
-	string StationName;//站名
+	string CalName = "";
+	string CaseID = "";
+	string StationName = "";//站名
 
-	double PdPer=0;//功率水平
+	double PdPer = 0;//功率水平
 	double Uac;//交流电压
 	double Uv;//阀侧电压
 	double Udio;//理想空载直流电压
@@ -136,30 +136,40 @@ enum Enum_mcTransformerCtrlType
 
 };
 
-
-//************************************
-// *南方电网主回路及谐波计算软件*
-// 改动对象:  mcNodeNameACF至xbNodeNameXf2
-// 改动者:    崔康生
-// 改动类型:  新增
-// 改动内容:  1.设备的默认节点名称
-// 改动时间:  2017/05/23
-//************************************
 //const string mcNodeNameACF[] =
 //{
 //
 //};
-//const string xbNodeNameAcSys[] =
+//const string mcNodeNameAcSys[] =
 //{
 //
 //};
-const string xbNodeNameConvertor[] =
+const string mcNodeNameConvertor[] =
 {
 	"ConHigh",
-	"ConLow",
+	"ConLow"
 };
-
-//const string xbNodeNameXf2[] =
+//const string mcNodeNameXf2[] =
 //{
 //
 //};
+const string mcNodeNameGroundLine[] =
+{
+	"ConLow",
+	"RdGnd"
+};
+const string mcNodeNameGround[] =
+{
+	"RdGnd"
+};
+
+struct RecUdCustom
+{
+	//崔康生20170528-直流电压预设
+	int PdIndex;
+	double Ud21; //双极单阀
+	double Ud22;//双极双阀
+	double Ud11;//单极单阀
+	double Ud12;//单极双阀
+};
+typedef vector<RecUdCustom> UdDataVect;

@@ -10,9 +10,9 @@ void OnLoad()
 
 	CmcMvcs::OnLoad(CmcParams::dbfFile);
 
-	CxbMvcs::OnLoad(CxbParams::dbfFile);
+	//CxbMvcs::OnLoad(CxbParams::dbfFile);
 
-	C3pMvcs::OnLoad(C3pParams::dbfFile);
+	//C3pMvcs::OnLoad(C3pParams::dbfFile);
 
 };
 
@@ -25,16 +25,29 @@ void OnSave()
 	//C3pMvcs::OnSave(C3pParams::dbfFile);
 }
 
+void mcDLL()
+{
+	/*
+	HINSTANCE hInst = LoadLibraryA("../Dll/mcApp.dll");
+	typedef void(*pFun)();
+	pFun mcMain = (pFun)GetProcAddress(hInst, "mcMain");
+
+	mcMain();
+
+	FreeLibrary(hInst);
+	*/
+}
+
 int main()
 {
-	CHvdcInitApp::Init();	
-	CHvdcInitApp::Open();
+	CHvdcApp::Init();	
+	CHvdcApp::Open();
 
 	//
 	OnLoad();
 
 	//////////////主回路//////////
-	//CmcMain::mcMain();
+	CmcMain::mcMain();
 
 	//////////直流谐波////////////
 	//CxbMain::xbMain();
@@ -46,7 +59,7 @@ int main()
 	//CxbMain::lmTest();
 
 	////////////////三脉动电压源/////
-	C3pMain::U3pMain();
+	//C3pMain::U3pMain();
 
 	/////////////////////////
 
@@ -55,7 +68,7 @@ int main()
 
 	/////////////////////////
 
-	CHvdcInitApp::Exit();
+	CHvdcApp::Exit();
 
 	//
 	cout << "End" << endl;

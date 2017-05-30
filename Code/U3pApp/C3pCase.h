@@ -27,8 +27,42 @@ public:
 	void Set_hCalName(string vName);
 	string Get_hCaseID();
 	void Set_hCaseID(string vCaseID);
+	string Get_hStationName();
+	void Set_hStationName(string vCaseID);
 	double Get_hPdPer();
 	void Set_hPdPer(double vX);
+
+	void Set_hUac(double vX);
+
+	double Get_hUac();
+
+	void Set_hUv(double vX);
+
+	double Get_hUv();
+
+	void Set_hUvN(double vX);
+
+	double Get_hUvN();
+
+	void Set_hId(double vX);
+
+	double Get_hId();
+
+	void Set_hTC(int vX);
+
+	int Get_hTC();
+
+	void Set_halphaOrgamma(double vX);
+
+	double Get_halphaOrgamma();
+
+	void Set_hmiu(double vX);
+
+	double Get_hmiu();
+
+	void Set_hNnom(double vX);
+
+	double Get_hNnom();
 
 	//¡ı≥©£¨get set pData
 };

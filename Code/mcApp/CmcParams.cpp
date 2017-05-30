@@ -21,4 +21,5 @@ void CmcParams::Init()
 
 	dbfFile = "../../dbf/mcDBF.accdb";
 
+	PRJFile = "../../dbf/mcDBF.accdb";
 }

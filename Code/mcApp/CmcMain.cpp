@@ -15,36 +15,34 @@
 
 void CmcMain::mcMain()
 {
-	//mcCreateGrid();
-
-	//mcTest(Ground10);
+	//StrVector vStaNames = { "SÕ¾", "KÕ¾", "PÕ¾", };
+	//mcCreateGrid(vStaNames);
 
 	mcCalculateNormal();
 
-	//mcCalculate("²âÊÔ" + std::to_string((unsigned int)time(0)));
+	mcCalculate("ÄÏÍø¶à¶Ëmc¼ÆËã");
 
-	mcCalculate("²âÊÔ");
+	mcClose();
 
 }
 
-void CmcMain::mcTest(int vGnd)
+void CmcMain::DLLMain(string vDbfFile)
 {
-	CmcSolveMvc * vMvc;
+	mcInit(vDbfFile);
 
-	vMvc = new CmcSolveMvc();
-	vMvc->Init(CmcVars::pmcHvdcGrid);
-	vMvc->InitOrder(CmcVars::pmcOrder);
+	mcLoad();
 
-	vMvc->Test(vGnd);
+	mcCalculateNormal();
 
-	delete vMvc;
+	mcCalculate("ÄÏÍø¶à¶Ëmc¼ÆËã");
 
+	mcClose();
 }
 
 void CmcMain::mcCalculate(string vCalName)
 {
-	CmcMvcs::OnLoadOrder(CmcParams::dbfFile);
 	CmcVars::pmcOrder->CalName = vCalName;
+	CmcMvcs::OnLoadOrder(CmcParams::dbfFile);
 
 	///////////////////////////////////////////
 	SYSTEMTIME sys_time1;
@@ -93,23 +91,32 @@ void CmcMain::mcCalculateNormal()
 
 }
 
-
-void CmcMain::mcCreateGrid()
+void CmcMain::mcCreateGrid(StrVector vStaNames)
 {
-	StrVector vStaNames =
-	{
-		"SÕ¾",
-		"KÕ¾",
-		"PÕ¾",
-	};
-
 	CmcHvdcGrid *vHvdc = CmcVars::pmcHvdcGrid;
 
 	vHvdc->Clear();
 	vHvdc->NewGrid(vStaNames);
-
-	//delete vHvdc;
-
 }
 
 
+
+void CmcMain::mcInit(string vDBFFile)
+{
+	CmcInitApp::Init();
+
+	CmcParams::dbfFile = vDBFFile;
+	CmcParams::PRJFile = vDBFFile;
+
+	CmcInitApp::Open();
+}
+void CmcMain::mcLoad()
+{
+	CmcMvcs::OnLoad(CmcParams::dbfFile);
+}
+void CmcMain::mcClose()
+{
+	CmcMvcs::OnSave(CmcParams::dbfFile);
+
+	CmcInitApp::Exit();
+}

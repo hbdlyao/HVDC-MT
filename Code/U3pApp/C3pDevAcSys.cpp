@@ -64,6 +64,11 @@ void C3pDevAcSys::SetLs(double newVal)
 	Ls = newVal;
 }
 
+ double C3pDevAcSys::GetLeq()
+ {
+	 return Leq;
+ }
+
 void C3pDevAcSys::Prepare3pData(int vDType, int vLoopTimes)
 {
 }

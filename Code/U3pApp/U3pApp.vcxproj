@@ -154,7 +154,6 @@
     <ClCompile Include="C3pCalculate.cpp" />
     <ClCompile Include="C3pCalStaData.cpp" />
     <ClCompile Include="C3pCalOne.cpp" />
-    <ClCompile Include="C3pCalSModeData.cpp" />
     <ClCompile Include="C3pCalTwo.cpp" />
     <ClCompile Include="C3pCalXf2.cpp" />
     <ClCompile Include="C3pCase.cpp" />
@@ -165,7 +164,6 @@
     <ClCompile Include="C3pDevGrid.cpp" />
     <ClCompile Include="C3pDevStaData.cpp" />
     <ClCompile Include="C3pDevOne.cpp" />
-    <ClCompile Include="C3pDevSModeData.cpp" />
     <ClCompile Include="C3pDevTBL.cpp" />
     <ClCompile Include="C3pDevTwo.cpp" />
     <ClCompile Include="C3pDevVSrc.cpp" />
@@ -211,7 +209,6 @@
     <ClInclude Include="C3pDevGrid.h" />
     <ClInclude Include="C3pDevStaData.h" />
     <ClInclude Include="C3pDevOne.h" />
-    <ClInclude Include="C3pDevSModeData.h" />
     <ClInclude Include="C3pDevTBL.h" />
     <ClInclude Include="C3pDevTwo.h" />
     <ClInclude Include="C3pDevVSrc.h" />

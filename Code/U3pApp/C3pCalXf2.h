@@ -6,7 +6,5 @@ class C3pCalXf2 : public C3pCalTwo
 {
 	void Prepare();
 
-	virtual void Sort3p(ValveMap& vValMap);
-
 	void Update3pData(int vLoop) override;
 };

@@ -258,6 +258,12 @@
     <ClInclude Include="gbHead_mcMvc.h">
       <Filter>头文件\gbHeader</Filter>
     </ClInclude>
+    <ClInclude Include="CmcInitApp.h">
+      <Filter>头文件\App</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcPRJ_RwMvc.h">
+      <Filter>头文件\Rw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CmcCalOneDot.cpp">
@@ -418,6 +424,15 @@
     </ClCompile>
     <ClCompile Include="CmcMain.cpp">
       <Filter>源文件\App</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcInitApp.cpp">
+      <Filter>源文件\App</Filter>
+    </ClCompile>
+    <ClCompile Include="mcDllExport.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcPRJ_RwMvc.cpp">
+      <Filter>源文件\Rw</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

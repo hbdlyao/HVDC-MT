@@ -58,6 +58,9 @@ void C3pSolves::doNewXbSolvers10()
 	doNewItem(C3pDefs::Convertor);
 
 	doNewItem(C3pDefs::Xf2);
+
+	doNewItem(C3pDefs::StaData);
+
 }
 
 
@@ -104,10 +107,10 @@ void C3pSolves::doNewItem(CDevTBL * vTBL)
 {
 	for each (C3pDevBase *  vDev in  vTBL->Children())
 	{
-		if ((vDev->GetPosOrNeg()) == C3pDefs::Pos) //正极设备
+		if ((vDev->GetPosOrNeg()) < C3pDefs::Pos) //正极设备
 			doNewCal(vDev);
 
-		if ((vDev->GetPosOrNeg()) == C3pDefs::Neg) //负极设备
+		if ((vDev->GetPosOrNeg()) > C3pDefs::Neg) //负极设备
 			switch (GroundType())
 			{
 			case Ground20: //双极中性点

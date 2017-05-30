@@ -25,22 +25,21 @@ void C3pProfile::NewU3pData(int vGNDType)
 	{
 	case Ground10:
 		doNewU3pData1();
-
+		break;
 	case Ground11:
 		doNewU3pData1();
-
+		break;
 	case Ground20:
 		doNewU3pData2();
-
+		break;
 	case Ground21:
 		doNewU3pData2();
-
+		break;
 	default:
 		break;
 	}
 
 }
-
 void C3pProfile::doNewU3pData1()
 {	//µ¥¼«
 
@@ -52,26 +51,26 @@ void C3pProfile::doNewU3pData1()
 		switch (ValvorNum())
 		{
 		case 1:
-			pU3pData[0].StaIndex = i;
-			pU3pData[0].ValvorIndex = U3p_6pValvor_Pos11;
+			pU3pData[0 + i * 2].StaIndex = i;
+			pU3pData[0 + i * 2].ValvorIndex = U3p_6pValvor_Pos11;
 
-			pU3pData[1].StaIndex = i;
-			pU3pData[1].ValvorIndex = U3p_6pValvor_Pos12;
+			pU3pData[1 + i * 2].StaIndex = i;
+			pU3pData[1 + i * 2].ValvorIndex = U3p_6pValvor_Pos12;
 
 			break;
 
 		case 2:
-			pU3pData[0].StaIndex = i;
-			pU3pData[0].ValvorIndex = U3p_6pValvor_Pos11;
+			pU3pData[0 + i * 4].StaIndex = i;
+			pU3pData[0 + i * 4].ValvorIndex = U3p_6pValvor_Pos11;
 
-			pU3pData[1].StaIndex = i;
-			pU3pData[1].ValvorIndex = U3p_6pValvor_Pos12;
+			pU3pData[1 + i * 4].StaIndex = i;
+			pU3pData[1 + i * 4].ValvorIndex = U3p_6pValvor_Pos12;
 
-			pU3pData[2].StaIndex = i;
-			pU3pData[2].ValvorIndex = U3p_6pValvor_Pos21;
+			pU3pData[2 + i * 4].StaIndex = i;
+			pU3pData[2 + i * 4].ValvorIndex = U3p_6pValvor_Pos21;
 
-			pU3pData[3].StaIndex = i;
-			pU3pData[4].ValvorIndex = U3p_6pValvor_Pos22;
+			pU3pData[3 + i * 4].StaIndex = i;
+			pU3pData[3 + i * 4].ValvorIndex = U3p_6pValvor_Pos22;
 
 			break;
 
@@ -80,7 +79,12 @@ void C3pProfile::doNewU3pData1()
 		}//switch	
 
 	}//for
-
+	for (int i = 0; i < n6pValor; i++)
+	{
+		pU3pData[i].hUv = nullptr;
+		pU3pData[i].USrc3p1 = new struct_3p_hUv[C3pParams::hMax];
+		pU3pData[i].USrc3p2 = new struct_3p_hUv[C3pParams::hMax];
+	}
 }
 
 void C3pProfile::doNewU3pData2()
@@ -94,44 +98,44 @@ void C3pProfile::doNewU3pData2()
 		switch (ValvorNum())
 		{
 		case 1:
-			pU3pData[0].StaIndex = i;
-			pU3pData[0].ValvorIndex = U3p_6pValvor_Pos11;
+			pU3pData[0 + i * 4].StaIndex = i;
+			pU3pData[0 + i * 4].ValvorIndex = U3p_6pValvor_Pos11;
 
-			pU3pData[1].StaIndex = i;
-			pU3pData[1].ValvorIndex = U3p_6pValvor_Pos12;
+			pU3pData[1 + i * 4].StaIndex = i;
+			pU3pData[1 + i * 4].ValvorIndex = U3p_6pValvor_Pos12;
 
-			pU3pData[2].StaIndex = i;
-			pU3pData[2].ValvorIndex = U3p_6pValvor_Neg21;
+			pU3pData[2 + i * 4].StaIndex = i;
+			pU3pData[2 + i * 4].ValvorIndex = U3p_6pValvor_Neg21;
 
-			pU3pData[3].StaIndex = i;
-			pU3pData[4].ValvorIndex = U3p_6pValvor_Neg22;
+			pU3pData[3 + i * 4].StaIndex = i;
+			pU3pData[3 + i * 4].ValvorIndex = U3p_6pValvor_Neg22;
 
 			break;
 
 		case 2:
-			pU3pData[0].StaIndex = i;
-			pU3pData[0].ValvorIndex = U3p_6pValvor_Pos11;
+			pU3pData[0 + i * 8].StaIndex = i;
+			pU3pData[0 + i * 8].ValvorIndex = U3p_6pValvor_Pos11;
 
-			pU3pData[1].StaIndex = i;
-			pU3pData[1].ValvorIndex = U3p_6pValvor_Pos12;
+			pU3pData[1 + i * 8].StaIndex = i;
+			pU3pData[1 + i * 8].ValvorIndex = U3p_6pValvor_Pos12;
 
-			pU3pData[2].StaIndex = i;
-			pU3pData[2].ValvorIndex = U3p_6pValvor_Pos21;
+			pU3pData[2 + i * 8].StaIndex = i;
+			pU3pData[2 + i * 8].ValvorIndex = U3p_6pValvor_Pos21;
 
-			pU3pData[3].StaIndex = i;
-			pU3pData[4].ValvorIndex = U3p_6pValvor_Pos22;
+			pU3pData[3 + i * 8].StaIndex = i;
+			pU3pData[3 + i * 8].ValvorIndex = U3p_6pValvor_Pos22;
 
-			pU3pData[5].StaIndex = i;
-			pU3pData[5].ValvorIndex = U3p_6pValvor_Neg11;
+			pU3pData[4 + i * 8].StaIndex = i;
+			pU3pData[4 + i * 8].ValvorIndex = U3p_6pValvor_Neg11;
 
-			pU3pData[6].StaIndex = i;
-			pU3pData[6].ValvorIndex = U3p_6pValvor_Neg12;
+			pU3pData[5 + i * 8].StaIndex = i;
+			pU3pData[5 + i * 8].ValvorIndex = U3p_6pValvor_Neg12;
 
-			pU3pData[7].StaIndex = i;
-			pU3pData[7].ValvorIndex = U3p_6pValvor_Neg21;
+			pU3pData[6 + i * 8].StaIndex = i;
+			pU3pData[6 + i * 8].ValvorIndex = U3p_6pValvor_Neg21;
 
-			pU3pData[8].StaIndex = i;
-			pU3pData[8].ValvorIndex = U3p_6pValvor_Neg22;
+			pU3pData[7 + i * 8].StaIndex = i;
+			pU3pData[7 + i * 8].ValvorIndex = U3p_6pValvor_Neg22;
 
 			break;
 
@@ -140,7 +144,12 @@ void C3pProfile::doNewU3pData2()
 		}//switch	
 
 	}//for
-
+	for (int i = 0; i < n6pValor; i++)
+	{
+		pU3pData[i].hUv = nullptr;
+		pU3pData[i].USrc3p1 = new struct_3p_hUv[C3pParams::hMax];
+		pU3pData[i].USrc3p2 = new struct_3p_hUv[C3pParams::hMax];
+	}
 }
 
 int C3pProfile::StaCount()

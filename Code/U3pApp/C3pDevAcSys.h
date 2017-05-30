@@ -44,6 +44,8 @@ public:
 	 */
 	void SetLs(double newVal);
 
+	double GetLeq();
+
 	virtual void Prepare3pData(int vDType, int vLoopTimes);
 
 protected:

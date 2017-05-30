@@ -32,10 +32,3 @@ void C3pCalculate::Prepare()
 void C3pCalculate::Update3pData(int vLoop)
 {
 }
-
-void C3pCalculate::do3pIndex(ValveMap & vValMap)
-{
-	C3pDevBase * vDev = dynamic_cast<C3pDevBase *>(pDevice);
-
-	Index3p = vValMap.find(vDev->GetValveName())->second;
-}

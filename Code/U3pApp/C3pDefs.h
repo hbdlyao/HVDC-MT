@@ -8,7 +8,7 @@
 class C3pDefs
 {
 public:
-	static const int	    AcSys = 11;
+	static const int	AcSys = 11;
 	static const int 	StaData = 12;
 	static const int 	Xf2 = 13;
 	static const int 	Convertor = 14;
@@ -17,8 +17,8 @@ public:
 
 
 
-	static const int		Pos = 19;
-	static const int		Neg = 20;
+	static const int		Pos = 50;
+	static const int		Neg = 50;
 
 	static const int		DFixed = 21;	//手动输入
 	static const int		DAutoDis = 22;	//程序分配

@@ -6,5 +6,7 @@ class C3pCalConvertor : public C3pCalTwo
 {
 	void Prepare();
 
+	void Update3pData(int vLoop) override;
+
 	//void Update3pData(int vLoop) override;
 };

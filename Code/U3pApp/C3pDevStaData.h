@@ -25,6 +25,50 @@ public:
 
 	void NewStaData(string vCalName, string vCaseID, double vPdPercent);
 
+	void SetCaseID(string Val);
+
+	void SetCalName(string Val);
+
+	void SetPdPer(double Val);
+
+	void SetUac(double Val);
+
+	void SetUv(double Val);
+
+	void SetUvN(double Val);
+
+	void SetId(double Val);
+
+	void SetTC(int Val);
+
+	void SetalphaOrgamma(double Val);
+
+	void Setmiu(double Val);
+
+	void SetNnom(double Val);
+
+	string GetCaseID();
+
+	string GetCalName();
+
+	double GetPdPer();
+
+	double GetUac();
+
+	double GetUv();
+
+	double GetUvN();
+
+	double GetId();
+
+	int GetTC();
+
+	double GetalphaOrgamma();
+
+	double Getmiu();
+
+	double GetNnom();
+
 	//¡ı≥©£¨get set pData
 
 };

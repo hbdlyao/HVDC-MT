@@ -16,7 +16,7 @@ void CmcOrder::Init()
 	CHvdcOrder::Init();
 
 	IsUdCustom = false;
-	UdCustomMap.clear();
+	UdData.clear();
 	IsUdCustomPre = false;
 	UdCustom = 0;
 	Is6Pulse = false;
@@ -27,7 +27,7 @@ void CmcOrder::InitNormal()
 	CHvdcOrder::InitNormal();
 
 	IsUdCustom = false;
-	UdCustomMap.clear();
+	UdData.clear();
 	IsUdCustomPre = false;
 	UdCustom = 0;
 	Is6Pulse = false;

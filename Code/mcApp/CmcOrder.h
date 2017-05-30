@@ -15,6 +15,7 @@
 #include <Vector>
 
 #include "gbHead_mcType.h"
+#include "CmcDefs.h"
 
 using namespace std;
 
@@ -22,12 +23,12 @@ class CmcOrder : public CHvdcOrder
 {
 public:	
 	int StaCount() override;
-
-	UdMap UdCustomMap = UdMap();
-
+	
 	bool IsUdCustomPre = false;
 
 	bool Is6Pulse = false;
+
+	UdDataVect UdData;
 
 	void Init();
 	void InitNormal();

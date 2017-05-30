@@ -93,7 +93,7 @@ void C3pRwStaData::doLoad_hCase(C3pDevStaData* vDev)
 	vSQL = vSQL + "' ";
 	vSQL = vSQL + " group by CalName,CaseID,PdPercent ";
 	
-	RwAdo->OpenSQL(vSQL);
+	bool vOk=RwAdo->OpenSQL(vSQL);
 	
 	int vN = RwAdo->Record_RowCount();
 	
@@ -148,6 +148,9 @@ void C3pRwStaData::doLoad_hData()
 			doLoad_hData(vData);
 
 	}//for each
+
+	cout << endl;
+
 }
 
 
@@ -209,6 +212,60 @@ void C3pRwStaData::doLoad_hData(C3pCase* vData)
 		};
 			
 		//Áõ³©
+		RwAdo->GetFieldValue("StationName", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vStr = (_bstr_t)vValue; //×Ö·ûÐÍ
+			vData->Set_hStationName(vStr);
+		};
+
+		RwAdo->GetFieldValue("Uac", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hUac(vValue.dblVal);
+		};
+
+		RwAdo->GetFieldValue("Uv", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hUv(vValue.dblVal);
+		};
+
+		RwAdo->GetFieldValue("Uv_N", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hUvN(vValue.dblVal);
+		};
+
+		RwAdo->GetFieldValue("DcId", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hId(vValue.dblVal);
+		};
+
+		RwAdo->GetFieldValue("TC", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hTC(vValue.intVal);
+		};
+
+		RwAdo->GetFieldValue("alphaOrgamma", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_halphaOrgamma(vValue.dblVal);
+		};
+
+		RwAdo->GetFieldValue("miu", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hmiu(vValue.dblVal);
+		};
+
+		RwAdo->GetFieldValue("Tk_N", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vData->Set_hNnom(vValue.dblVal);
+		};
 
 		//
 		RwAdo->Record_MoveNext();
@@ -216,12 +273,13 @@ void C3pRwStaData::doLoad_hData(C3pCase* vData)
 	
 	}//while
 	
+	cout << "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 	cout << "  ---StaData-" << vData->StationName;
 	cout << "---" << vData->Get_hCalName();
 	cout << "---" << vData->Get_hCaseID();
 	cout << "---" << vData->Get_hPdPer();
-	cout << endl;
 	
+
 	RwAdo->CloseTBL();
 	
 	//

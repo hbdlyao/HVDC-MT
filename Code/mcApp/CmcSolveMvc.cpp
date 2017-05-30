@@ -70,17 +70,9 @@ void CmcSolveMvc::InitOrder(CmcOrder* vOrder)
 
 	pmcProfile->InitOrder(pmcOrder);
 	pmcSolves->InitOrder(pmcOrder);
-	
+
 }
 
-//************************************
-// *南方电网主回路及谐波计算软件*
-// 改动对象:  SaveResults
-// 改动者:    崔康生
-// 改动类型:  修改
-// 改动内容:  1.改为使用vRwMvc.OnSave方法
-// 改动时间:  2017/05/23
-//************************************
 void CmcSolveMvc::SaveResults()
 {
 	CmcRwResultMvc vRwMvc;
@@ -115,15 +107,6 @@ void CmcSolveMvc::Test(int vGNDType)
 	//doRun();
 }
 
-
-//************************************
-// *南方电网主回路及谐波计算软件*
-// 改动对象:  Run
-// 改动者:    崔康生
-// 改动类型:  修改
-// 改动内容:  1.增加测试信息的输出
-// 改动时间:  2017/05/23
-//************************************
 void CmcSolveMvc::Run()
 {
 	cout << "Run---mc---" << endl;
@@ -144,14 +127,6 @@ int CmcSolveMvc::StaCount()
 	return CmcParams::mcStationCount;
 }
 
-//************************************
-// *南方电网主回路及谐波计算软件*
-// 改动对象:  doRecordResult
-// 改动者:    崔康生
-// 改动类型:  修改
-// 改动内容:  1.修改测试信息的输出方式
-// 改动时间:  2017/05/23
-//************************************
 void CmcSolveMvc::doRecordResult()
 {
 	string vCaseID = pmcOrder->CreateCaseID();
@@ -159,7 +134,7 @@ void CmcSolveMvc::doRecordResult()
 
 	//测试用
 	static int vN = 1;
-	cout << "\b\b\b\b\b\b\b\b\b\bb\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";	
+	cout << "\b\b\b\b\b\b\b\b\b\bb\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 	cout << "主回路:";
 	cout << vCaseID;
 	cout << "%";
@@ -279,24 +254,28 @@ void CmcSolveMvc::doRun_Ud(string vFlag)
 	int vN = static_cast<int> (vFlag.size());
 	int vStaCount = StaCount();
 
-	//全压/80%/70%
-	for (int i = 0; i < vN; i++)
-	{
-		if (vFlag[i] == '1')
+	//崔康生20170828-单功率水平
+	if (pmcOrder->IsLoadSingle)
+		doRun_Uac(pmcOrder->Flag_Uac);
+	else
+		//全压/80%/70%
+		for (int i = 0; i < vN; i++)
 		{
-			pmcOrder->UdLevel = UdLevelArr[i];
+			if (vFlag[i] == '1')
+			{
+				pmcOrder->UdLevel = UdLevelArr[i];
 
-			if (pmcOrder->IsUacSwap)
-				doRun_UacSwap(pmcOrder->Flag_Uac, 0, vStaCount);
-			else
-				doRun_Uac(pmcOrder->Flag_Uac);
+				if (pmcOrder->IsUacSwap)
+					doRun_UacSwap(pmcOrder->Flag_Uac, 0, vStaCount);
+				else
+					doRun_Uac(pmcOrder->Flag_Uac);
 
-		}//if
+			}//if
 
-	}//for
+		}//for
 }
 
-void CmcSolveMvc::doRun_Uac(string vFlag){
+void CmcSolveMvc::doRun_Uac(string vFlag) {
 
 	int vN = static_cast<int> (vFlag.size());
 	int vStaCount = StaCount();
@@ -340,30 +319,53 @@ void CmcSolveMvc::doRun_Pd()
 
 	vPdSize = pmcOrder->PdSize;
 
-	for (int i = 0; i < vPdSize; i++)
-	{
-		pmcOrder->UpdatePdPercent(i);
-		pmcOrder->IsUdCustomPre = false;
+	//崔康生20170828-单功率水平
+	if (pmcOrder->IsLoadSingle)
+		doRun();
+	else
+		for (int i = 0; i < vPdSize; i++)
+		{
+			pmcOrder->UpdatePdPercent(i);
+			pmcOrder->IsUdCustomPre = false;
 
-		if (pmcOrder->IsUdCustom) //指定Ud
-			doRun_UdCustom(i);
-		else
-			doRun();
+			if (pmcOrder->IsUdCustom) //指定Ud
+				doRun_UdCustom(i);
+			else
+				doRun();
 
-	}//for
+		}//for
 }
 
 void CmcSolveMvc::doRun_UdCustom(int vPdIndex)
 {
+	for each (RecUdCustom vUdCustom in pmcOrder->UdData)
+		if (vUdCustom.PdIndex == vPdIndex)
+		{
+			pmcOrder->IsUdCustomPre = true;
 
-	if (pmcOrder->UdCustomMap.count(vPdIndex) == 0)
-		doRun();
-	else
-	{
-		pmcOrder->IsUdCustomPre = true;
-		pmcOrder->UdCustom = pmcOrder->UdCustomMap[vPdIndex];
-		doRun();
-	}
+			bool vOk;
+
+			vOk = pmcOrder->GroundType == GndTypeArr[0] || pmcOrder->GroundType == GndTypeArr[1];
+			vOk = vOk&&pmcOrder->nValNum == 1;
+			if (vOk)
+				pmcOrder->UdCustom = vUdCustom.Ud11;
+
+			vOk = pmcOrder->GroundType == GndTypeArr[0] || pmcOrder->GroundType == GndTypeArr[1];
+			vOk = vOk&&pmcOrder->nValNum != 1;
+			if (vOk)
+				pmcOrder->UdCustom = vUdCustom.Ud12;
+
+			vOk = pmcOrder->GroundType == GndTypeArr[2] || pmcOrder->GroundType == GndTypeArr[3];
+			vOk = vOk&&pmcOrder->nValNum == 1;
+			if (vOk)
+				pmcOrder->UdCustom = vUdCustom.Ud21;
+
+			vOk = pmcOrder->GroundType == GndTypeArr[2] || pmcOrder->GroundType == GndTypeArr[3];
+			vOk = vOk&&pmcOrder->nValNum != 1;
+			if (vOk)
+				pmcOrder->UdCustom = vUdCustom.Ud22;
+		}
+	doRun();
 }
 
 void CmcSolveMvcNormal::Init(CmcHvdcGrid * vGrid)
@@ -393,7 +395,7 @@ void CmcSolveMvcNormal::Run()
 	CmcSolveMvc::Run();
 }
 
-void CmcSolveMvcNormal::doRecordResult(){
+void CmcSolveMvcNormal::doRecordResult() {
 
 	dynamic_cast<CmcSolvesNormal*>(pmcSolves)->SaveNorml();
 

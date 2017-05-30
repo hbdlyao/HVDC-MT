@@ -47,10 +47,12 @@
     <ClInclude Include="CmcDevXf2.h" />
     <ClInclude Include="CmcFunc.h" />
     <ClInclude Include="CmcHvdcGrid.h" />
+    <ClInclude Include="CmcInitApp.h" />
     <ClInclude Include="CmcMain.h" />
     <ClInclude Include="CmcMvcs.h" />
     <ClInclude Include="CmcOrder.h" />
     <ClInclude Include="CmcParams.h" />
+    <ClInclude Include="CmcPRJ_RwMvc.h" />
     <ClInclude Include="CmcProfile.h" />
     <ClInclude Include="CmcResult.h" />
     <ClInclude Include="CmcRw.h" />
@@ -108,10 +110,12 @@
     <ClCompile Include="CmcDevXf2.cpp" />
     <ClCompile Include="CmcFunc.cpp" />
     <ClCompile Include="CmcHvdcGrid.cpp" />
+    <ClCompile Include="CmcInitApp.cpp" />
     <ClCompile Include="CmcMain.cpp" />
     <ClCompile Include="CmcMvcs.cpp" />
     <ClCompile Include="CmcOrder.cpp" />
     <ClCompile Include="CmcParams.cpp" />
+    <ClCompile Include="CmcPRJ_RwMvc.cpp" />
     <ClCompile Include="CmcProfile.cpp" />
     <ClCompile Include="CmcResult.cpp" />
     <ClCompile Include="CmcRw.cpp" />
@@ -134,6 +138,7 @@
     <ClCompile Include="CmcSolves.cpp" />
     <ClCompile Include="CmcSolvesNormal.cpp" />
     <ClCompile Include="CmcVars.cpp" />
+    <ClCompile Include="mcDllExport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseFrame\BaseFrame.vcxproj">
