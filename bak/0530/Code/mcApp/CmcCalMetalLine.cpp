@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  CmcCalMetalLine.cpp
+//  Implementation of the Class CmcCalMetalLine
+//  Created on:      02-4ÔÂ-2017 14:42:10
+//  Original author: Administrator
+///////////////////////////////////////////////////////////
+
+#include "CmcCalMetalLine.h"
