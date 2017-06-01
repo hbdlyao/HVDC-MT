@@ -3,10 +3,34 @@
 
 #include "CmcMain.h"
 
+
+
+extern "C" mcDLL_API void DLLMain(char * vCalName)
+{
+	CmcMain::DLLMain(vCalName);
+}
+
+
+extern "C" mcDLL_API void mcResult(char * vdbfFile,struct_mcResultData * vData)
+{
+	//¥ﬁøµ…˙£¨≤‚ ‘
+
+	CmcMain::mcInit(vdbfFile);
+
+	CmcResult * vResult = new CmcResult();
+
+	CmcMvcs::OnLoadResult(vdbfFile, vResult);
+
+
+	//CmcMain::mcCalculate(vCalName);
+
+}
+
 extern "C" mcDLL_API void mcCalculate(char * vCalName)
 {
 	CmcMain::mcCalculate(vCalName);
 }
+
 extern "C" mcDLL_API void mcCalculateNormal()
 {
 	CmcMain::mcCalculateNormal();
@@ -24,10 +48,4 @@ extern "C" mcDLL_API void mcLoad()
 extern "C" mcDLL_API void mcClose()
 {
 	CmcMain::mcClose();
-}
-
-
-extern "C" mcDLL_API void DLLMain(char * vCalName)
-{
-	CmcMain::DLLMain(vCalName);
 }

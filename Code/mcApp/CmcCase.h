@@ -6,29 +6,31 @@ class CmcCase
 {
 
 public:
-	struct_mcResultData pData;
 	vector<struct_mcResultData*> pDataVect;
+
+	struct_mcResultData pData;
 
 	string DataName;
 
-	string CalName;
-	string CaseID;
-	string StationName;
+	//string CalName;
+	//string CaseID;
+	//string StationName;
 
-	double PdPer;
+	//double PdPer;
 
 public:
 	~ CmcCase();
 	virtual void Init();
-	virtual void Clear();
 	virtual void Release();
 
-	virtual void ClearData();
-	virtual void InitData();
 	virtual bool IsLeaf();
 
-	virtual void Add(CmcCase* vItem);
+	virtual void Add(string vID, CmcCase* vCase);
 	virtual void Remove(CmcCase* vItem);
+
+public:
+
+	int datCount();
 
 public:
 	

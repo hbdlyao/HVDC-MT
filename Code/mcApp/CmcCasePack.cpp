@@ -14,112 +14,114 @@ CmcCasePack::~CmcCasePack()
 }
 
 
-void CmcCasePack::Clear()
+void CmcCasePack::Release() 
 {
-	for each (pair<string, CmcCase *> vPair in pCaseMap)
+	for each (pair<string, CmcCase *> vPair in pChildren)
 	{
 		delete vPair.second;
 		vPair.second = nullptr;
 	}
-	
-	pCaseMap.clear();
+
+	pChildren.clear();
+
+	//
+	pDataVect.clear();
 
 }
 
-
-void CmcCasePack::Release(){
-
-	for each (pair<string, CmcCase *> vPair in pCaseMap)
-	{
-		delete vPair.second;
-		vPair.second = nullptr;
-	}
-	
-	pCaseMap.clear();
-}
-
-
-bool CmcCasePack::IsLeaf(){
+bool CmcCasePack::IsLeaf()
+{
 
 	return false;
 }
 
 
-void CmcCasePack::Add(CmcCase* vItem){
-
-	//pChildren.push_back(vItem);
+void CmcCasePack::Add(string vID,CmcCase* vCase)
+{
+	pChildren[vID] = vCase;
 }
 
 
-void CmcCasePack::Remove(CmcCase* vItem){
-
-	//
+void CmcCasePack::Remove(CmcCase* vItem)
+{
+	//pChildren.erase();
 }
 
 
 int CmcCasePack::ChildCount()
 {
-	return static_cast<int >(pCaseMap.size());
+	return static_cast<int >(pChildren.size());
 }
 
+map<string, CmcCase*> CmcCasePack::Children()
+{
+	return pChildren;
+}
 
-CmcCase* CmcCasePack::NewCase(int vIndex, StrVector vNames){
-
-	CmcCase * vData;
+CmcCase* CmcCasePack::NewCase(int vIndex, StrVector vNames, struct_mcResultData * vData)
+{
+	CmcCase * vCase;
 	
 	int vDeep = static_cast<int> (vNames.size()) - 1;
 	string vID = vNames[vIndex];
 	
-	int vN = static_cast<int> (pCaseMap.count(vID));
+	int vN = static_cast<int> (pChildren.count(vID));
 	
 	if (vN == 0)
 	{//²»´æÔÚ vName	
 	
 		if (vIndex == vDeep)
-			vData = new CmcCase();
+			vCase = new CmcCase();
 		else
-			vData = new CmcCasePack();
+			vCase = new CmcCasePack();
 			//
 		
-		vData->Init();
-		vData->DataName = vID;
+		vCase->Init();
+		vCase->DataName = vID;
 	
 		//
-		pCaseMap[vID] = vData;
-		Add(vData);
+		Add(vID,vCase);
 	
 	}//if vN
 	
-	vData = pCaseMap[vID];
+	vCase = pChildren[vID];
+	vCase->pDataVect.push_back(vData);
 	
-	if (vData->IsLeaf())
-		return vData;
+
+	if (vCase->IsLeaf())
+		return vCase;
 	else
 	{
-		CmcCasePack * vList;
-		vList = dynamic_cast<CmcCasePack * >(vData);
+		CmcCasePack * vPack;
+		vPack = dynamic_cast<CmcCasePack * >(vCase);
 	
-		return vList->NewCase(vIndex + 1, vNames);
+		return vPack->NewCase(vIndex + 1, vNames,vData);
 	}
 }
 
 
-CmcCase* CmcCasePack::DataSelected(int vIndex, StrVector vNames){
 
-	CmcCase * vData;
+CmcCase* CmcCasePack::FindCase(int vIndex, StrVector vNames)
+{
+
+	CmcCase * vCase;
 	
 	int vDeep =static_cast<int> (vNames.size()) - 1;
 	string vID = vNames[vIndex];
 	
-	vData = pCaseMap[vID];
+	vCase = pChildren[vID];
 	
-	if (vData->IsLeaf())
-		return vData;
+	if (vCase == nullptr)
+		return nullptr;
+
+	if (vCase->IsLeaf())
+		return vCase;
 	else
 	{
-		CmcCasePack * vList;
-		vList = dynamic_cast<CmcCasePack * >(vData);
+		CmcCasePack * vPack;
+		vPack = dynamic_cast<CmcCasePack * >(vCase);
 	
-		return vList->DataSelected(vIndex + 1, vNames);
+		return vPack->FindCase(vIndex + 1, vNames);
 	}
+
 }

@@ -42,22 +42,20 @@ public:
 	virtual void Test(int vGNDType);
 	virtual void Run();
 
-	void SaveResults();
-
 protected:
+	int StaCount();
 
 	void doNewSolves(int vGNDType);
+
 	void doInitRun();
 
 	void doNodeID();
 	void doStationSort();
 
-	int StaCount();
-
 	void doPrepareNormal();
-	virtual void doRecordResult();
 
 	virtual void doRun();
+
 	void doRun_Ground(string vFlag);
 	void doRun_Rd(string vFlag);
 	void doRun_Ud(string vFlag);
@@ -66,6 +64,10 @@ protected:
 	void doRun_Uac(string vFlag);
 	void doRun_UacSwap(string vFlag, int vIndex, int vStaCount);
 	void doRun_Pd();
+
+
+	virtual void doRecordResult();
+	virtual void doSaveResults();
 
 };
 
@@ -76,7 +78,7 @@ class CmcSolveMvcNormal : public CmcSolveMvc
 {
 
 public:
-	virtual void Init(CmcHvdcGrid* vGrid) override;
+	void Init(CmcHvdcGrid* vGrid) override;
 
 	void Run() override;
 

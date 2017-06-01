@@ -10,15 +10,10 @@ public:
 	int nStaDim;
 	int nCaseDim;
 	int nPdPreDim;
-	
-	int datDim;
 
-	int CurrentOffset;
+	string CalName;
 
-	string ResultName;
-	struct_mcResultData * pmcResultData;
-
-	CmcCasePack pPack;
+	CmcCasePack pCasePack;
 
 	vector<struct_mcResultData*> pDataVect;
 
@@ -40,13 +35,28 @@ public:
 	string GetResultName();
 
 public:
-	long PackedLeng();
-	int RecordByte();	
+	void NewCase();
+
+protected:
+	CmcCase * doNewCase(struct_mcResultData * vData);
+	CmcCase * doNewCase(StrVector vNames, struct_mcResultData * vData);
+	
+	CmcCase * doFindCase(StrVector vNames);
+
+public:
+	int RecordByte();
+	long PacketBytes();
+
+	Byte * Serialize();
+
 	void Serialize(Byte * vPacket);
 	void UnSerialize(Byte * vPacket);
 
-	CmcCase * NewCase(struct_mcResultData * vData);	
+	void Serialize(StrVector vNames, Byte * vPacket);
+	void UnSerialize(StrVector vNames, Byte * vPacket);
 
-	void NewData(int vDim);
-	void NewData1(int vDim);
+protected:
+	void doSerialize(vector<struct_mcResultData*>  vDataVect, Byte * vPacket);
+	void doUnSerialize(Byte * vPacket, vector<struct_mcResultData*> & vDataVect);
+
 };

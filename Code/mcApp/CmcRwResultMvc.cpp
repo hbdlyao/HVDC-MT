@@ -34,22 +34,34 @@ void CmcRwResultMvc::doLoad()
 
 	RwAdo->OpenSQL(vSQL);
 	//
-	if (!RwAdo->IsEOF())
+
+	while (!RwAdo->IsEOF())
 	{
 		try
 		{
 			RwAdo->GetFieldValue("Data", vValue);
 			if (vValue.vt != VT_NULL)
 			{
-				Byte *vDataPacket;
-				long vPacketOffset = 0;
+				Byte *vDataPacket;				
 
 				SafeArrayAccessData(vValue.parray, (void **)&vDataPacket);
 
 				pResult->Clear();
 				pResult->UnSerialize(vDataPacket);
+				pResult->NewCase();
 
 				SafeArrayUnaccessData(vValue.parray);
+
+				/*
+				test
+
+				Byte * vPack;
+				vPack = pResult->Serialize();
+				
+				*/
+
+				RwAdo->Record_MoveNext();
+
 			}
 		}
 		catch (const std::exception&)
@@ -69,14 +81,13 @@ void CmcRwResultMvc::doLoad()
 
 void CmcRwResultMvc::doSave()
 {
+	long vPacketBytes;
+	vPacketBytes = pResult->PacketBytes();
 
-	Byte * vDataPacket;
-	long vHead, vPacketLeng;
+	Byte * vDataPacket; 
+	vDataPacket = new Byte[vPacketBytes];
 
-	vHead = sizeof(long);
-	vPacketLeng = 2 * vHead + pResult->PackedLeng();
 
-	vDataPacket = new Byte[vPacketLeng];
 	pResult->Serialize(vDataPacket);
 
 	//
@@ -106,14 +117,14 @@ void CmcRwResultMvc::doSave()
 		RwAdo->SetFieldValue("CalName", vValue); //
 
 		////////////////////////////////////////////
-		SAFEARRAY   *psa;
+		SAFEARRAY   * psa;
 		SAFEARRAYBOUND rgsabound[1];
 
 		rgsabound[0].lLbound = 0;
-		rgsabound[0].cElements = vPacketLeng;
+		rgsabound[0].cElements = vPacketBytes;
 		psa = SafeArrayCreate(VT_UI1, 1, rgsabound);
 
-		for (long i = 0; i < vPacketLeng; i++)
+		for (long i = 0; i < vPacketBytes; i++)
 			SafeArrayPutElement(psa, &i, &vDataPacket[i]);
 
 		vValue.vt = VT_ARRAY | VT_UI1;

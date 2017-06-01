@@ -6,26 +6,23 @@
 
 class CmcCasePack : public CmcCase
 {
-public:
+protected:
+	map<string, CmcCase *> pChildren;
 
 public:
 	~CmcCasePack();
-	void Clear() override;
 	void Release() override;
+
 	bool IsLeaf() override;
-	void Add(CmcCase* vItem) override;
+	void Add(string vID, CmcCase* vCase) override;
 	void Remove(CmcCase* vItem) override;
-	virtual int ChildCount();
+
+	int ChildCount();
+	map<string, CmcCase *> Children();
 
 public:
-	CmcCase* NewCase(int vIndex, StrVector vNames);
-
-	CmcCase* DataSelected(int vIndex, StrVector vNames);
-
-protected:
-	//p3pCaseMap pDataList;
-
-	map<string,CmcCase *> pCaseMap;
+	CmcCase* NewCase(int vIndex, StrVector vNames, struct_mcResultData * vData);
+	CmcCase* FindCase(int vIndex, StrVector vNames);
 
 };
 

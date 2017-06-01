@@ -73,7 +73,7 @@ void CmcSolveMvc::InitOrder(CmcOrder* vOrder)
 
 }
 
-void CmcSolveMvc::SaveResults()
+void CmcSolveMvc::doSaveResults()
 {
 	//Byte * vData;
 	//long vLeng;
@@ -87,6 +87,9 @@ void CmcSolveMvc::SaveResults()
 	//pmcResult->UnSerialize(vData);
 
 	//CmcMvcs::OnSaveResult(CmcParams::dbfFile,pmcResult);
+
+	//
+	pmcResult->NewCase();
 
 }
 
@@ -112,6 +115,10 @@ void CmcSolveMvc::Test(int vGNDType)
 	doPrepareNormal();
 
 	//doRun();
+
+	//
+	doSaveResults();
+
 }
 
 void CmcSolveMvc::Run()
@@ -124,6 +131,8 @@ void CmcSolveMvc::Run()
 	//
 	doRun_Ground(pmcOrder->Flag_Ground);
 
+	//
+	doSaveResults();
 	//
 	cout << endl;
 }

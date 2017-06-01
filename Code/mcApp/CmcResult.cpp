@@ -9,6 +9,7 @@
 #include "CHvdcFunc.h"
 #include "CmcParams.h"
 
+
 CmcResult::~CmcResult()
 {
 	Release();
@@ -17,65 +18,50 @@ CmcResult::~CmcResult()
 
 void CmcResult::Release()
 {
-	delete[] pmcResultData;
-	pmcResultData = nullptr;
-}
+	//
+	pCasePack.Release();
 
+	//
+	for each (struct_mcResultData * vData in pDataVect)
+	{
+		delete vData;
+		vData = nullptr;
+	}
+
+	//
+	pDataVect.clear();
+
+}
 
 void CmcResult::Clear()
 {
-	delete[] pmcResultData;
-	pmcResultData = nullptr;
-
-	CurrentOffset = 0;
+	Release();
 }
-
 
 void CmcResult::Init()
 {
-
 	nStaDim = 0;
 	nCaseDim = 0;
 	nPdPreDim = 0;
 
-	pmcResultData = nullptr;
-	CurrentOffset = 0;
+
+	pCasePack.DataName = "root";
+	pCasePack.Init();
 
 }
 
 void CmcResult::Init(int vStaDim, int vCaseDim, int vPdPreDim)
 {
-	CurrentOffset = 0;
-
 	//
 	nStaDim = vStaDim;
 	nCaseDim = vCaseDim;
 	nPdPreDim = vPdPreDim;
 
-	//
-	datDim = nStaDim*nCaseDim*nPdPreDim;
-	pmcResultData = new struct_mcResultData[datDim];
-
-}
-
-void CmcResult::NewData(int vDim)
-{
-	datDim = vDim;
-	pmcResultData = new struct_mcResultData[datDim];
-}
-
-void CmcResult::NewData1(int vDim)
-{
-	datDim = vDim * PdSize()*StaCount();
-	pmcResultData = new struct_mcResultData[datDim];
 }
 
 int CmcResult::DataDim()
 {
-	datDim = nStaDim*nCaseDim*nPdPreDim;
-
-	return datDim;
-
+	return static_cast<int>(pDataVect.size());
 }
 
 int CmcResult::PdSize()
@@ -92,158 +78,244 @@ int CmcResult::StaCount()
 
 string CmcResult::GetResultName()
 {
-	return ResultName;
+	return CalName;
 }
 
 
 void CmcResult::Record(string vCalName, string vCaseId, struct_mcStationData* vStaData, struct_mcStationData* vStaDataN)
 {
-	ResultName = vCalName;
+	CalName = vCalName;
 
+	struct_mcResultData* vData;
 	for (int i = 0; i < nStaDim; i++)
 	{
-		strcpy_s(pmcResultData[CurrentOffset].CalName, vCalName.c_str());
-		strcpy_s(pmcResultData[CurrentOffset].CaseID, vCaseId.c_str());
-		strcpy_s(pmcResultData[CurrentOffset].StationName, vStaData[i].StationName.c_str());
-
-		pmcResultData[CurrentOffset].PdPer	= vStaData[i].PdPer;
-
-		pmcResultData[CurrentOffset].Pconv = vStaData[i].Pconv;
-		pmcResultData[CurrentOffset].Qconv = vStaData[i].Qconv;
-		pmcResultData[CurrentOffset].Qf_max = vStaData[i].Qf_max;
-		pmcResultData[CurrentOffset].Qf_min = vStaData[i].Qf_min;
-
-		pmcResultData[CurrentOffset].Pd = vStaData[i].Pd;
-		pmcResultData[CurrentOffset].Id = vStaData[i].Id;
-		pmcResultData[CurrentOffset].Ud = vStaData[i].Ud;
-		pmcResultData[CurrentOffset].UdL = vStaData[i].UdL;
-
-		pmcResultData[CurrentOffset].Uac = vStaData[i].Uac;
-		pmcResultData[CurrentOffset].Uv = vStaData[i].Uv;
-		pmcResultData[CurrentOffset].Udio = vStaData[i].Udio;
-		
-		pmcResultData[CurrentOffset].Uv_N = vStaDataN[i].Uv;
-		pmcResultData[CurrentOffset].Udio_N = vStaDataN[i].Udio;
-		
-		//************************************
-		// *南方电网主回路及谐波计算软件*
-		// 改动对象:  下面两句
-		// 改动者:    崔康生
-		// 改动类型:  修正Bug
-		// 改动内容:  1.在原先基础上除以极数nPoleNum
-		// 改动时间:  2017/05/23
-		//************************************
-		pmcResultData[CurrentOffset].Pac6Valve = vStaData[i].Pconv / vStaData[i].nT / vStaData[i].nPoleNum;
-		pmcResultData[CurrentOffset].Qac6Valve = vStaData[i].Qconv / vStaData[i].nT / vStaData[i].nPoleNum;
-
-		pmcResultData[CurrentOffset].Pd6Valve = vStaData[i].Pd / vStaData[i].nT;
-		pmcResultData[CurrentOffset].Ud6Valve = vStaData[i].Ud / vStaData[i].nT;
-
-		pmcResultData[CurrentOffset].alphaOrgamma = CHvdcFunc::R2D(vStaData[i].alphaOrgamma);
-		pmcResultData[CurrentOffset].miu = CHvdcFunc::R2D(vStaData[i].miu);
-
-		pmcResultData[CurrentOffset].TC = vStaData[i].TC;
-		pmcResultData[CurrentOffset].Tk = vStaData[i].Nnom*(1 + vStaData[i].TC*vStaData[i].deltaK / 100);
-		pmcResultData[CurrentOffset].Tk_N = vStaData[i].Nnom;
+		vData = new struct_mcResultData;
 
 		//
-		CurrentOffset++;
+		strcpy_s(vData->CalName, vCalName.c_str());
+		strcpy_s(vData->CaseID, vCaseId.c_str());
+		strcpy_s(vData->StationName, vStaData[i].StationName.c_str());
+
+		vData->PdPer	= vStaData[i].PdPer;
+
+		vData->Pconv = vStaData[i].Pconv;
+		vData->Qconv = vStaData[i].Qconv;
+		vData->Qf_max = vStaData[i].Qf_max;
+		vData->Qf_min = vStaData[i].Qf_min;
+
+		vData->Pd = vStaData[i].Pd;
+		vData->Id = vStaData[i].Id;
+		vData->Ud = vStaData[i].Ud;
+		vData->UdL = vStaData[i].UdL;
+
+		vData->Uac = vStaData[i].Uac;
+		vData->Uv = vStaData[i].Uv;
+		vData->Udio = vStaData[i].Udio;
+		
+		vData->Uv_N = vStaDataN[i].Uv;
+		vData->Udio_N = vStaDataN[i].Udio;
+		
+		vData->Pac6Valve = vStaData[i].Pconv / vStaData[i].nT / vStaData[i].nPoleNum;
+		vData->Qac6Valve = vStaData[i].Qconv / vStaData[i].nT / vStaData[i].nPoleNum;
+
+		vData->Pd6Valve = vStaData[i].Pd / vStaData[i].nT;
+		vData->Ud6Valve = vStaData[i].Ud / vStaData[i].nT;
+
+		vData->alphaOrgamma = CHvdcFunc::R2D(vStaData[i].alphaOrgamma);
+		vData->miu = CHvdcFunc::R2D(vStaData[i].miu);
+
+		vData->TC = vStaData[i].TC;
+		vData->Tk = vStaData[i].Nnom*(1 + vStaData[i].TC*vStaData[i].deltaK / 100);
+		vData->Tk_N = vStaData[i].Nnom;
+
+		//
+		pDataVect.push_back(vData);
 
 	}
 }
 
 
-void CmcResult::Serialize(Byte * vPacket)
+void CmcResult::NewCase()
 {
-	long vN,vRecByte, vPacketLeng;
-
-	vN = sizeof(long);
-	vRecByte = RecordByte();
-	vPacketLeng = DataDim()*vRecByte;
-
-	//
-	memmove(vPacket, &vPacketLeng, vN);
-	vPacket += sizeof(long);
-	
-	//
-	memmove(vPacket, &vRecByte, vN);
-	vPacket += sizeof(long);
-
-	//
-	for (int i = 0; i<DataDim(); i++)
+	for each(struct_mcResultData* vData in pDataVect)
 	{
-		memmove(vPacket, &pmcResultData[i], vRecByte);
-		vPacket += vRecByte;
+		doNewCase(vData);	
 	}
 
-	
 }
 
-void CmcResult::UnSerialize(Byte * vPacket)
-{
+
+CmcCase *  CmcResult::doNewCase(struct_mcResultData * vData)
+{	
+	StrVector vNames;
+	vNames.push_back(vData->CalName);
+	vNames.push_back(vData->CaseID);
+	vNames.push_back(vData->StationName);
+	//vNames.push_back(to_string(vData->PdPer));
+
 	//
-	long vN, vRecByte, vPacketLeng;
+	CmcCase * vCase;
+	vCase =doNewCase(vNames, vData);
 
-	vN = sizeof(long);
-
-	memmove(&vPacketLeng, vPacket, vN);
-	vPacket += sizeof(long);
-
-	memmove(&vRecByte, vPacket, vN);
-	vPacket += sizeof(long);
-
-	long vDim = vPacketLeng / vRecByte;
-	pmcResultData = new struct_mcResultData[vDim];
-	
-	for (int i = 0; i<vDim; i++)
-	{
-		memmove(&pmcResultData[i], vPacket,vRecByte);
-		vPacket += vRecByte;
-
-		NewCase(&pmcResultData[i]);
-
-	}
+	return vCase;
 
 }
 
 
-long  CmcResult::PackedLeng()
+CmcCase * CmcResult::doNewCase(StrVector vNames, struct_mcResultData * vData)
 {
-	return DataDim()*RecordByte();
+	CmcCase * vCase;
+
+	vCase = pCasePack.NewCase(0, vNames, vData);
+
+	/*vCase->CalName = vData->CalName;
+	vCase->CaseID = vData->CaseID;
+	vCase->StationName = vData->StationName;
+	vCase->PdPer = vData->PdPer;*/
+
+	//vCase->pDataVect.push_back(vData);
+
+	return vCase;
+
+}
+
+
+CmcCase * CmcResult::doFindCase(StrVector vNames)
+{
+	CmcCase * vCase = pCasePack.FindCase(0, vNames);
+
+	return vCase;
+
+}
+
+long CmcResult::PacketBytes()
+{
+	long vHead, vPacketBytes;
+
+	vHead = 2 * sizeof(long);
+
+	vPacketBytes = vHead + RecordByte()*DataDim();
+
+	return vPacketBytes;
 }
 
 int  CmcResult::RecordByte()
 {
 	//int vN = 3 * sizeof(char) * 50 + sizeof(int) * 1 + sizeof(double) * 22;
 
-	int vN=sizeof(struct_mcResultData);
+	int vN = sizeof(struct_mcResultData);
 
 	return vN;
 
 }
 
 
-CmcCase *  CmcResult::NewCase(struct_mcResultData * vData)
-{	
-	//
-	CmcCase * vCase;
+Byte * CmcResult::Serialize()
+{//pDataVect-->vPacket
+	long vN, vRecBytes, vDataDim, vPacketBytes;
 
-	StrVector vNames;
+	vN = sizeof(long);
+	vRecBytes = RecordByte();
+	vDataDim = static_cast<int>(pDataVect.size());
+	vPacketBytes = vDataDim*vRecBytes;
 
-	vNames.push_back(vData->CalName);
-	vNames.push_back(vData->CaseID);
-	vNames.push_back(vData->StationName);
-	//vNames.push_back(to_string(vData->PdPer));
+	Byte * vPacket;
+	vPacket = new Byte[vPacketBytes];
 
-	vCase = pPack.NewCase(0, vNames);
 
-	vCase->CalName = vData->CalName;
-	vCase->CaseID = vData->CaseID;
-	vCase->StationName = vData->StationName;
-	vCase->PdPer = vData->PdPer;
+	doSerialize(pDataVect, vPacket);
 
-	vCase->pDataVect.push_back(vData);
-
-	return vCase;
+	return vPacket;
 
 }
+
+void CmcResult::Serialize(Byte * vPacket)
+{//pDataVect-->vPacket
+	
+	doSerialize(pDataVect, vPacket);
+
+}
+
+void CmcResult::UnSerialize(Byte * vPacket)
+{//vPacket-->pDataVect
+	doUnSerialize(vPacket, pDataVect);
+}
+
+
+
+//void CmcResult::Serialize(StrVector vNames, Byte * vPacket)
+//{//pDataVect-->vPacket
+// //
+//	CmcCase * vCase = doFindCase(vNames);
+//	//
+//	doSerialize(vCase->pDataVect, vPacket);
+//
+//}
+//void CmcResult::UnSerialize(StrVector vNames, Byte * vPacket)
+//{//vPacket-->pDataVect
+//
+//	CmcCase * vCase = doFindCase(vNames);
+//
+//	doUnSerialize(vPacket, vCase->pDataVect);
+//
+//}
+
+void CmcResult::doSerialize(vector<struct_mcResultData*>  vDataVect, Byte * vPacket)
+{
+	long vN, vRecBytes, vDataDim, vPacketBytes;
+
+	vN = sizeof(long);
+	vRecBytes = RecordByte();
+	vDataDim = static_cast<int>(vDataVect.size());
+	vPacketBytes = vDataDim*vRecBytes;
+
+	//
+	memmove(vPacket, &vPacketBytes, vN);
+	vPacket += sizeof(long);
+
+	//
+	memmove(vPacket, &vRecBytes, vN);
+	vPacket += sizeof(long);
+
+	//
+	for (int i = 0; i<vDataDim; i++)
+	{
+		memmove(vPacket, vDataVect[i], vRecBytes);
+		
+		vPacket += vRecBytes;
+
+	}
+
+}
+
+
+void CmcResult::doUnSerialize(Byte * vPacket, vector<struct_mcResultData*> & vDataVect)
+{
+	//
+	long vN, vRecBytes, vPacketBytes;
+
+	vN = sizeof(long);
+
+	memmove(&vPacketBytes, vPacket, vN);
+	vPacket += sizeof(long);
+
+	memmove(&vRecBytes, vPacket, vN);
+	vPacket += sizeof(long);
+
+	long vDataDim = vPacketBytes / vRecBytes;
+
+	//
+	struct_mcResultData * vData;
+	for (int i = 0; i<vDataDim; i++)
+	{
+		vData = new struct_mcResultData;
+
+		memmove(vData, vPacket, vRecBytes);
+		vPacket += vRecBytes;
+		//
+		vDataVect.push_back(vData);
+
+	}
+
+}
+

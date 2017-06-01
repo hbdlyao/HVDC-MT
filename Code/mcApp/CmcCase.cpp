@@ -16,32 +16,10 @@ CmcCase::~ CmcCase()
 
 void CmcCase::Release()
 {
-
-}
-
-void CmcCase::Clear() 
-{
-	//ClearData();
-}
-
-void CmcCase::ClearData()
-{
-	for each (struct_mcResultData * vCase in pDataVect)
-	{
-		delete vCase;
-		vCase = nullptr;
-	}
-
 	pDataVect.clear();
-
 }
 
 void CmcCase::Init()
-{
-	InitData();
-}
-
-void CmcCase::InitData()
 {
 }
 
@@ -53,14 +31,21 @@ bool CmcCase::IsLeaf()
 }
 
 
-void CmcCase::Add(CmcCase* vItem)
+void CmcCase::Add(string vID, CmcCase* vCase)
 {
 
 }
 
 
-void CmcCase::Remove(CmcCase* vItem)
+void CmcCase::Remove(CmcCase* vCase)
 {
 	//
+}
+
+
+int CmcCase::datCount()
+{
+	return static_cast<int>(pDataVect.size());
+
 }
 

@@ -58,7 +58,7 @@ void CmcVars::Init()
 	//
 	pmcResult = new CmcResult();
 	pmcResult->Init();
-	pmcResult->ResultName = "南网多端mc计算";
+	pmcResult->CalName = "南网多端mc计算";
 	//
 }
 

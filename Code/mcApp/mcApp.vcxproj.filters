@@ -434,17 +434,17 @@
     <ClCompile Include="CmcInitApp.cpp">
       <Filter>源文件\App</Filter>
     </ClCompile>
-    <ClCompile Include="mcDllExport.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="CmcPRJ_RwMvc.cpp">
       <Filter>源文件\Rw</Filter>
     </ClCompile>
+    <ClCompile Include="mcDllExport.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="CmcCase.cpp">
-      <Filter>源文件\Rw</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CmcCasePack.cpp">
-      <Filter>源文件\Rw</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

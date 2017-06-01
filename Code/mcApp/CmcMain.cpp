@@ -118,6 +118,7 @@ void CmcMain::mcInit(string vDBFFile)
 
 	CmcInitApp::Open();
 }
+
 void CmcMain::mcLoad()
 {
 	CmcMvcs::OnLoad(CmcParams::dbfFile);
