@@ -19,12 +19,13 @@ public:
 		
 public:
 
-	virtual void NewSolves(int vGndType);
+	void NewSolves(int vGndType);
 
 protected:
-	virtual void doNewXbSolvers10();
-	virtual void doNewXbSolvers11();
-	virtual void doNewXbSolvers20();
+	void doNewSolvers10();
+	void doNewSolvers11();
+	void doNewSolvers20();
+	void doNewSolvers21();
 
 	void doNewItem(int vtblType)  override;
 	void doNewItem(CDevTBL * vTBL) override;

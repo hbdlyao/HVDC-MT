@@ -64,8 +64,6 @@ void C3pSolveMvc::InitOrder(C3pOrder * vOrder)
 	p3pSolves->InitOrder(p3pOrder);
 }
 
-
-
 int C3pSolveMvc::StaCount()
 {
 	//从工程属性中读取
@@ -84,52 +82,101 @@ double C3pSolveMvc::hMax()
 	return C3pParams::hMax;
 }
 
-
-void C3pSolveMvc::Test(int vGNDType)
+void C3pSolveMvc::Run(CmcResult * vResult)
 {
-	struct_Case vData = p3pOrder->CaseList[0];
+	pmcCase = vResult;
 
-	p3pOrder->ParserOrder(vData.CaseID);
-
-	//
-	p3pOrder->GroundType = vGNDType;
-
-	doPrepare3pData(p3pOrder->DType, p3pOrder->LoopTimes());
 	//
 	doInitRun();
 	//
-	doNewSolves(vGNDType);
-	//
-	doStationSort();
-
-	//初始化计算用矩阵
-	//doInitMatrix();
-
-	//
-	doDataSelected(vData.CalName, vData.CaseID, vData.PdPercent);
-
-	//doRun_DCF();
-
-	//doRun();
-
-}
-
-void C3pSolveMvc::Run()
-{
+	doRunCal(pmcCase->pCasePack);
 
 }
 
 void C3pSolveMvc::doInitRun()
 {
-	//
-	int vStaCount = StaCount();
+	cout << " NewCaseU3p------" << endl;
+
+	pmcCase->NewCaseU3p();
 
 	//
-	int vCaseCount = p3pOrder->CaseCount();
 	p3pResult->Clear();
-	//p3pResult->Init(vStaCount, vCaseCount, p3pOrder->PdSize);
 
 }
+
+
+void C3pSolveMvc::doRunCal(CmcCasePack & vRoot)
+{
+	cout << " doRunCal------" << endl;
+
+	for each (pair<string, CmcCase *> vPair in vRoot.Children())
+	{
+		CmcCasePack * vCalPack = dynamic_cast<CmcCasePack *>(vPair.second);
+
+		//p3pOrder->CalName = vCalPack->DataName;
+
+		for each (pair<string, CmcCase *> vPair in vCalPack->Children())
+		{
+			CmcCasePack * vCasePack = dynamic_cast<CmcCasePack *>(vPair.second);
+
+			doRunCase(vCasePack);
+
+		}
+	}
+
+
+	cout << endl;
+
+}
+
+
+void C3pSolveMvc::doRunCase(CmcCasePack * vCasePack)
+{
+	p3pOrder->CaseID = vCasePack->DataName;
+
+	
+	int vGndType = p3pOrder->GroundType;
+	p3pOrder->ParserOrder(vCasePack->DataName);
+	if (vGndType != p3pOrder->GroundType)
+	{
+		cout << endl;
+
+
+		vGndType = p3pOrder->GroundType;
+
+		doNewSolves(vGndType);
+
+		doStationSort();
+
+	}
+	
+	//doPrepare3pData(int vDType, int vLoopTimes);
+
+	//
+	for each (pair<string, CmcCase *> vPair in vCasePack->Children())
+	{
+		CmcCase * vPdCase = vPair.second;
+
+		doRunPd(vPdCase);
+
+	}
+
+}
+
+
+void C3pSolveMvc::doRunPd(CmcCase * vPdCase)
+{
+	p3pOrder->PdPercent = vPdCase->DataName;
+
+	for each (struct_mcResultData * vStaData in vPdCase->pDataVect)
+	{		
+		doSetStationData(vStaData);
+	}
+
+	doRun();
+
+}
+
 
 void C3pSolveMvc::doPrepare3pData(int vDType, int vLoopTimes)
 {
@@ -163,21 +210,35 @@ void C3pSolveMvc::doRun()
 
 	//记录结果
 	doRecordResult();
+
+
 }
 
 
 void C3pSolveMvc::doRecordResult()
 {
 //
+	static int vN = 0;
+
+	cout << "\b\b\b\b\b\b\b\b\b\bb\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+	cout << "   U3p:";
+	cout << p3pOrder->CaseID;	
+	cout << "%";
+	cout << p3pOrder->PdPercent;
+
+	cout << "======";
+	cout.width(6);
+	cout << vN++;
+
 }
 
 
-void C3pSolveMvc::doDataSelected(string  vCalName, string vCaseID, double vPdPersent)
+void C3pSolveMvc::doSetStationData(struct_mcResultData * vData)
 {
 	CDevTBL *  vTBL = p3pHvdc->DeviceTBL(C3pDefs::StaData);
 
 	for each (C3pDevStaData *  vDev in  vTBL->Children())
 	{
-		vDev->DataSelected(vCalName, vCaseID, vPdPersent);
+		vDev->SetStationData(vData);
 	}
 }

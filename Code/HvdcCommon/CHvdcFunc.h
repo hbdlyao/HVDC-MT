@@ -16,10 +16,6 @@ class CHvdcFunc
 
 public:
 
-	static double R2D(double rad) { return rad / M_PI * 180; }
-	static double D2R(double degree) { return degree / 180 * M_PI; }
-
-
 	static void print(FILE* foutFile, const char* fmt, ...)
 	{
 		va_list ap;

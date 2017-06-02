@@ -8,6 +8,8 @@
 #include <time.h>
 #include <CString>
 
+#include <stdio.h>
+
 #include "CMyFunc.h"
 
 
@@ -46,29 +48,32 @@ string CMyFunc::CreateObjID()
 
 }
 
-string CMyFunc::GetString(string vStr)
-{
-	vStr = "'" + vStr + "'";
-
-	return vStr;
-}
-
-string CMyFunc::GetString(double vX)
-{
-	string vStr;
-
-	vStr = to_string(vX);
-
-	return vStr;
-
-}
-string CMyFunc::GetString(int vX)
-{
-	string vStr;
-
-	vStr = to_string(vX);
-
-	return vStr;
+string CMyFunc::GetString(string vStr)
+{
+	vStr = "'" + vStr + "'";
+
+	return vStr;
+
+}
+
+
+
+string CMyFunc::GetString(double vX, const char * vfmt )
+{
+	char vChar[15];
+	sprintf_s(vChar, 15, vfmt, vX);
+
+	return vChar;
+
+}
+
+string CMyFunc::GetString(int vX, const char * vfmt )
+{
+	char vChar[15];
+	sprintf_s(vChar, 15, vfmt, vX);
+
+	return vChar;
+
 }
 
 string CMyFunc::VarToStr(_variant_t & vVar)

@@ -32,15 +32,19 @@ void C3pSolves::NewSolves(int vGndType)
 	switch (vGndType)
 	{
 	case Ground10:
-		doNewXbSolvers10(); //单极大地
+		doNewSolvers10(); //单极大地
 		break;
 
 	case Ground11:
-		doNewXbSolvers11();//单极金属回线
+		doNewSolvers11();//单极金属回线
 		break;
 
 	case Ground20:
-		doNewXbSolvers20();//双极
+		doNewSolvers20();//双极
+		break;
+
+	case Ground21:
+		doNewSolvers21();//双极并联
 		break;
 
 	default:
@@ -49,9 +53,9 @@ void C3pSolves::NewSolves(int vGndType)
 }
 
 
-void C3pSolves::doNewXbSolvers10()
+void C3pSolves::doNewSolvers10()
 {
-	cout << "doNewCal---单极大地---" << endl;
+	cout << "---doNewCal---单极大地---" << endl;
 
 	doNewItem(C3pDefs::AcSys);
 
@@ -64,27 +68,44 @@ void C3pSolves::doNewXbSolvers10()
 }
 
 
-void C3pSolves::doNewXbSolvers11()
+void C3pSolves::doNewSolvers11()
 {
-	cout << "doNewCal---单极金属回线---" << endl;
+	cout << "---doNewCal---单极金属回线---" << endl;
 
 	doNewItem(C3pDefs::AcSys);
 
 	doNewItem(C3pDefs::Convertor);
 
 	doNewItem(C3pDefs::Xf2);
+
+	doNewItem(C3pDefs::StaData);
 }
 
 
-void C3pSolves::doNewXbSolvers20()
+void C3pSolves::doNewSolvers20()
 {
-	cout << "doNewCal---双极---" << endl;
+	cout << "---doNewCal---双极---" << endl;
 	//
 	doNewItem(C3pDefs::AcSys);
 
 	doNewItem(C3pDefs::Convertor);
 
 	doNewItem(C3pDefs::Xf2);
+
+	doNewItem(C3pDefs::StaData);
+}
+
+void C3pSolves::doNewSolvers21()
+{
+	cout << "---doNewCal---双极并联---" << endl;
+	//
+	doNewItem(C3pDefs::AcSys);
+
+	doNewItem(C3pDefs::Convertor);
+
+	doNewItem(C3pDefs::Xf2);
+
+	doNewItem(C3pDefs::StaData);
 }
 
 

@@ -6,8 +6,9 @@
 ///////////////////////////////////////////////////////////
 
 #include "CmcResult.h"
-#include "CHvdcFunc.h"
 #include "CmcParams.h"
+
+#include "CMyFunc.h"
 
 
 CmcResult::~CmcResult()
@@ -121,8 +122,8 @@ void CmcResult::Record(string vCalName, string vCaseId, struct_mcStationData* vS
 		vData->Pd6Valve = vStaData[i].Pd / vStaData[i].nT;
 		vData->Ud6Valve = vStaData[i].Ud / vStaData[i].nT;
 
-		vData->alphaOrgamma = CHvdcFunc::R2D(vStaData[i].alphaOrgamma);
-		vData->miu = CHvdcFunc::R2D(vStaData[i].miu);
+		vData->alphaOrgamma = CMyFunc::R2D(vStaData[i].alphaOrgamma);
+		vData->miu = CMyFunc::R2D(vStaData[i].miu);
 
 		vData->TC = vStaData[i].TC;
 		vData->Tk = vStaData[i].Nnom*(1 + vStaData[i].TC*vStaData[i].deltaK / 100);
@@ -139,14 +140,14 @@ void CmcResult::NewCase()
 {
 	for each(struct_mcResultData* vData in pDataVect)
 	{
-		doNewCase(vData);	
+		doNewCase(vData);
 	}
 
 }
 
 
 CmcCase *  CmcResult::doNewCase(struct_mcResultData * vData)
-{	
+{
 	StrVector vNames;
 	vNames.push_back(vData->CalName);
 	vNames.push_back(vData->CaseID);
@@ -155,11 +156,38 @@ CmcCase *  CmcResult::doNewCase(struct_mcResultData * vData)
 
 	//
 	CmcCase * vCase;
+	vCase = doNewCase(vNames, vData);
+
+	return vCase;
+
+}
+
+void CmcResult::NewCaseU3p()
+{
+	for each(struct_mcResultData* vData in pDataVect)
+	{
+		doNewCaseU3p(vData);	
+	}
+
+}
+
+
+CmcCase *  CmcResult::doNewCaseU3p(struct_mcResultData * vData)
+{	
+	StrVector vNames;
+	vNames.push_back(vData->CalName);
+	vNames.push_back(vData->CaseID);
+	//vNames.push_back(vData->StationName);	
+	vNames.push_back(CMyFunc::GetString(vData->PdPer,"%4.0f"));
+
+	//
+	CmcCase * vCase;
 	vCase =doNewCase(vNames, vData);
 
 	return vCase;
 
 }
+
 
 
 CmcCase * CmcResult::doNewCase(StrVector vNames, struct_mcResultData * vData)
@@ -188,13 +216,14 @@ CmcCase * CmcResult::doFindCase(StrVector vNames)
 
 }
 
-long CmcResult::PacketBytes()
+long CmcResult::PacketBytes(vector<struct_mcResultData*> & vDataVect)
 {
-	long vHead, vPacketBytes;
+	long vHeadByte, vRecBytes, vDataDim, vPacketBytes;
 
-	vHead = 2 * sizeof(long);
-
-	vPacketBytes = vHead + RecordByte()*DataDim();
+	vHeadByte = sizeof(long);
+	vRecBytes = RecordByte();
+	vDataDim = static_cast<int>(vDataVect.size());
+	vPacketBytes = 2 * vHeadByte + vDataDim*vRecBytes;
 
 	return vPacketBytes;
 }
@@ -212,29 +241,25 @@ int  CmcResult::RecordByte()
 
 Byte * CmcResult::Serialize()
 {//pDataVect-->vPacket
-	long vN, vRecBytes, vDataDim, vPacketBytes;
-
-	vN = sizeof(long);
-	vRecBytes = RecordByte();
-	vDataDim = static_cast<int>(pDataVect.size());
-	vPacketBytes = vDataDim*vRecBytes;
 
 	Byte * vPacket;
-	vPacket = new Byte[vPacketBytes];
-
-
-	doSerialize(pDataVect, vPacket);
+	vPacket = doSerialize(pDataVect);
 
 	return vPacket;
 
 }
 
-void CmcResult::Serialize(Byte * vPacket)
+
+Byte * CmcResult::Serialize(vector<struct_mcResultData*> & vDataVect)
 {//pDataVect-->vPacket
-	
-	doSerialize(pDataVect, vPacket);
+	//
+	Byte * vPacket;
+	vPacket=doSerialize(vDataVect);
+
+	return vPacket;
 
 }
+
 
 void CmcResult::UnSerialize(Byte * vPacket)
 {//vPacket-->pDataVect
@@ -243,39 +268,25 @@ void CmcResult::UnSerialize(Byte * vPacket)
 
 
 
-//void CmcResult::Serialize(StrVector vNames, Byte * vPacket)
-//{//pDataVect-->vPacket
-// //
-//	CmcCase * vCase = doFindCase(vNames);
-//	//
-//	doSerialize(vCase->pDataVect, vPacket);
-//
-//}
-//void CmcResult::UnSerialize(StrVector vNames, Byte * vPacket)
-//{//vPacket-->pDataVect
-//
-//	CmcCase * vCase = doFindCase(vNames);
-//
-//	doUnSerialize(vPacket, vCase->pDataVect);
-//
-//}
-
-void CmcResult::doSerialize(vector<struct_mcResultData*>  vDataVect, Byte * vPacket)
+Byte * CmcResult::doSerialize(vector<struct_mcResultData*> & vDataVect)
 {
-	long vN, vRecBytes, vDataDim, vPacketBytes;
+	long vHeadByte, vRecBytes, vDataDim, vPacketBytes;
 
-	vN = sizeof(long);
+	vHeadByte = sizeof(long);
 	vRecBytes = RecordByte();
 	vDataDim = static_cast<int>(vDataVect.size());
-	vPacketBytes = vDataDim*vRecBytes;
+	vPacketBytes = 2*vHeadByte + vDataDim*vRecBytes;
+
+	Byte * vPacket;
+	vPacket = new Byte[vPacketBytes];
 
 	//
-	memmove(vPacket, &vPacketBytes, vN);
-	vPacket += sizeof(long);
+	memmove(vPacket, &vPacketBytes, vHeadByte);
+	vPacket += vHeadByte;
 
 	//
-	memmove(vPacket, &vRecBytes, vN);
-	vPacket += sizeof(long);
+	memmove(vPacket, &vRecBytes, vHeadByte);
+	vPacket += vHeadByte;
 
 	//
 	for (int i = 0; i<vDataDim; i++)
@@ -285,6 +296,11 @@ void CmcResult::doSerialize(vector<struct_mcResultData*>  vDataVect, Byte * vPac
 		vPacket += vRecBytes;
 
 	}
+
+	//ÒÆ»Øµ½Head
+	vPacket -= vPacketBytes;
+
+	return vPacket;
 
 }
 
@@ -318,4 +334,6 @@ void CmcResult::doUnSerialize(Byte * vPacket, vector<struct_mcResultData*> & vDa
 	}
 
 }
+
+
 

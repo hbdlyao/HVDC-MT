@@ -5,7 +5,7 @@
 //  Original author: Administrator
 ///////////////////////////////////////////////////////////
 
-#include "CHvdcFunc.h"
+#include "CMyFunc.h"
 
 #include "CmcCalXf2.h"
 #include "CmcDevXf2.h"
@@ -25,8 +25,8 @@ void CmcCalXf2::Prepare()
 
 	//实际值
 	//参数
-	pmcProfile->pmcStaData[vK].AngCtrl_Max = CHvdcFunc::D2R(vDev->GetAngleMax());
-	pmcProfile->pmcStaData[vK].AngCtrl_Min = CHvdcFunc::D2R(vDev->GetAngleMin());
+	pmcProfile->pmcStaData[vK].AngCtrl_Max = CMyFunc::D2R(vDev->GetAngleMax());
+	pmcProfile->pmcStaData[vK].AngCtrl_Min = CMyFunc::D2R(vDev->GetAngleMin());
 	pmcProfile->pmcStaData[vK].Uv = vDev->GetFixedURef()*vDev->GetUvN(); //定阀侧电压参考值FixedURef为标幺值
 	pmcProfile->pmcStaData[vK].Tap_Max = vDev->GetTapMax();
 	pmcProfile->pmcStaData[vK].Tap_Min = vDev->GetTapMin();
@@ -49,8 +49,8 @@ void CmcCalXf2::PrepareNormal()
 	pmcProfile->pmcStaDataN[vK].TapCtrlType =-1;// vDev->GetTapCtrlType()得到的是当前的控制类型设置，而非额定工况的
 
 	//额定值
-	pmcProfile->pmcStaDataN[vK].AngCtrl_Max = CHvdcFunc::D2R(vDev->GetAngleMax());
-	pmcProfile->pmcStaDataN[vK].AngCtrl_Min = CHvdcFunc::D2R(vDev->GetAngleMin());
+	pmcProfile->pmcStaDataN[vK].AngCtrl_Max = CMyFunc::D2R(vDev->GetAngleMax());
+	pmcProfile->pmcStaDataN[vK].AngCtrl_Min = CMyFunc::D2R(vDev->GetAngleMin());
 	pmcProfile->pmcStaDataN[vK].Tap_Max = vDev->GetTapMax();
 	pmcProfile->pmcStaDataN[vK].Tap_Min = vDev->GetTapMin();
 	pmcProfile->pmcStaDataN[vK].TC = vDev->GetTapN();

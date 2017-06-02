@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CHvdcOrder.h"
-
+#include <vector>
 #include <string>
 
 using namespace std;

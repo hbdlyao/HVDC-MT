@@ -4,27 +4,19 @@
 
 #include "C3pDefs.h"
 
-#include "C3pCaseList.h"
+#include "CmcDefs.h"
 
 class C3pDevStaData : public C3pDevBase
 {
 protected:
-	struct_U3pStaData * pStaData;
-
-public:	
-	p3pCaseVect DataVect;
-
-	C3pCaseList DataList;
+	struct_mcResultData * pStaData;
 
 public:
 	~C3pDevStaData();
 
 	void Init() override;
-
-	void DataSelected(string vCalName, string vCaseID, double vPdPersent) override;
-
-	void NewStaData(string vCalName, string vCaseID, double vPdPercent);
-	C3pCase *  NewStaData(StrVector vNames);
+	
+	void SetStationData(struct_mcResultData * vData);
 
 	void SetCaseID(string Val);
 
@@ -69,7 +61,5 @@ public:
 	double Getmiu();
 
 	double GetNnom();
-
-	//¡ı≥©£¨get set pData
 
 };

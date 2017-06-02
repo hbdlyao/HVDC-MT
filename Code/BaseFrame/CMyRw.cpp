@@ -32,15 +32,15 @@ string CMyRwDbf::GetString(string vStr)
 	return CMyFunc::GetString(vStr);
 }
 
-string CMyRwDbf::GetString(double vX)
+string CMyRwDbf::GetString(double vX, char* vfmt)
 {
-	return CMyFunc::GetString(vX);
+	return CMyFunc::GetString(vX, vfmt);
 }
 
 
-string CMyRwDbf::GetString(int vX)
+string CMyRwDbf::GetString(int vX, char* vfmt)
 {
-	return CMyFunc::GetString(vX);
+	return CMyFunc::GetString(vX, vfmt);
 }
 
 

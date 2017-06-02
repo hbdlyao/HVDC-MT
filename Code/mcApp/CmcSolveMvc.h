@@ -84,6 +84,7 @@ public:
 
 protected:
 	void doRecordResult() override;
+	void doSaveResults() override;
 
 };
 #endif // !defined(EA_69EE2B7C_362D_4cf6_B41A_3A281AD7DE21__INCLUDED_)

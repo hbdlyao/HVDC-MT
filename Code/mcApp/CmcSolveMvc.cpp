@@ -75,22 +75,7 @@ void CmcSolveMvc::InitOrder(CmcOrder* vOrder)
 
 void CmcSolveMvc::doSaveResults()
 {
-	//Byte * vData;
-	//long vLeng;
-
-	//vLeng = sizeof(long);
-	////RecordDim+RecordByte+PackedLeng
-	//vLeng = 2*vLeng + pmcResult->PackedLeng();
-
-	//vData = new Byte[vLeng];
-	//pmcResult->Serialize(vData);
-	//pmcResult->UnSerialize(vData);
-
-	//CmcMvcs::OnSaveResult(CmcParams::dbfFile,pmcResult);
-
-	//
 	pmcResult->NewCase();
-
 }
 
 
@@ -401,6 +386,10 @@ void CmcSolveMvcNormal::Init(CmcHvdcGrid * vGrid)
 
 }
 
+void CmcSolveMvcNormal::doSaveResults()
+{
+}
+
 void CmcSolveMvcNormal::Run()
 {
 	//pmcSolves->Init(pmcProfile, pmcHvdc);
@@ -411,7 +400,8 @@ void CmcSolveMvcNormal::Run()
 	CmcSolveMvc::Run();
 }
 
-void CmcSolveMvcNormal::doRecordResult() {
+void CmcSolveMvcNormal::doRecordResult() 
+{
 
 	dynamic_cast<CmcSolvesNormal*>(pmcSolves)->SaveNorml();
 

@@ -5,7 +5,7 @@
 //  Original author: Administrator
 ///////////////////////////////////////////////////////////
 
-#include "CHvdcFunc.h"
+#include "CMyFunc.h"
 
 #include "CmcCalConvertor.h"
 
@@ -59,8 +59,8 @@ void CmcCalConvertor::Prepare()
 	pmcProfile->pmcStaData[vK].StationName = vDev->GetStationName();
 	pmcProfile->pmcStaData[vK].Pconv = vDev->GetPconvN();
 	pmcProfile->pmcStaData[vK].Qconv = vDev->GetQconvN();
-	pmcProfile->pmcStaData[vK].miu = CHvdcFunc::D2R(vDev->GetmiuN());
-	pmcProfile->pmcStaData[vK].Ang_Min = CHvdcFunc::D2R(vDev->GetAngleMin());
+	pmcProfile->pmcStaData[vK].miu = CMyFunc::D2R(vDev->GetmiuN());
+	pmcProfile->pmcStaData[vK].Ang_Min = CMyFunc::D2R(vDev->GetAngleMin());
 	pmcProfile->pmcStaData[vK].Udio = vDev->GetUdioN();
 	pmcProfile->pmcStaData[vK].UT = vDev->GetUT();
 
@@ -68,9 +68,9 @@ void CmcCalConvertor::Prepare()
 		pmcProfile->Ud_Max = vDev->GetUdN();//直流电压上限为全网最高额定直流电压
 
 	if (pmcProfile->pmcStaData[vK].StaCtrlType == StaCtrl_ConstantAngle)
-		pmcProfile->pmcStaData[vK].alphaOrgamma = CHvdcFunc::D2R(vDev->GetAngleRef());
+		pmcProfile->pmcStaData[vK].alphaOrgamma = CMyFunc::D2R(vDev->GetAngleRef());
 	else
-		pmcProfile->pmcStaData[vK].alphaOrgamma = CHvdcFunc::D2R(vDev->GetAlpha_gamaN());
+		pmcProfile->pmcStaData[vK].alphaOrgamma = CMyFunc::D2R(vDev->GetAlpha_gamaN());
 
 	//指令相关
 
@@ -159,9 +159,9 @@ void CmcCalConvertor::PrepareNormal()
 	pmcProfile->pmcStaDataN[vK].StationName = vDev->GetStationName();
 	pmcProfile->pmcStaDataN[vK].Pconv = vDev->GetPconvN();
 	pmcProfile->pmcStaDataN[vK].Qconv = vDev->GetQconvN();
-	pmcProfile->pmcStaDataN[vK].miu = CHvdcFunc::D2R(vDev->GetmiuN());
-	pmcProfile->pmcStaDataN[vK].alphaOrgamma = CHvdcFunc::D2R(vDev->GetAlpha_gamaN());
-	pmcProfile->pmcStaDataN[vK].Ang_Min = CHvdcFunc::D2R(vDev->GetAngleMin());
+	pmcProfile->pmcStaDataN[vK].miu = CMyFunc::D2R(vDev->GetmiuN());
+	pmcProfile->pmcStaDataN[vK].alphaOrgamma = CMyFunc::D2R(vDev->GetAlpha_gamaN());
+	pmcProfile->pmcStaDataN[vK].Ang_Min = CMyFunc::D2R(vDev->GetAngleMin());
 	pmcProfile->pmcStaDataN[vK].Pd = vDev->GetPdN();
 	pmcProfile->pmcStaDataN[vK].Ud = vDev->GetUdN();
 	pmcProfile->pmcStaDataN[vK].UdL = vDev->GetUdN();
@@ -185,8 +185,8 @@ void CmcCalConvertor::SaveNormal()
 	//? 
 	vDev->SetPconvN(pmcProfile->pmcStaData[vK].Pconv);
 	vDev->SetQconvN(pmcProfile->pmcStaData[vK].Qconv);
-	vDev->SetmiuN(CHvdcFunc::R2D(pmcProfile->pmcStaData[vK].miu));
-	vDev->SetAlpha_gamaN(CHvdcFunc::R2D(pmcProfile->pmcStaData[vK].alphaOrgamma));
+	vDev->SetmiuN(CMyFunc::R2D(pmcProfile->pmcStaData[vK].miu));
+	vDev->SetAlpha_gamaN(CMyFunc::R2D(pmcProfile->pmcStaData[vK].alphaOrgamma));
 	vDev->SetUdioN(pmcProfile->pmcStaData[vK].Udio);
 	vDev->SetUvN(pmcProfile->pmcStaData[vK].Uv);
 	vDev->SetIdN(pmcProfile->pmcStaData[vK].Id);

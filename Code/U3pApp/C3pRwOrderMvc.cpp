@@ -31,9 +31,6 @@ void C3pRwOrderMvc::OnLoad()
 		if (doOpenDBF())
 		{
 			doLoad();
-
-			doLoad_CaseID();
-
 			//
 			doCloseDBF();
 
@@ -154,72 +151,6 @@ void C3pRwOrderMvc::doLoad()
 
 	RwAdo->CloseTBL();
 }
-
-
-void C3pRwOrderMvc::doLoad_CaseID()
-{
-	string  vSQL;
-	string  vStr;
-	_variant_t vValue;
-
-	//
-	vSQL = "select CalName,CaseID,PdPercent  from mcResult";
-	//vSQL = vSQL + " Where ";
-	//vSQL = vSQL + " CalName = ";
-	//vSQL = vSQL + " '";
-	//vSQL = vSQL + pOrder->mcName;
-	//vSQL = vSQL + "' ";
-	vSQL = vSQL + " group by CalName,CaseID,PdPercent ";
-
-	RwAdo->OpenSQL(vSQL);
-
-	int vN = RwAdo->Record_RowCount();
-
-	int vh = 0;
-	while (!RwAdo->IsEOF())
-	{
-		struct_Case vCase;
-
-		RwAdo->GetFieldValue("CalName", vValue);
-		if (vValue.vt != VT_NULL)
-		{
-			vCase.CalName = (_bstr_t)vValue; //×Ö·ûÐÍ
-		};
-
-		RwAdo->GetFieldValue("CaseID", vValue);
-		if (vValue.vt != VT_NULL)
-		{
-			vCase.CaseID = (_bstr_t)vValue; //×Ö·ûÐÍ
-		};
-
-		RwAdo->GetFieldValue("PdPercent", vValue);
-		if (vValue.vt != VT_NULL)
-		{
-			vCase.PdPercent = vValue.dblVal; //×Ö·ûÐÍ
-		};
-
-		pOrder->AddCase(vCase);
-		//
-
-		vh = vh + 1;
-		RwAdo->Record_MoveNext();
-
-		cout << "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
-		cout << pOrder->mcName;
-		cout << "  ---";
-		cout << "%";
-		cout.width(3);
-		cout << vh;
-
-	}//while
-
-	 //
-	RwAdo->CloseTBL();
-
-	//
-	cout << endl;
-}
-
 
 void C3pRwOrderMvc::doSave()
 {

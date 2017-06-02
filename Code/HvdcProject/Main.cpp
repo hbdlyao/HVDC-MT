@@ -6,13 +6,17 @@
 
 void OnLoad()
 {
-	CmcMvcs::OnLoadResult(CmcParams::dbfFile,CmcVars::pmcResult);
-	system("pause");		
-	CmcMvcs::OnLoad(CmcParams::dbfFile);
+	//CmcMvcs::OnLoadResult(CmcParams::dbfFile,CmcVars::pmcResult);
+	//CmcVars::pmcResult->NewCase();
+	//system("pause");		
+	//CmcMvcs::OnSaveResult(CmcParams::dbfFile, CmcVars::pmcResult);
+	//system("pause");
+	
+	//CmcMvcs::OnLoad(CmcParams::dbfFile);
 
 	//CxbMvcs::OnLoad(CxbParams::dbfFile);
 
-	//C3pMvcs::OnLoad(C3pParams::dbfFile);
+	C3pMvcs::OnLoad(C3pParams::dbfFile);
 
 	//system("pause");
 
@@ -49,7 +53,7 @@ int main()
 	OnLoad();
 
 	//////////////主回路//////////
-	CmcMain::mcMain();
+	//CmcMain::mcMain();
 
 	//////////直流谐波////////////
 	//CxbMain::xbMain();
@@ -61,7 +65,7 @@ int main()
 	//CxbMain::lmTest();
 
 	////////////////三脉动电压源/////
-	//C3pMain::U3pMain();
+	C3pMain::U3pMain();
 
 	/////////////////////////
 

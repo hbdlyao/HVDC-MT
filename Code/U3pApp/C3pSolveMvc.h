@@ -4,6 +4,9 @@
 #include "C3pResult.h"
 #include "C3pSolves.h"
 
+#include "CmcResult.h"
+#include "CmcCase.h"
+#include "CmcCasePack.h"
 
 class C3pSolveMvc
 {
@@ -15,22 +18,21 @@ protected:
 
 	C3pOrder * p3pOrder;
 
-public:
-	virtual ~C3pSolveMvc();
-
-	virtual void Init(C3pDevGrid* vGrid);
-
-	virtual void Clear();
-	virtual void InitOrder(C3pOrder * vOrder);
+	CmcResult * pmcCase;
 
 public:
-	virtual void Test(int vGNDType);
-	virtual void Run();
+	~C3pSolveMvc();
+
+	void Clear();
+
+	void Init(C3pDevGrid* vGrid);
+
+	void InitOrder(C3pOrder * vOrder);
+
+
 protected:
 
-	virtual void doNewSolves(int vGNDType);
-
-
+	void doNewSolves(int vGNDType);
 
 protected:
 	int StaCount();
@@ -39,17 +41,23 @@ protected:
 	double Frequence();
 
 
-	//
 	void doInitRun();
 
-	virtual void doRecordResult();
+	void doRun();
+	void doRunCal(CmcCasePack & vRoot);
+	void doRunCase(CmcCasePack * vCasePack);
+	void doRunPd(CmcCase * vPdCase);
 
-	void doDataSelected(string vCalName, string vCaseID, double vPdPersent);
+	void doRecordResult();
 
-	virtual void doRun();
+	void doSetStationData(struct_mcResultData * vData);
 
 	void doPrepare3pData(int vDType, int vLoopTimes);
 
 	void doStationSort();
+
+
+public:
+	void Run(CmcResult * vResult);
 
 };

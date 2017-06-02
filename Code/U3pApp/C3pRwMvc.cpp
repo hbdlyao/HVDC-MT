@@ -109,7 +109,7 @@ CMyRwDev * C3pRwMvc::doNewRw(int vtblType)
 		vRw = new C3pRwStaData();
 
 		vRw->InitAdo(RwAdo);
-		vRw->InitTable("mcResult");
+		vRw->InitTable("U3pStation");
 		vRw->InitType(C3pDefs::StaData, C3pDefs::StaData);
 		vRw->InitGrid(pGrid);
 

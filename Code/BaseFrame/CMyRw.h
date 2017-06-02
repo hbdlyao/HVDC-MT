@@ -31,7 +31,7 @@ protected:
 
 public:
 	static string GetString(string vX);
-	static string GetString(int vX);
-	static string GetString(double vX);
+	static string GetString(int vX, char* vfmt = "%f");
+	static string GetString(double vX, char* vfmt = "%f");
 
 };

@@ -21,6 +21,9 @@ public:
 
 public:
 	string CalName;
+	string CaseID;
+	string PdPercent;
+
 	vector<struct_Case> CaseList;
 
 

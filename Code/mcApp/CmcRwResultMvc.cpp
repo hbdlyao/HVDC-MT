@@ -18,7 +18,7 @@ void CmcRwResultMvc::Init(CmcResult * vRes)
 
 void CmcRwResultMvc::doLoad()
 {
-	string  vSQL;
+	string  vSQL, vStr;
 	_variant_t vValue;
 
 	tblName = "mcResult";
@@ -30,68 +30,64 @@ void CmcRwResultMvc::doLoad()
 	vSQL = vSQL + " '";
 	vSQL = vSQL + pResult->GetResultName();
 	vSQL = vSQL + "' ";
-	vSQL = vSQL + " order by CalName ";
+	vSQL = vSQL + " order by CalName,CaseID ,StationName ";
 
 	RwAdo->OpenSQL(vSQL);
 	//
-
+	pResult->Clear();
 	while (!RwAdo->IsEOF())
 	{
-		try
+		RwAdo->GetFieldValue("CalName", vValue);
+		if (vValue.vt != VT_NULL)
 		{
-			RwAdo->GetFieldValue("Data", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				Byte *vDataPacket;				
+			vStr = (_bstr_t)vValue; //×Ö·ûÐÍ
+			//pOrder->Flag_Ground = vStr;
+		};
 
-				SafeArrayAccessData(vValue.parray, (void **)&vDataPacket);
-
-				pResult->Clear();
-				pResult->UnSerialize(vDataPacket);
-				pResult->NewCase();
-
-				SafeArrayUnaccessData(vValue.parray);
-
-				/*
-				test
-
-				Byte * vPack;
-				vPack = pResult->Serialize();
-				
-				*/
-
-				RwAdo->Record_MoveNext();
-
-			}
-		}
-		catch (const std::exception&)
+		RwAdo->GetFieldValue("CaseID", vValue);
+		if (vValue.vt != VT_NULL)
 		{
-			cout << "Err:";
-		}
+			vStr = (_bstr_t)vValue; //×Ö·ûÐÍ
+									//pOrder->Flag_Ground = vStr;
+		};
 
+		RwAdo->GetFieldValue("StationName", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			vStr = (_bstr_t)vValue; //×Ö·ûÐÍ
+									//pOrder->Flag_Ground = vStr;
+		};
+
+
+		RwAdo->GetFieldValue("Data", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			Byte *vDataPacket;
+
+			SafeArrayAccessData(vValue.parray, (void **)&vDataPacket);
+
+			pResult->UnSerialize(vDataPacket);
+
+			SafeArrayUnaccessData(vValue.parray);
+
+			RwAdo->Record_MoveNext();
+
+		}
 	}//while
 
-	 //
+	 //pResult->NewCase();
+
+	//
 	RwAdo->CloseTBL();
 
 	//
 	cout << "Finished" << endl;
+
 }
 
 
 void CmcRwResultMvc::doSave()
 {
-	long vPacketBytes;
-	vPacketBytes = pResult->PacketBytes();
-
-	Byte * vDataPacket; 
-	vDataPacket = new Byte[vPacketBytes];
-
-
-	pResult->Serialize(vDataPacket);
-
-	//
-
 	string vSQL;
 	bool vOk;
 
@@ -107,38 +103,72 @@ void CmcRwResultMvc::doSave()
 	vSQL = "select * from mcResult ";
 	vOk = RwAdo->OpenSQL(vSQL);
 
-	if (vOk)
+
+	for each (pair<string,CmcCase *> vPair in pResult->pCasePack.Children())
 	{
-		RwAdo->Record_AddNew();
+		CmcCasePack * vCalPack = dynamic_cast<CmcCasePack *>(vPair.second);
 
-		_variant_t vValue;
+		for each (pair<string, CmcCase *> vPair in vCalPack->Children())
+		{
+			CmcCasePack * vCasePack = dynamic_cast<CmcCasePack *>(vPair.second);
 
-		vValue = _variant_t(pResult->GetResultName().c_str()); //
-		RwAdo->SetFieldValue("CalName", vValue); //
+			for each (pair<string, CmcCase *> vPair in vCasePack->Children())
+			{
+				RwAdo->Record_AddNew();
 
-		////////////////////////////////////////////
-		SAFEARRAY   * psa;
-		SAFEARRAYBOUND rgsabound[1];
+				doSave(vPair.second->pDataVect);
 
-		rgsabound[0].lLbound = 0;
-		rgsabound[0].cElements = vPacketBytes;
-		psa = SafeArrayCreate(VT_UI1, 1, rgsabound);
-
-		for (long i = 0; i < vPacketBytes; i++)
-			SafeArrayPutElement(psa, &i, &vDataPacket[i]);
-
-		vValue.vt = VT_ARRAY | VT_UI1;
-		vValue.parray = psa;
-		///////////////////////////////////////////////
-
-		RwAdo->SetFieldValue("Data", vValue); //
-
-		RwAdo->Record_Update();
+				RwAdo->Record_Update();
+			}
+		}
 	}
 
 	RwAdo->CloseTBL();
 
 	cout << "Finished" << endl;
 
-	delete[] vDataPacket;
+
+}
+
+void CmcRwResultMvc::doSave(vector<struct_mcResultData*> & vDataVect)
+{
+	if (vDataVect.size() <= 0)
+		return;
+
+	//
+	_variant_t vValue;
+
+	vValue = _variant_t(vDataVect[0]->CalName);
+	RwAdo->SetFieldValue("CalName", vValue); //
+
+	vValue = _variant_t(vDataVect[0]->CaseID);
+	RwAdo->SetFieldValue("CaseID", vValue); //
+
+	vValue = _variant_t(vDataVect[0]->StationName);
+	RwAdo->SetFieldValue("StationName", vValue); //
+
+
+	////////////////////////////////////////////
+	SAFEARRAY   * psa;
+	SAFEARRAYBOUND rgsabound[1];
+
+	long vBytes = pResult->PacketBytes(vDataVect);
+	Byte * vPacket = pResult->Serialize(vDataVect);
+
+	rgsabound[0].lLbound = 0;
+	rgsabound[0].cElements = vBytes;
+	psa = SafeArrayCreate(VT_UI1, 1, rgsabound);
+
+	for (long i = 0; i < vBytes; i++)
+		SafeArrayPutElement(psa, &i, &vPacket[i]);
+
+	vValue.vt = VT_ARRAY | VT_UI1;
+	vValue.parray = psa;
+	///////////////////////////////////////////////
+
+	RwAdo->SetFieldValue("Data", vValue); //
+
+	//
+	delete[] vPacket;
+
 }

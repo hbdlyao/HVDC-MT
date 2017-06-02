@@ -21,83 +21,22 @@ void C3pDevStaData::Init()
 }
 
 
-void C3pDevStaData::DataSelected(string  vCalName, string vCaseID, double vPdPercent)
+void C3pDevStaData::SetStationData(struct_mcResultData * vData)
 {
-	char vChar[6];
-	sprintf_s(vChar, 6, "%-3.0f", vPdPercent);
-
-	StrVector vNames;
-
-	vNames.push_back(vCalName);
-	vNames.push_back(vCaseID);
-	vNames.push_back(vChar);
-
-	//
-	C3pCase * vData;
-
-	vData = DataList.DataSelected(0, vNames);
-	pStaData = &(vData->pStaData);
-
-}
-
-void C3pDevStaData::NewStaData(string vCalName, string vCaseID, double vPdPercent)
-{
-	char vChar[6];
-	sprintf_s(vChar, 6, "%-3.0f", vPdPercent);
-
-	StrVector vNames;
-
-	vNames.push_back(vCalName);
-	vNames.push_back(vCaseID);
-	vNames.push_back(vChar);
-
-	//
-	C3pCase * vData;
-
-	vData = DataList.NewStaData(0, vNames);
-
-	vData->StationName = GetStationName();
-
-	vData->Set_hCalName(vCalName);
-	vData->Set_hCaseID(vCaseID);
-	vData->Set_hPdPer(vPdPercent);
-
-	//
-	DataVect.push_back(vData);
-
-}
-
-C3pCase *  C3pDevStaData::NewStaData(StrVector vNames)
-{
-	//
-	C3pCase * vData;
-
-	vData = DataList.NewStaData(0, vNames);
-
-	vData->StationName = GetStationName();
-
-	vData->Set_hCalName(vNames[0]);
-	vData->Set_hCaseID(vNames[1]);
-
-	//vData->Set_hPdPer(vPdPercent);
-
-	//
-	DataVect.push_back(vData);
-
-
-	return vData;
+	if (GetStationName()==vData->StationName)
+		pStaData = vData;
 
 }
 
 
 void C3pDevStaData::SetCaseID(string Val)
 {
-	pStaData->CaseID = Val;
+	strcpy_s(pStaData->CaseID, Val.c_str());
 }
 
 void C3pDevStaData::SetCalName(string Val)
 {
-	pStaData->CalName = Val;
+	strcpy_s(pStaData->CalName, Val.c_str());
 }
 
 
@@ -118,7 +57,7 @@ void C3pDevStaData::SetUv(double Val)
 
 void C3pDevStaData::SetUvN(double Val)
 {
-	pStaData->UvN = Val;
+	pStaData->Uv_N = Val;
 }
 
 void C3pDevStaData::SetId(double Val)
@@ -143,7 +82,7 @@ void C3pDevStaData::Setmiu(double Val)
 
 void C3pDevStaData::SetNnom(double Val)
 {
-	pStaData->Nnom = Val;
+	pStaData->Tk_N = Val;
 }
 
 string C3pDevStaData::GetCaseID()
@@ -173,7 +112,7 @@ double C3pDevStaData::GetUv()
 
 double C3pDevStaData::GetUvN()
 {
-	return pStaData->UvN;
+	return pStaData->Uv_N;
 }
 
 double C3pDevStaData::GetId()
@@ -198,6 +137,6 @@ double C3pDevStaData::Getmiu()
 
 double C3pDevStaData::GetNnom()
 {
-	return pStaData->Nnom;
+	return pStaData->Tk_N;
 }
 

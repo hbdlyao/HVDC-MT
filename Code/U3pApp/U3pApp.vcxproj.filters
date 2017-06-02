@@ -216,12 +216,6 @@
     <ClInclude Include="C3pCalSModeData.h">
       <Filter>头文件\计算\3p计算</Filter>
     </ClInclude>
-    <ClInclude Include="C3pCaseList.h">
-      <Filter>头文件\Device</Filter>
-    </ClInclude>
-    <ClInclude Include="C3pCase.h">
-      <Filter>头文件\Device</Filter>
-    </ClInclude>
     <ClInclude Include="C3pRwStaData.h">
       <Filter>头文件\Rw\Rw</Filter>
     </ClInclude>
@@ -340,12 +334,6 @@
     </ClCompile>
     <ClCompile Include="CIntergral.cpp">
       <Filter>源文件\计算\数学计算</Filter>
-    </ClCompile>
-    <ClCompile Include="C3pCaseList.cpp">
-      <Filter>源文件\Device</Filter>
-    </ClCompile>
-    <ClCompile Include="C3pCase.cpp">
-      <Filter>源文件\Device</Filter>
     </ClCompile>
     <ClCompile Include="C3pRwStaData.cpp">
       <Filter>源文件\Rw\Rw</Filter>

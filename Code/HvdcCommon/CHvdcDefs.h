@@ -1,16 +1,11 @@
 #pragma once
 
+
 #include <string>
 #include <map>
 
 using namespace std;
 
-#define M_PI 3.14159265358979323846
-#define Epsilon 0.00001
-
-
-//圆周率
-#define PI 3.141592653589793
 
 //真空介电常数
 #define EPSILON (8.854187817/1000000000000)//真空介电常数

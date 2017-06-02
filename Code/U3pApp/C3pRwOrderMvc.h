@@ -25,7 +25,6 @@ public:
 	void doLoad() override;
 	void doSave() override;
 
-	void doLoad_CaseID();
 };
 
 #endif // !defined(EA_56BEBA14_5C5E_4e12_BA84_775885FECCDF__INCLUDED_)

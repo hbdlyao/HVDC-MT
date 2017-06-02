@@ -15,4 +15,6 @@ protected:
 	void doLoad() override;
 	void doSave() override;
 
+	void doSave(vector<struct_mcResultData*> & vDataVect);
+
 };

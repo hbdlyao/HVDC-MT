@@ -36,27 +36,30 @@ public:
 
 public:
 	void NewCase();
+	void NewCaseU3p();
 
 protected:
 	CmcCase * doNewCase(struct_mcResultData * vData);
-	CmcCase * doNewCase(StrVector vNames, struct_mcResultData * vData);
-	
+	CmcCase * doNewCaseU3p(struct_mcResultData * vData);
+
+
+	CmcCase * doNewCase(StrVector vNames, struct_mcResultData * vData);	
 	CmcCase * doFindCase(StrVector vNames);
 
 public:
 	int RecordByte();
-	long PacketBytes();
+	long PacketBytes(vector<struct_mcResultData*> & vDataVect);
 
 	Byte * Serialize();
+	Byte * Serialize(vector<struct_mcResultData*> & vDataVect);
 
-	void Serialize(Byte * vPacket);
+	//void Serialize(Byte * vPacket);
 	void UnSerialize(Byte * vPacket);
 
-	void Serialize(StrVector vNames, Byte * vPacket);
-	void UnSerialize(StrVector vNames, Byte * vPacket);
 
 protected:
-	void doSerialize(vector<struct_mcResultData*>  vDataVect, Byte * vPacket);
+	Byte *  doSerialize(vector<struct_mcResultData*> & vDataVect);
+
 	void doUnSerialize(Byte * vPacket, vector<struct_mcResultData*> & vDataVect);
 
 };

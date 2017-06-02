@@ -5,7 +5,7 @@
 //  Original author: open2
 ///////////////////////////////////////////////////////////
 
-#include "CHvdcDefs.h"
+#include "CMyDefs.h"
 
 #include "C3pDevBase.h"
 #include "C3pParams.h"

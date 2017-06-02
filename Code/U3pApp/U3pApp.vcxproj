@@ -105,7 +105,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\BaseFrame;..\HvdcCommon;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\BaseFrame;..\HvdcCommon;..\mcApp;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,8 +156,6 @@
     <ClCompile Include="C3pCalOne.cpp" />
     <ClCompile Include="C3pCalTwo.cpp" />
     <ClCompile Include="C3pCalXf2.cpp" />
-    <ClCompile Include="C3pCase.cpp" />
-    <ClCompile Include="C3pCaseList.cpp" />
     <ClCompile Include="C3pDevAcSys.cpp" />
     <ClCompile Include="C3pDevBase.cpp" />
     <ClCompile Include="C3pDevConvertor.cpp" />
@@ -200,8 +198,6 @@
     <ClInclude Include="C3pCalSModeData.h" />
     <ClInclude Include="C3pCalTwo.h" />
     <ClInclude Include="C3pCalXf2.h" />
-    <ClInclude Include="C3pCase.h" />
-    <ClInclude Include="C3pCaseList.h" />
     <ClInclude Include="C3pDefs.h" />
     <ClInclude Include="C3pDevAcSys.h" />
     <ClInclude Include="C3pDevBase.h" />
@@ -248,6 +244,9 @@
     </ProjectReference>
     <ProjectReference Include="..\HvdcCommon\HvdcCommon.vcxproj">
       <Project>{c6d2e917-12a7-4e82-b45e-e330fd91cc7b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mcApp\mcApp.vcxproj">
+      <Project>{d9a06b70-e5e1-453e-9899-ca96433a2e8e}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -108,7 +108,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\BaseFrame;..\HvdcCommon;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\BaseFrame;..\HvdcCommon;..\U3p;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -346,6 +346,9 @@
     </ProjectReference>
     <ProjectReference Include="..\HvdcCommon\HvdcCommon.vcxproj">
       <Project>{c6d2e917-12a7-4e82-b45e-e330fd91cc7b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\U3pApp\U3pApp.vcxproj">
+      <Project>{21b18cf2-6bfc-41ef-ab10-4ae16c888296}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
